@@ -1,0 +1,505 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+
+<head>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshops - CHARMM Trajectory and Analysis Tutorial</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+
+<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all"/>
+
+<script type="text/javascript">
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader("w3csheet.css");
+</script>
+
+<body>
+
+<div id="LayerLogo" style="position:absolute; left:50px; right:0px; top:55px; width:300px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/angelo_rossi_fix.png" width="255" height="169" alt="Angelo Raymond Rossi">
+</div>
+
+<!--
+<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:15px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/Logo-Center-1Line-281.gif" width="375" height="133" alt="University of Connecticut">
+</div>
+-->
+
+<div id="LayerLogo" style="position:absolute; left:425px; right:0px; top:45px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/UAFLogo_A_647_horiz.png" width="443" height="98" alt="University of Alaska Fairbanks">
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:350px; right:0px; top:140px; width:600px; z-index:1">
+<center>
+<font color="blue">
+<h1>
+Computational Chemistry Workshop<br>
+West Ridge Research Building-UAF Campus<br>
+9:00am-4:00pm, Room 009
+</h1>
+<h2>
+Molecular Dynamics - July 26-28, 2016<br><br>
+CHARMM Trajectory and Analysis Tutorial
+</h2>
+</font>
+</center>
+</div>
+
+<div id="LayerSidebar" style="position:absolute; left:35px; top:300px; width:180px; z-index:3" class="navDiv">
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b>Home</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/teaching.htm"><center><b>Teaching Experience</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/research/index.html"><center><b>Research Interests</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/comp_chem_links.htm"><center><b>Computational Chemistry Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/hpc.htm"><center><b>High Performance<br>Computing Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/workshop"><center><b>Computational Chemistry Workshops</b></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/workshop-overview.htm"><center><small><b><font color="blue"><u>Overview and Registration</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/topics.htm"><center><small><b><font color="blue"><u>Topics and Exercises</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/resources.htm"><center><small><b><font color="blue"><u>Workshop Resources</u></b></font></small></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b> </b></center></a></p>
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:250px; top:300px; width:800px; z-index:1" align="center">
+<center>
+<!-- <hr width="100%" size="1"> -->
+<hr shade="" align="center" size="3" width="800" color="#0000FF">
+</center>
+</div>
+
+<div id="LayerMain" style="position:absolute; left:250px; top:325px; width:800px; z-index:4" class="maindiv" align="left">
+
+<table border="0" cellpadding="10">
+
+<table>
+<tr>
+<td width=50%>
+<h1>Objective and Overview</h1>
+<p>
+The objective of this tutorial is to introduce common
+analyses of structures and simulation trajectories using various
+CHARMM analysis facilities. All examples shown in this tutorial are
+based on analysis of a short MD trajectory of the protein G B1
+domain solvated in a cubic box of TIP3P water (shown on the right).
+</p>
+</td>
+<td>
+<center>
+<img src="files/3gb1_solv.jpg" width="188" border="0"><br>
+<font size="-1"><b>Solvated protein G B1 domain (PDB:3GB1)</b></font>
+</center>
+</td>
+</tr>
+</table>
+
+<a href="top"></a>
+
+<h1>Tutorial Components:</h1>
+<ol>
+<li><a href="#rmsd">Extract RMSD <i>vs</i> Initial Structure and Radius of Gyration of the Protein</a></li><a href="#rmsd"> </a>
+<li><a href="#phipsi">Extract Histograms of &phi;/&psi; Distributions </a></li><a href="#phipsi"> </a>
+<li><a href="#secs">Analyze the Secondary Structure Using the <i>Kabsch and Sander</i> DSSP Algorithm</a></li><a href="#secs"> </a>
+<li><a href="#hbond">Find Hydrogen Bonds in the Initial Structure, and from the Trajectory</a></li><a href="#hbond"> </a>
+<li><a href="#solvent">Analyze Water Diffusion and Water Structure Around the Protein</a></li><a href="#solvent"> </a>
+<li><a href="#orient">Reorient/Recenter the Trajectory, and also Remove All Solvent</a></li><a href="#orient"> </a>
+<li><a href="#nmr">Extract NMR Relxation Rates and Order Parameters for the Backbone Amides</a></li><a href="#nmr"> </a>
+<li><a href="#trp">Analyze the Time-dependent Fluorescence Anisotropy Decay of a Trp Residue</a></li><a href="#trp"> </a>
+<li><a href="#cluster">Cluster Structures from the Trajectory, Based on Selected &phi; and &psi; dihedrals</a></li><a href="#cluster"> </a>
+</ol>
+
+<p>
+These examples represent somewhat routine analyses but 
+can be combined with the CHARMM scripting 
+language to achieve many other more extensive analyses. Along with performing
+the examples, please examine the structure and trajectory
+using VMD or other visualization software. Also, one can choose favorite software for making plots
+from the data files produced following CHARMM analysis,  although all data plots shown here are
+were generated by the Gnuplot, and these scripts provided. 
+</p>
+<p>
+Please also keep in mind that the provided 100 ps trajectory with 100 coordinate
+frames sampled every 1 ps is far too short for many of the phenomena are analyzed here.
+</p>
+
+<p>
+To run any of the CHARMM analysis scripts:
+<pre> 
+<b>charmm &lt; scriptname.inp &gt; scriptname.log</b>
+</pre>
+</p>
+<p>
+To run the gnuplot scripts:
+<pre>
+<b>gnuplot scriptname.gnu</b>
+</pre>
+</p>
+
+<hr shade="" align="center" size="3" width="750" color="#0000FF">
+
+<a name="rmsd"></a>
+<h3>1. Root Mean Square Deviation and Radius of Gyration</h3>
+<pre>  
+         rmsd-singlecrd.inp  
+  rmsd-rgyr-traj-corman.inp
+  rmsd-rgyr-traj-correl.inp
+</pre>
+<p>
+Two simple characteristics of a structure are<br>
+<ol>
+<li>
+The Root Mean Squared Difference (RMSD) with respect to a reference structure (<i>e.g.</i>, the
+starting point of a simulation), tells us something about the
+dissimilarity between the structures - 1 &#197; RMSD is barely visible to
+the eye, while an RMSD 10 &#197; is leading to a significantly different structure.
+<li>
+The Radius of Gyration (RGYR) is a combined measure of its overall size and shape. A sphere
+has the smallest RGYR of any structure with the same volume. Increasing
+the volume, making the shape more anisotropic, or having more of its
+mass at the periphery, all lead to an increased RGYR. The 
+proper definition of RGYR in mechanics is mass-weighted, which 
+can be obtained by adding keyword MASS to the COOR RGYR command.
+</ol>
+</p>
+
+<p>
+Three scripts are provided to demonstrated how one evaluate RMSD
+and RGYR using CHARMM. The <b>rmsd-singlecrd.inp</b> script is extremely
+simple and calculates only the C<sup>&alpha;</sup> (CHARMM atom type CA) RMSD between two structures. 
+The <b>rmsd-rgyr-traj-corman.inp</b> and <b>rmsd-rgyr-traj-correl.inp</b> scripts
+calculate RMSD and RGYR of a trajectory from a reference structure
+using two methods (a loop with CORMAN versus no loop with CORREL). In CORREL, the
+results could have been output to one file for each property, but 
+the ability to edit the dimensions of the extracted time series
+in CORREL (edit ... veccod) is used to put all the information into one file.
+</p>
+
+<center><img src="files/rmsd-rgyr.jpg" width="620" border="0"><br>
+<font size="-1">CA RMSD and R<sub>g</sub> as Functions of Time (Generated by <b>plot_rmsd.gnu</b>).</font></center> 
+</a>
+
+<p><a name="rmsd"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="phipsi"></a>
+<h3>2. &phi;/&psi; Distributions</h3>
+<pre>  phi-psi-dist.inp</pre>
+<p>
+Peptide backbone dihdrals &phi; and &psi; determine the overall fold of
+a protein. In this example, histograms of &phi; and &psi; are extracted, and a 
+distribution from the trajectory for any selected residue using
+correl.doc is obtained. This script has the ability to take commandline
+arguments. The argument <font face="Courier">@rid</font> has a
+default value of 41 by the virtue of the following command in <b>phi-psi-dist.inp</b>: 
+<pre>
+if @?rid eq 0   set rid = 41
+</pre>
+However, the value of <font face="Courier">@rid</font> can be overwritten by following CHARMM excution:
+<pre>
+charmm rid=15 &lt; phi-psi-dist.inp | tee phipsi.log
+</pre>
+</p>
+<p>
+After the TRAJ command in the CORREL module has been executed
+averages and fluctuations are printed out for each time
+series. Both histograms are output to a single file named
+<b>phi-psi-dist.dat</b>, and the &phi;/&psi; time series are output to
+<b>phipsi.dat</b>. Following is a plot of of the results for Gly41.
+</p>
+
+<p>
+<center><img src="files/phipsi41.jpg" width="620" border="0"><br>
+<font size="-1">Gly41 &phi;/&psi; Histograms (left) and Time Series (Generated by <b>plot_phipsi.gnu</b>).</font></center> 
+</p>
+
+</a>
+
+<p>
+<a name="phipsi"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="secs"></a>
+<p><font size="4"><b>3. Secondary Structure</b></font></p>
+<pre>2nd-structure.inp</pre> 
+<p>
+COOR SECS (corman.doc) computes the secondary structure
+characteristics of a protein using the DSSP algorithm (Kabsch and
+Sander 1983), which is based on backbone hydrogen bond patterns. The
+CHARMM implementation is a slight simplification and uses the
+donor(hydrogen atom)-acceptor-atom definition of a hydrogen bond. Results are
+summarized in the output file (e.g., see below), and are also
+returned as a numerical flag in the WMAIN array. See <b>plot_nmr-s2.gnu</b> 
+for an example where WMAIN is plotted together with
+the order parameters from NMR relaxation analysis. The screen shot
+is shown in </a><a href="#nmr">NMR</a> section below.
+</p>
+<pre>  
+
+ ...
+
+ CHARMM&gt;    COOR SECS SELE .not. resn tip3 end VERBOSE
+ SELRPN&gt;    855 atoms have been selected out of  17088
+
+Secondary structure (Kabsch&amp;Sander) analysis.
+Using     56 aa in a context of     56 aa.
+     14 aa in alpha-helix ( 25%), and     24 aa in beta-strands ( 42%).
+
+      1: MET-THR-TYR-LYS-LEU-ILE-LEU-ASN-GLY-LYS-THR-LEU-LYS-GLY-GLU
+              E   E   E   E   E   E   E                   E   E   E
+
+     16: THR-THR-THR-GLU-ALA-VAL-ASP-ALA-ALA-THR-ALA-GLU-LYS-VAL-PHE
+          E   E   E   E               H   H   H   H   H   H   H   H
+
+     31: LYS-GLN-TYR-ALA-ASN-ASP-ASN-GLY-VAL-ASP-GLY-GLU-TRP-THR-TYR
+          H   H   H   H   H   H                       E   E   E   E
+
+     46: ASP-ASP-ALA-THR-LYS-THR-PHE-THR-VAL-THR-GLU-
+          E                   E   E   E   E   E    
+
+     ...
+
+</pre>
+</p>
+</a>
+
+<p>
+<a href="#top">Back to Top</a>
+</p>
+
+<a name="hbond"></a>
+<h3>4. Hydrogen Bond Analysis</h3>
+<pre>hbond.inp</pre>
+<p>
+Hydrogen bonding patterns often provide useful information. In this
+exercise the COOR HBOND (corman.doc) command is used to find hydrogen
+bonds in a single structure, as well as average number of hydrogen
+bonds and their average life times from a trajectory. Hydrogen bonds
+can be defined in many ways, but a simple geometric
+criterion will be used: a hydrogen bond exists if the distance between the
+hydrogen donor (D) and acceptor atoms (A) is less than 2.4 Å. This works well in
+practice. Note that when there is information about the hydrogen
+position, the hydrogen bond definition is not very sensitive to
+angular criteria, as are often used when determining hydrogen bonds
+in X-ray structures (lacking hydrogens). 
+</p>
+<p>
+Hydrogen
+bonds within the protein, between protein and water, and also on
+water-mediated hydrogen bonding contacts between different parts of
+the protein will be examined. Hydrogen bonded interactions of the form A/D
+- water - A/D, where A/D denotes a hydrogen bond donor or acceptor
+in the protein will also be examined. COOR HBOND uses the information about acceptors and
+donors in the PSF, so quite simple and general
+atom-selections will be used. All hydrogen bonds between the acceptors/donors in
+the two selections are calculated. A second form of the command
+(COOR CONTact) applies only distance criterion to all the selected atoms.
+</p> 
+
+<p>
+The results are presented as hydrogen bonds per each acceptor/donor
+in the first atom-selection; if the VERBose keyword is present a
+break-down in terms of accptors/donors in the second atom-selection
+is given. The VERBose keyword is not useful in a CHARMM
+loop when it is desired to extract total number of hydrogen bonds through
+CHARMM variables (subst.doc). <b>&lt;occupancy&gt;</b> is the average
+number of hydrogen bonds formed by a given accptor/donor during the
+trajectory. The <b>&lt;lifetime&gt;</b> (in ps) is the average
+duration of each instance of a given hydrogen bond.
+</p>
+
+<p>
+<a name="hbond"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="solvent"></a>
+<h3>5. Solvent Dynamics and Structure</h3>
+<pre>
+solvent.inp
+</pre>
+<p>
+All cells live an aqueous environment and their insides
+(<i>cytoplasm</i>) are also largely aqueous. Biomacromolecules thus
+have evolved to function (Membrane
+proteins are, of course, different in this respect); consquently
+CHARMM has well-developed facilities to analyze solvation behavior
+(see also the Hydrogen Bonds exercise). Here, the COOR
+ANAL (corman.doc) module is used to extract solvent dynamics (translational
+and rotational diffusion) and structure, in terms of radial
+distribution functions. The example analyzes these properties for
+different regions of the water depending on the distance from
+protein surface (&lt;5 A, 5-10 A, &gt;10 A). As shown in the following
+plots, water molecules near the protein surface tend to diffuse
+and rotate slower (with larger effective rotational correlation time
+and smaller diffusion constant). The R<sub>g</sub> of different residues also
+indicate the degree of solvation.
+</p>
+<p>
+<center>
+<img src="files/solvent.jpg" width="620" border="0"><br>
+<font size="-1">Solvent Structure and Dynamics: MSD(t) (left), g(r) (center) and P2(t) (Generated by <b>plot_solvent.gnu</b>).</font>
+</center> 
+</p>
+
+<p>
+<a name="solvent"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="orient"></a>
+<h3>6. Recentering/Orienting and Removing Water from the Trajectory</h3>
+<pre>orient.inp</pre>
+<p>
+The raw trajectory often needs to be pre-processed to facilitate some
+of the later analyses. The trajectrory was obtained from a
+simulation using periodic boundary conditions (PBC), which means
+that it is possible for the solute (the protein) to be partly out of
+the primary simulation box. By
+recentering the trajectory solvent molecules are moved according to
+the PBC so that the protein is in the center of the box in each
+frame. Furthermore, each frame is then re-oriented, such that the protein
+is superimposed on the coordinates of the initial protein structure,
+thus removing overall protein rotation/translation motions. For a
+very flexible system, the removal of overall rotation may be a
+non-trivial task, but G B1 is compact and quite rigid, so the
+superposition is based on all atoms in the protein. 
+</p>
+<p>
+The script uses the CHARMM MERGE command (dynamc.doc) and
+demonstates only the part that we re-orient the protein and remove
+all water molecules. A new trajectory file is produced. The script
+also contains an example on how to re-center and orient the protein
+without deleting water molecules (this line is not excuted as it is
+after the "stop" command). MERGE can also be used to join or
+split trajectory files or to change (reduce) sampling frequency.
+</p>
+</a>
+<p>
+<a name="orient"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="nmr"></a>
+<h3>7. NMR Relaxation Rates and Generalized Order Parameters</h3>
+<pre>nmr.inp</pre>
+<p>
+MD simulations and NMR relaxation experiments often cover similar
+time-scales (ps-ns). Relaxation phenomena observed in NMR
+experiments depend on motional behavior of nuclear dipoles in the
+macromolecule, and the NMR module in CHARMM has been designed to
+allow efficient extraction of NMR related parameters from a
+trajectory (nmr.doc). This example analyzes relaxation parameters,
+including relaxation rates, generalized order parameters, and configurational
+entropy estimates for the backbone amide groups.
+</p>
+<p>
+Results, with some details such as the computed correlation
+functions are given in the output file <b>nmr-rt_ct.dat</b>, and are also
+summarized in <b>nmr-r1r2.dat</b>. Note that the protein trajectory with
+overall translation/rotation removed is used. It is assumed that the
+internal and overall motions occur on very different time scales
+and can confidently be separated, allowing the focus on the
+internal motions. Such an assumption is necessary, as most
+simulations are not long enough to sufficiently sample global
+rotational diffusion. The following figure plots the general order
+parameter S2 for each HN vector together with the secondary
+structure (generated by <b>2nd-structure.inp</b>, see above). Clearly,
+even for a 100 ps simulation, it is evident that loops are more
+flexible with smaller S2.
+</p>
+<p>
+<center>
+<img src="files/s2-secs.jpg" width="620" border="0"><br>
+<font size="-1"> General order parameter and secondary structures (generated by <b>plot_nmr-s2.gnu</b>).</font>
+</center> 
+</p>
+
+<p>
+<a name="nmr"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="trp"></a>
+<h3>8. Fluorescence Anisotropy</h3>
+<pre>
+trp--anisotropy.inp
+</pre>
+<p>
+The motion of chromophores may be detected by following the
+time-dependence of the polarized components of fluorescence emission
+following a brief pulse of polarized excitation. This time-dependent
+anisotropy can also be computed from the (rank two) autocorrelation
+of a unit vector along the transmission dipole, or more strictly,
+the correlation between absorption and emission dipoles. Trp is the
+most useful intrinsic chromophore in proteins, but Tyr also has a
+certain fluorescence which is less intense than that of Trp. Extrinsic
+probes, including dansyl chloride and many others, are often used. The fast
+decay of this fluorescence anisotropy means that
+internal motions can be decoupled from the overall rotational diffusion
+of the protein (See also the <a href="#nmr">NMR Exercise</a>.). Protein <b>G B1</b> only has
+one buried Trp. Within 100 ps simulation, Trp43 does not change
+its rotamer state, and the correlation fuction does not decay significantly. 
+</p>
+<p>
+<center>
+<img src="files/trp.jpg" width="620" border="0"><br>
+<font size="-1"> Trp43 Ch1/Ch2 Time Series and Dipole Orientational
+Correlation Function (Generated by <b>plot_trp.gnu</b>).</font>
+</center> 
+</p>
+
+<p>
+<a name="trp"></a><a href="#top">Back to Top</a>
+</p>
+
+<a name="cluster"></a>
+<h3>9. &phi;/&psi; Based Clustering</h3>
+<pre>
+cluster.inp
+</pre>
+<p>
+As shown above in <a href="#phipsi">&phi;/&psi; distribution analysis</a>, CORREL
+(correl.doc) can be used to extract time series of backbone dihedral
+angles, and many other properties. Some of the
+dihiedral angles that vary during the simulation can be used for clustering the
+structures in the trajectory. As shown from the RMSD analysis, the
+protein does not move much within 200 ps. Thus, the loop
+38-41 is chosen as one that has the largest fluctuation (or smaller order parameters
+from nmr analysis) to demonstrate clustering. 
+</p>
+<p>
+The number of clusters and cluster centers are summarized in <b>clus-center.dat</b>. Membership
+and distance from center of each frame are output in <b>clus-member.dat</b>. 
+</p>
+
+<p>
+<a href="#top">Back to Top</a>
+</p>
+
+</table>
+
+<p>
+This collection of tutorials was originally created by <a href="http://ki.se/en/people/lnilss" target="_new"><b>Lennart Nilsson</b></a>
+from Karolinska Institutet in Sweden, but they have been slightly modified for this workshop.
+</p>
+
+<p class="footer" align="center">
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+  </p>
+</div>
+
+</body>
+</html>

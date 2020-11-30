@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+   <TITLE>the D2h point group</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>The D<sub>2h</sub> Point Group</H2></CENTER>
+<HR>
+
+<P>
+This point group contains the following symmetry operations:<BR><BR>
+
+<B>E</B>&nbsp;&nbsp;&nbsp; the identity operation<BR>
+<B>C<SUB>2</SUB></B>&nbsp;&nbsp; a twofold principal symmetry axis<BR>
+2 * <B>C<SUB>2</SUB></B>&nbsp;&nbsp; two twofold symmetry axes orthogonal to the principal axis<BR>
+<B>i</B>&nbsp;&nbsp;&nbsp;&nbsp; inversion through a center of symmetry<BR>
+<B>&sigma;<SUB>h</SUB></B>&nbsp;&nbsp; a horizontal mirror plane intersecting the principal symmetry axis<BR>
+2 * <B>&sigma;<SUB>v</SUB></B>&nbsp;&nbsp; two vertical mirror planes aligned with the principal symmetry axis<BR><BR>
+
+A simple example for a D<sub>2h</sub> symmetric molecule is ethylene 
+(C<sub>2</sub>H<sub>4</sub>), here in its HF/6-31G(d) optimized structure:<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P RHF/6-31G(d) opt=(Z-Matrix,tight)
+
+RHF/6-31G(d) opt min ethylene D2h sym.
+
+0 1
+X1
+X2  1  1.0
+C3  2  r3  1  90.0
+C4  2  r3  1  90.0 3  180.0
+H5  3  r5  2  a5  1  -90.0
+H6  3  r5  2  a5  1  90.0
+H7  4  r5  2  a5  1  -90.0
+H8  4  r5  2  a5  1  90.0
+
+r3=0.65846705 
+r5=1.07598871
+a5=121.81387521 
+
+</FONT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="sym_D2h.gif">
+</TABLE><BR>
+
+In this case the symmetry of the system is reflected in the Z-Matrix
+through the use of identical variable names for hydrogen atoms
+H5 - H8 and through constraining all atoms to the symmetry plane.
+This reduces the number of independent structural variables 
+from 12 (for an asymmetric, non-linear molecule containing six 
+centers) to 3 and thus accelerates geometry optimizations.<BR><BR>
+
+Molecular orbitals as well as harmonic vibrations (if calculated) 
+are labeled according to their symmetry properties as belonging to
+one of the eight irreducible representations (
+<FONT COLOR="#0000FF">A<SUB>g</SUB></FONT>,
+<FONT COLOR="#0000FF">A<SUB>u</SUB></FONT>, 
+<FONT COLOR="#0000FF">B<SUB>1g</SUB></FONT>,
+<FONT COLOR="#0000FF">B<SUB>2g</SUB></FONT>,
+<FONT COLOR="#0000FF">B<SUB>3g</SUB></FONT>,
+<FONT COLOR="#0000FF">B<SUB>1u</SUB></FONT>,
+<FONT COLOR="#0000FF">B<SUB>2u</SUB></FONT>,
+<FONT COLOR="#0000FF">B<SUB>3u</SUB></FONT>,
+) of the D<sub>2h</sub>
+point group.
+
+
+<HR>
+<PRE>
+<TT>last changes: 08.06.2006, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+   <TITLE>running Gaussian jobs</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER>
+<H2> Running Gaussian Jobs on the CIP-Cluster </H2></CENTER>
+<HR>
+<P>
+Running <I>Gaussian 03</I> jobs through the PBS queueing system on the 
+CIP-F cluster requires the combination of input information for the 
+queueing system and for <I>Gaussian 03</I>. A typical example named 
+<I>test1</I> has the following structure:<BR><BR>
+
+<PRE><FONT COLOR="#0000FF">
+#!/bin/csh
+#PBS -l mem=128mb
+#PBS -q long
+setenv g03root /usr/local
+setenv GAUSS_SCRDIR /scratch
+setenv GAUSS_EXEDIR /usr/local/g03b3
+setenv GAUSS_ARCHDIR /usr/local/g03b3
+setenv LD_LIBRARY_PATH "${GAUSS_EXEDIR}:/usr/lib"
+cat >$GAUSS_SCRDIR/$PBS_JOBNAME << EOF
+%chk=/scratch/test1.chk
+%mem=6000000
+#P HF/6-31G(d) scf=tight
+
+test1 HF/6-31G(d) sp formaldehyde
+
+0 1
+C1
+O2  1  r2
+H3  1  r3  2  a3
+H4  1  r4  2  a4  3  d4
+
+r2=1.20
+r3=1.0
+r4=1.0
+a3=120.
+a4=120.
+d4=180.
+
+
+EOF
+touch $PBS_O_WORKDIR/$PBS_JOBNAME.$HOST
+/usr/local/g03b3/g03 < $GAUSS_SCRDIR/$PBS_JOBNAME > $GAUSS_SCRDIR/$PBS_JOBNAME.log
+mv $GAUSS_SCRDIR/$PBS_JOBNAME.log $PBS_O_WORKDIR/$PBS_JOBNAME.log
+mv $GAUSS_SCRDIR/$PBS_JOBNAME.chk $PBS_O_WORKDIR/$PBS_JOBNAME.chk
+rm -f $GAUSS_SCRDIR/$PBS_JOBNAME
+exit
+</FONT></PRE>
+
+The first three lines of this input file starting with the <FONT COLOR="#0000FF">#</FONT> 
+symbol are pbs-commands that direct the pbs queueing system to execute all following 
+commands in the <FONT COLOR="#0000FF">csh</FONT> environment and submit this job to 
+queue <FONT COLOR="#0000FF">long</FONT>. A maximum of 128mb is allocated to the job. 
+Including the queue-name in the input file is not mandatory, but facilitates working 
+with multiple jobs on a compute cluster. The following lines starting with 
+<FONT COLOR="#0000FF">setenv</FONT> define <I>Gaussian</I>-specific environment 
+variables.<BR><BR>
+
+The <FONT COLOR="#0000FF">cat</FONT> command is then used to create a file called 
+<FONT COLOR="#0000FF">"$GAUSS_SCRDIR/$PBS_JOBNAME"</FONT>.
+<FONT COLOR="#0000FF">GAUSS_SCRDIR</FONT> is one of the environment variables set 
+before to designate the scratch directory for <I>Gaussian 03</I> (a directory for 
+large files that will be deleted after the job terminates successfully). The 
+environment variable <FONT COLOR="#0000FF">PBS_JOBNAME</FONT> is provided by the 
+pbs queueing system itself and defaults to the name of the script file (here: test1). 
+What the <FONT COLOR="#0000FF">cat</FONT> command does in this 
+particular example is to copy all lines that follow until the 
+<FONT COLOR="#0000FF">EOF</FONT> (end of file) marker into the file 
+<FONT COLOR="#0000FF">/scratch/test1</FONT>.<BR><BR>
+
+The remaining lines after the EOF marker first generate an empty file in the users 
+working directory indicating the name of the node on which the calculation will be 
+executed and then execute <I>Gaussian 98</I> using 
+<FONT COLOR="#0000FF">/scratch/test1</FONT> as an input file and 
+<FONT COLOR="#0000FF">/scratch/test1.log</FONT> as the output file. After job completion 
+the output file <FONT COLOR="#0000FF">/scratch/test1.log</FONT> will be moved to the 
+working directory of the user. The location of the latter is reflected in the pbs 
+environment variable <FONT COLOR="#0000FF">$PBS_O_WORKDIR</FONT>. The value of this 
+variable is set upon submit time and defaults to the subdirectory containing the job 
+file. A second (binary) file containing additional information of the calculation 
+called <FONT COLOR="#0000FF">/scratch/test1.chk</FONT> will also be moved to the 
+users working directory. The final <FONT COLOR="#0000FF">rm</FONT> command cleans 
+up everything that is left over.<BR><BR>
+
+The advantage of reading and writing input and output files to /scratch instead of the 
+users home directory directly has to do with the fact that the former is a local file 
+system, while the latter is accessible only through a file server (here cicum1). In case 
+the file server responds too slowly, the <I>Gaussian 03</I> jobs will simply terminate 
+with a file I/O error. Access to a local file system such as /scratch is much more 
+reliable. Unfortunately, there are also two disadvantages to this concept. First, as the 
+/scratch directories are local file systems on local disks, they are accessible only 
+from one single node of the cluster. This implies that a job running on cicum82 can't 
+access the files located in the /scratch directory on cicum93. Second, each /scratch 
+directory is open to all users of the cluster. This becomes problematic when multiple 
+users choose identical file names such as <FONT COLOR="#0000FF">test1</FONT>. In case 
+two users run a job in sequence on the same cluster node using identical file names, 
+the second job will typically die due to file access restrictions. This problem can be 
+circumvented by choosing appropriate job and file names.<BR><BR>
+
+The script described above can be extended with all common csh-commands. One particularly 
+useful one consists in copying or renaming files before <I>Gaussian 03</I> executes. 
+If, for example, results from a previous run are stored already in the binary checkpoint 
+file named test1.chk, one could move this file first to the 
+/scratch directory by inserting:<BR><BR>
+
+<FONT COLOR="#0000FF">
+cp $PBS_O_WORKDIR/$PBS_JOBNAME.chk $GAUSS_SCRDIR/$PBS_JOBNAME.chk<BR><BR>
+</FONT>
+
+directly before the <FONT COLOR="#0000FF">touch</FONT> command in the above example.<BR><BR>
+
+Finally this file can be submitted to the queueing system with <FONT COLOR="#0000FF">qsub test1</FONT>.
+In case no queueing information has been included in the actual input file, this information can be 
+added on submit time using, for example, <FONT COLOR="#0000FF">qsub -l nodes=cicum92 test1</FONT>.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 16.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>

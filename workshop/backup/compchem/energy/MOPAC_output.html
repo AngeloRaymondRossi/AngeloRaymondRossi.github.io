@@ -1,0 +1,235 @@
+<HTML>
+<HEAD>
+   <TITLE>MOPAC sample output</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>MOPAC Output Files</H2></CENTER>
+<HR>
+
+<P>
+Using again the AM1 water optimization as an example, the results of the AM1 optimization
+will be stored in a file with the same name as the input file, but ending in .out.
+The first part of the ouptut file reminds you of the program version:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+ *******************************************************************************
+ **                      MOPAC (PUBLIC DOMAIN)                                **
+ *******************************************************************************
+
+                                 AM1 CALCULATION RESULTS
+
+
+ *******************************************************************************
+ *          MOPAC:  VERSION  7.00               CALC'D. Wed Jun 25 11:12:18 2003
+ *   T=      - A TIME OF    48.0 HOURS   REQUESTED
+ *  DUMP=N   - RESTART FILE WRITTEN EVERY  3600.0 SECONDS
+ *  EF       - USE EF ROUTINE FOR MINIMUM SEARCH
+ *  AM1      - THE AM1 HAMILTONIAN TO BE USED
+ *  PRECISE  - CRITERIA TO BE INCREASED BY 100 TIMES
+ ***********************************************************************040BY040
+</FONT>
+</PRE>
+
+After this header lines, the keywords are again listed together with various representations
+of the structure of the system:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+AM1 PRECISE EF T=48H
+ test3 AM1 optimization of water
+ 
+
+    ATOM   CHEMICAL  BOND LENGTH    BOND ANGLE     TWIST ANGLE
+   NUMBER  SYMBOL    (ANGSTROMS)     (DEGREES)      (DEGREES)
+    (I)                  NA:I          NB:NA:I      NC:NB:NA:I     NA   NB   NC
+
+      1      O       
+      2      H         1.00000  *                                  1
+      3      H         1.00000  *     105.00000  *                 1    2
+
+
+          CARTESIAN COORDINATES 
+
+    NO.       ATOM         X         Y         Z
+
+     1         O         .0000     .0000     .0000
+     2         H        1.0000     .0000     .0000
+     3         H        -.2588     .9659     .0000
+
+
+     MOLECULAR POINT GROUP   :   C2V 
+</FONT>
+</PRE>
+
+The parameters used in the AM1 calculations for the elements O and H are those given in
+the following two literature citations:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+  H: (AM1): M.J.S. DEWAR ET AL, J. AM. CHEM. SOC. 107 3902-3909 (1985)          
+  O: (AM1): M.J.S. DEWAR ET AL, J. AM. CHEM. SOC. 107 3902-3909 (1985)          
+</FONT>
+</PRE>
+
+Details pertaining to the geometry optimization are subsequently listed only
+briefly. In particular there is no information on partially optimized structures.
+In the current example, the geometry optimization is complete after 7 optimization 
+cycles. At this point both the SCF as well as the geometry optimization criteria
+are fulfilled.<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+          RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS =  4
+
+
+            INTERATOMIC DISTANCES
+0
+                  O  1       H  2       H  3
+ ------------------------------------------
+     O    1    .000000
+     H    2   1.000000    .000000
+     H    3   1.000000   1.586707    .000000
+
+          DIAGONAL MATRIX USED AS START HESSIAN
+
+ CYCLE:   1 TIME:    .00 TIME LEFT: 172800.0 GRAD.:    54.071 HEAT:-57.64871    
+ CYCLE:   2 TIME:    .00 TIME LEFT: 172800.0 GRAD.:     2.569 HEAT:-59.22653    
+ CYCLE:   3 TIME:    .00 TIME LEFT: 172800.0 GRAD.:     1.369 HEAT:-59.23409    
+ CYCLE:   4 TIME:    .00 TIME LEFT: 172800.0 GRAD.:     1.111 HEAT:-59.23926    
+ CYCLE:   5 TIME:    .00 TIME LEFT: 172800.0 GRAD.:      .371 HEAT:-59.24072    
+ CYCLE:   6 TIME:    .00 TIME LEFT: 172800.0 GRAD.:      .051 HEAT:-59.24078    
+ CYCLE:   7 TIME:    .00 TIME LEFT: 172800.0 GRAD.:      .001 HEAT:-59.24079    
+
+     RMS GRADIENT =   .00141  IS LESS THAN CUTOFF =   .05000
+
+
+
+ -------------------------------------------------------------------------------
+ AM1 PRECISE EF T=48H
+ test3 AM1 optimization of water
+ 
+
+
+     GEOMETRY OPTIMISED USING EIGENVECTOR FOLLOWING (EF).     
+     SCF FIELD WAS ACHIEVED                                   
+</FONT>
+</PRE>
+
+The most important energetic parameters are then listed in the output file
+together with the overall CPU time needed for the calculation.
+
+<PRE>
+<FONT COLOR="#0000FF">
+                                AM1    CALCULATION
+                                                       VERSION  7.00
+                                                       Wed Jun 25 11:12:18 2003
+
+
+
+
+          FINAL HEAT OF FORMATION =        -59.24079 KCAL
+
+
+          TOTAL ENERGY            =       -348.56254 EV
+          ELECTRONIC ENERGY       =       -493.26959 EV
+          CORE-CORE REPULSION     =        144.70704 EV
+
+          IONIZATION POTENTIAL    =         12.46417
+          NO. OF FILLED LEVELS    =          4
+          MOLECULAR WEIGHT        =     18.015
+
+
+          SCF CALCULATIONS  =                8
+          COMPUTATION TIME =    .000 SECONDS
+</FONT>
+</PRE>
+
+The output file then contains the optimized molecular structure<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+    ATOM   CHEMICAL  BOND LENGTH    BOND ANGLE     TWIST ANGLE
+   NUMBER  SYMBOL    (ANGSTROMS)     (DEGREES)      (DEGREES)
+    (I)                  NA:I          NB:NA:I      NC:NB:NA:I     NA   NB   NC
+
+      1      O       
+      2      H          .96127  *                                  1
+      3      H          .96127  *     103.53103  *                 1    2
+
+
+            INTERATOMIC DISTANCES
+0
+                  O  1       H  2       H  3
+ ------------------------------------------
+     O    1    .000000
+     H    2    .961267    .000000
+     H    3    .961267   1.510121    .000000
+
+
+      MOLECULAR POINT GROUP   :   C2V 
+</FONT>
+</PRE>
+
+as well as further information on the electronic stucture of the system<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+                  EIGENVALUES
+
+ -36.42411 -18.19965 -14.95262 -12.46417   4.41831   6.19152
+
+
+              NET ATOMIC CHARGES AND DIPOLE CONTRIBUTIONS
+
+         ATOM NO.   TYPE          CHARGE        ATOM  ELECTRON DENSITY
+           1          O           -.3827          6.3827
+           2          H            .1914           .8086
+           3          H            .1914           .8086
+ DIPOLE           X         Y         Z       TOTAL
+ POINT-CHG.      .677      .859      .000     1.094
+ HYBRID          .475      .602      .000      .767
+ SUM            1.151     1.461      .000     1.860
+ 
+           CARTESIAN COORDINATES 
+
+    NO.       ATOM               X         Y         Z
+
+     1         O                   .0000     .0000     .0000
+     2         H                   .9613     .0000     .0000
+     3         H                  -.2249     .9346     .0000
+
+
+          ATOMIC ORBITAL ELECTRON POPULATIONS
+
+   1.86274   1.24275   1.27722   2.00000    .80865    .80865
+
+
+
+ TOTAL CPU TIME:              .00 SECONDS
+</FONT>
+</PRE>
+
+The program has finnished successfully if the output file ends in<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+ == MOPAC DONE ==
+</FONT>
+</PRE>
+
+<HR>
+<PRE>
+<TT>last changes: 29.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

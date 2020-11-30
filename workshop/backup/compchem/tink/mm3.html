@@ -1,0 +1,222 @@
+<HTML>
+<HEAD>
+   <TITLE>Force Field Calculations in Gaussian</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2>Force Field Calculations in <I>Gaussian 03</I></H2> 
+</CENTER>
+<HR>
+Despite the fact that <I>Gaussian</I> is a program for quantum mechanical
+calculations, it also offers some possibilities for performing force field 
+calculations with the <FONT COLOR="#0000FF">AMBER</FONT>, <FONT COLOR="#0000FF">Dreiding</FONT>,
+and <FONT COLOR="#0000FF">UFF</FONT> force fields. In contrast to quantum mechanical
+calculations, the input files for these types of calculations are slightly more
+complex as the force field calculations require clear specifications of
+atom type and connectivity. The following is an input file for the optimization 
+of methanol with the <FONT COLOR="#0000FF">AMBER</FONT> force field:<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P amber opt=Z-Matrix geom=connectivity
+
+AMBER opt methanol, explicit connectivity
+
+0  1
+H-H1-
+C-CT-  1  r2
+O-OH-  2  r3  1  a3
+H-HO-  3  r4  2  a4  1  180.0
+H-H1-  2  r5  3  a5  1  d5
+H-H1-  2  r5  3  a5  1  -d5
+
+r2=1.08105957
+r3=1.39956997
+r4=0.94629421
+r5=1.08744287
+a3=107.170012
+a4=109.447010
+a5=112.035787
+d5=118.773010
+
+1 2 1.0
+2 3 1.00 5 1.0 6 1.0
+3 4 1.0
+4
+5
+6
+
+</PRE>
+</FONT>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="methanol2.gif">
+</TABLE><BR>
+
+The definition of the geometry of the system differs from that used in quantum mechanics
+calculations in two points:<BR><BR>
+
+1) The atom types are defined through atomic symbols as well as 
+a force field atom type. The first line of the above input:<BR><BR>
+
+<FONT COLOR="#0000FF">
+H-H1-
+</FONT><BR><BR>
+
+defines a hydrogen atom which is connected to a carbon atom carying one electronegative
+substituent. The same atom type is chosen for hydrogen atoms H5 and H6. A different atom 
+type <FONT COLOR="#0000FF">-HO</FONT> is selected for hydrogen atom 4 connected to the 
+oxygen atom. The atom type definitions are those defined for the AMBER force field. A full 
+list of possible atom types can be found <A HREF="parm96.html">here</A>.<BR><BR>
+
+2) The input file now also includes information on the atom connectivity.
+Prompted by the <FONT COLOR="#0000FF">geom=connectivity</FONT> keyword the
+program reads after the end of the Z-Matrix definition additional lines (one
+per atom) that define the bonds present in the system. The line:<BR><BR>
+
+<FONT COLOR="#0000FF">
+1 2 1.0
+</FONT><BR><BR>
+
+defines a bond of bond order 1.0 between centers 1 and 2. This type of information
+is given once for every bond contained in the system. Based on a proximity criterion
+the program can also define bonds by itself. This does, of course, only work properly 
+if the starting geometry is chosen well enough.<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P amber opt=Z-Matrix
+
+AMBER opt methanol, no connectivity, no charges
+
+0  1
+H-H1-
+C-CT-  1  r2
+O-OH-  2  r3  1  a3
+H-HO-  3  r4  2  a4  1  180.0
+H-H1-  2  r5  3  a5  1  d5
+H-H1-  2  r5  3  a5  1  -d5
+
+r2=1.08105957
+r3=1.39956997
+r4=0.94629421
+r5=1.08744287
+a3=107.170012
+a4=109.447010
+a5=112.035787
+d5=118.773010
+
+</PRE>
+</FONT>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="methanol2.gif">
+</TABLE><BR>
+
+The <I>Gaussian</I> output file contains rather limited information on the
+geometries generated during the geometry optimzation if only the <FONT COLOR="#0000FF">opt</FONT>
+keyword is being used. This has to do with the original purpose of the implementation of
+force field methods in <I>Gaussian</I> for combination with quantum mechanical methods.
+In these types of <FONT COLOR="#0000FF">QM/MM</FONT> methods several microiterations are
+performed for the force field subsystem before one geometry optimization step is performed
+for the quantum mechanical system. Only after the latter a new geometry is written to the output file. 
+A full reflection of geometry changes during optimization can be achieved using either the
+<FONT COLOR="#0000FF">opt=nomicro</FONT> keyword or the definition of a particular
+coordinate system with the <FONT COLOR="#0000FF">opt=Z-Matrix</FONT> or 
+<FONT COLOR="#0000FF">opt=Redundant</FONT> keywords.<BR><BR>
+
+For each structure along the optimization pathway <I>Gaussian</I> reports the energy of the
+system as:<BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+(Enter /scr1/g98/l402.exe)
+ AMBER calculation of energy and first derivatives.
+ MO and density RWFs will be updated.
+ Recover connectivity from rwf.
+ EGHMM:  NBAlg=1 ICut=1 CutNB= 1.43D+03
+ Energy=    0.000793358514 NIter=   0.
+</PRE>
+</FONT>
+
+The energy listed here is that defined through the bonded and non-bonded interactions present 
+in the system, the hypothetical "unstrained" state serving as the zero point of
+energy.<BR><BR>
+
+One additional aspect of force field calculations concerns the calculation of
+Coulomb interactions between non-bonded centers. If not specified in the
+input file, no charges are assigned to the atoms of the system
+and no Coulomb interactions are calculated. If, however, charges are included
+in the input file, the Coulomb interactions are calculated. This also changes the
+definition of the force field itself and the reported energy of the system is not
+directly comparable anymore to that without Coulomb interactions. The following
+input file for methanol contains charges derived with the CHELPG scheme at the HF/6-31G(d)
+level of theory:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P amber opt=nomicro
+
+AMBER opt methanol, no connectivity, CHELPG charges
+
+0  1
+H-H1-0.04
+C-CT-0.36   1  r2
+O-OH--0.49  2  r3  1  a3
+H-HO-0.17   3  r4  2  a4  1  180.0
+H-H1--0.04  2  r5  3  a5  1  d5
+H-H1--0.04  2  r5  3  a5  1  -d5
+
+r2=1.08105957
+r3=1.39956997
+r4=0.94629421
+r5=1.08744287
+a3=107.170012
+a4=109.447010
+a5=112.035787
+d5=118.773010
+
+</PRE>
+</FONT>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="methanol2.gif">
+</TABLE><BR>
+
+Please observe that the charge parameters directly follow the atom type specification
+without a blank.<BR><BR>
+
+The process of building an appropriate input file for force field calculations can be
+vastly facilitated using <I>GaussView</I>. For this purpose we will use <I>GaussView</I>s
+facility to generate complete input files for any type of calculation. After designing
+the system of interest using, for example, the fragment library, select 
+<FONT COLOR="#0000FF">Gaussian...</FONT> from the <FONT COLOR="#0000FF">Calculate</FONT>
+pull down menu. In the popup window select <FONT COLOR="#0000FF">Mechanics..</FONT> in the
+<FONT COLOR="#0000FF">Method:</FONT> panel and <FONT COLOR="#0000FF">Amber</FONT> as the
+force field model. After checking the <FONT COLOR="#0000FF">Write Connectivity</FONT> 
+button in the <FONT COLOR="#0000FF">General</FONT> menue, you can generate the input file selecting the
+<FONT COLOR="#0000FF">Edit..</FONT> and the <FONT COLOR="#0000FF">Save</FONT> buttons
+and provide a file name. The generated file then appears in a new window, which can be
+closed without any changes. The subsequently appearing submit prompt can be canceled. 
+This type of aborted job submission generates the file with all necessary connectivity information
+and atom type declarations. If contained in the fragment library, atomic charges are
+also included.<BR><BR>
+
+
+
+<hr>
+<PRE>
+<TT>last changes: 09.11.2006, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>

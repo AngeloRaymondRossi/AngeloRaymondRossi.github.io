@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+   <TITLE>NPA</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER>
+<H2> Atoms In Molecules<BR>(AIM)</H2>
+</CENTER>
+
+<HR>
+Information on the Atoms In Molecules (AIM) scheme can be found on the following sites:<BR><BR>
+
+<UL>
+<LI><A HREF="http://www.chemistry.mcmaster.ca/faculty/bader/aim/">R. W. F. Bader's home page at McMasters</A>
+<LI>the <A HREF="http://www.aim2000.de/">AIM2000</A> web page
+<LI>the web page of <A HREF="http://www.umist.ac.uk/departments/chemistry/about/staff/popelier.htm">Paul Popellier</A>
+</UL>
+
+The AIM version in <I>Gaussian</I> can be used with the <FONT COLOR="#0000FF">aim</FONT>
+keyword. The following input file will perform a minimal AIM analysis in order to
+obtain AIM atomic charges:<BR><BR>
+
+<PRE><TT>
+#P HF/STO-3G scf=(direct,tight) aim=charges 
+
+test29 HF/STO-3G formaldehyde AIM  
+
+0 1
+C1
+O2 1 r2
+H3 1 r3 2 a3
+H4 1 r3 2 a3 3 180.
+
+r2=1.21672
+r3=1.10138
+a3=122.73682
+</PRE></TT>
+<BR><BR>
+
+A full AIM analysis can be performed with  <FONT COLOR="#0000FF">aim=all</FONT>.<BR><BR>
+
+A detailed overview of the performance of the AIM method in describing the charge distribution 
+in water can be found in: 
+F. Martin, H. Zipse, <I>J. Comp. Chem.</I> <B>2005</B>, <I>26</I>, 97 - 105. 
+A copy of the pdf file is available <a href="zipse_2005_97.pdf">here</a>.<BR><BR>
+
+<hr>
+<PRE>
+<TT>last changes: 12.01.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+   <TITLE>Newton-Raphson optimization</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Newton-Raphson (NR) optimization</H2></CENTER>
+<HR>
+
+<P>
+Many algorithms for geometry optimization are based on some variant of the
+Newton-Raphson (NR) scheme. The latter represents a general method for finding
+the extrema (minima or maxima) of a given function f(x) in an iterative manner.
+For minima, the first derivative f'(x) must be zero and the second derivative
+f''(x) must have a positive value, while for maxima f'(x) is again zero and the second
+derivative f''(x) has a negative value. The recipe for finding, starting from a 
+point x<SUB>n</SUB>, the next point x<SUB>n+1</SUB> in the iterative series
+is:<BR><BR>
+
+x<SUB>n+1</SUB> = x<SUB>n</SUB> - (f'(x<SUB>n</SUB>)/f''(x<SUB>n</SUB>))<BR><BR>
+
+It is clear from this recipe that the first and second derivatives
+(or at least good approximations thereoff) are required in the process. As with
+any iterative procedure, a convergence criterion must be selected at which the iterative 
+process can be considered to be converged. Typical choices include the gradient f'(x<SUB>n</SUB>),
+the difference between the functional values of two consecutive iterations
+df = f(x<SUB>n+1</SUB>) - f(x<SUB>n</SUB>), or the difference between the values
+of x itself between two consecutive iterations dx = x<SUB>n+1</SUB> - x<SUB>n</SUB>.<BR><BR>
+
+As an example the following function has been chosen:<BR><BR>
+
+f(x) = 3x<SUP>3</SUP> - 10x<SUP>2</SUP> -56x +5<BR><BR>
+
+The first and second derivatives of f(x) with respect to x are:<BR><BR>
+
+f'(x) = 9x<SUP>2</SUP> -20x -56<BR><BR>
+
+f''(x) = 18x -20<BR><BR>
+
+In the range of -4 < x < 6, these functions behave as follows (Scheme 1):<BR><BR>
+
+<CENTER>
+<IMG SRC="nrplot.gif">
+</CENTER><BR>
+
+As a first starting point we will choose x<SUB>0</SUB> = 0.0. This point is
+highlighted in Scheme 1 as <FONT COLOR="#0000FF">start 1</FONT>. The iterative procedure
+takes four steps to converge to the point designated in Scheme 1 as 
+<FONT COLOR="#0000FF">end 1</FONT> assuming a convergence criterion of dx = 0.001.<BR><BR>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>iteration<TH>x<SUB>n</SUB><TH>f(x)<TH>f'(x)<TH>f''(x)<TH>dx
+<TR ALIGN=center><TD>0<TD>0.0<TD>+5.0<TD>-56.0<TD>-20.0<TD>-2.8
+<TR ALIGN=center><TD>1<TD>-2.8<TD>+17.5440<TD>+70.560<TD>-70.40<TD>+1.0023
+<TR ALIGN=center><TD>2<TD>-1.7977<TD>+55.9249<TD>+9.0395<TD>-52.3586<TD>+0.1726
+<TR ALIGN=center><TD>3<TD>-1.6251<TD>+56.7207<TD>+0.2683<TD>-49.2510<TD>-0.0054
+<TR ALIGN=center><TD>4<TD>-1.6197<TD>+56.7214<TD>+0.0049<TD>-49.1546<TD>-0.0001
+</TABLE><BR>
+
+In this case the NR algorithm locates a functional maximum at x=-1.6197. The maximum is designated
+through a large negative second derivative f''(x). The largest step dx is made at the very beginning
+due to the fairly small value of f''(x) at the starting point. This is actually one of the weaknesses
+of the NR procedure and the variants used in molecular geometry optimization therefore impose
+a limit on the maximum step size of each NR step (trust radius). Choosing a starting point somewhat 
+closer to the functional minimum with x<SUB>0</SUB> = 2.0 (<FONT COLOR="#0000FF">start 2</FONT>)
+gives a different result:<BR><BR>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>iteration<TH>x<SUB>n</SUB><TH>f(x)<TH>f'(x)<TH>f''(x)<TH>dx
+<TR ALIGN=center><TD>0<TD>+2.0<TD>-123.0<TD>-60.0<TD>+16.0<TD>+3.75
+<TR ALIGN=center><TD>1<TD>+5.750<TD>-77.2969<TD>+70.560<TD>+83.50<TD>-1.5157
+<TR ALIGN=center><TD>2<TD>+4.2343<TD>-183.6597<TD>+9.0395<TD>+56.2174<TD>-0.3678
+<TR ALIGN=center><TD>3<TD>+3.8665<TD>-187.6118<TD>+0.2683<TD>+49.5967<TD>-0.0246
+<TR ALIGN=center><TD>4<TD>+3.8419<TD>-187.6268<TD>+0.0049<TD>+49.1551<TD>-0.0001
+</TABLE><BR>
+
+In this second case the NR procedure leads to a local minimum at x=+3.8419 (<FONT COLOR="#0000FF">end 2</FONT>). 
+The second derivative at this point is strongly positive indicating a true minimum. As in the first example 
+the first step is by far the largest and "overshoots" the minimum by a good margin. But convergence is achieved
+within four cycles. Function f(x) has, of course, been chosen such that an analytical solution can also be
+found in a straight forward manner for the condition that f'(x)=0 at x= +3.8418 and -1.6196. We can thus
+conclude that the NR procedure locates the maxima/minima in few iterations with good accuracy.<BR> 
+Additional
+consideration should, however, be given to the following points: Comparison of the first and second example
+shows that the final result of the NR procedure strongly depends on the starting point.
+Locating a minimum or a maximum using NR-based methods thus requires a good starting point.
+A further point that makes application of the NR algorithm less appealing is the need of the
+second derivatives f''(x). These are expensive to compute for large molecular systems and
+a variety of methods exist to deal with this point.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 16.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

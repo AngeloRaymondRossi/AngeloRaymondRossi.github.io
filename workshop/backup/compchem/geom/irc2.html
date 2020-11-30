@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+   <TITLE>choosing a coordinate system for the reaction path</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Choosing a Coordinate System</H2></CENTER>
+<HR>
+
+<P>
+Even though the <FONT COLOR="#0000FF">intrinsic reaction coordinate (IRC)</FONT> is defined
+in mass-weighted cartesian coordinates, other choices exist to follow the minimum energy
+reaction pathway in <I>Gaussian</I>. The default selection of mass-weighted cartesian coordinates
+need not, but can be specified more explicitly with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=MassWeighted</FONT> or <FONT COLOR="#0000FF">irc=MW</FONT><BR><BR>
+
+Other options include the calculation in cartesian coordinates without mass-weighing, giving
+significantly different results in systems in which light and heavy elements are directly
+connected (e.g. hydrogen atom transfer reactions). This choice is selected with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=Cartesian</FONT><BR><BR>
+
+A third choice uses an internal coordinate system as given in the input file:<BR><BR>
+
+<FONT COLOR="#0000FF">irc=Internal</FONT><BR><BR>
+
+In some rare cases, reaction path calculations lead to one product in mass-weighted
+cartesian coordinates and to another product in cartesian coordinates (without mass-weighing).
+In most cases, however, the same products are reached in either coordinate system.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 16.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+

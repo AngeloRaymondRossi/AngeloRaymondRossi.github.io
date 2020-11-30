@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+   <TITLE>the C2 point group</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>The C<sub>2</sub> Point Group</H2></CENTER>
+<HR>
+
+<P>
+This point group contains only two symmetry operations:<BR><BR>
+
+<B>E</B>&nbsp;&nbsp;&nbsp; the identity operation<BR>
+<B>C<sub>2</sub></B>&nbsp;&nbsp; a twofold symmetry axis<BR><BR>
+
+A simple example for a C<sub>2</sub> symmetric molecule is hydrogen peroxide
+(H<sub>2</sub>O<sub>2</sub>), here in its HF/6-31G(d) optimized structure:<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=(Z-Matrix,tight)
+
+test1 HF/6-31G(d) opt H2O2
+
+0 1
+x1
+x2  1  1.0
+O3  2  r3  1  90.0
+O4  2  r3  1  90.0  3  180.0
+H5  3  r5  2  a5  1  d5
+H6  4  r5  2  a5  1  d5
+
+r3=0.69822676
+r5=0.94920388
+a5=102.078438
+d5=58.0069855
+</FONT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="h2o2_2.gif">
+</TABLE><BR>
+
+The symmetry of the system is reflected in the Z-Matrix
+containing two dummy atoms x1 and x2 located on the principal
+symmetry axis. Use of the symmetry properties speeds up energy
+calculations, reduces the number of independent structural variables 
+from 6 (for an asymmetric, non-linear molecule containing four 
+centers) to 4 and thus accelerates geometry optimizations.<BR><BR>
+
+Molecular orbitals as well as harmonic vibrations (if calculated) 
+are labeled according to their symmetry properties as belonging to
+one of the two irreducible representations (<FONT COLOR="#0000FF">A</FONT> 
+and <FONT COLOR="#0000FF">B</FONT>) of the C<sub>2</sub>
+point group. Those properties belonging to irreducible representation
+<FONT COLOR="#0000FF">A</FONT> are symmetric to both the identity 
+operation <B>E</B> as well as the 180 degree rotation around the C<sub>2</sub> 
+axis. Those properties belonging to irreducible representation 
+<FONT COLOR="#0000FF">B</FONT> are symmetric with respect to 
+the identity operation <B>E</B>, but antisymmetric with respect to rotation 
+around the C<sub>2</sub> axis. 
+
+<HR>
+<PRE>
+<TT>last changes: 24.04.2009, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

@@ -1,0 +1,424 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+
+<head>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshops - NAMD: MD Simulation of Deca-Alanine</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+
+<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all"/>
+
+<script type="text/javascript">
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader("w3csheet.css");
+</script>
+
+<body>
+
+<div id="LayerLogo" style="position:absolute; left:50px; right:0px; top:55px; width:300px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/angelo_rossi_fix.png" width="255" height="169" alt="Angelo Raymond Rossi">
+</div>
+
+<!--
+<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:15px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/Logo-Center-1Line-281.gif" width="375" height="133" alt="University of Connecticut">
+</div>
+-->
+
+<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:45px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/UAFLogo_A_647_horiz.png" width="443" height="98" alt="University of Alaska Fairbanks">
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:375px; right:0px; top:140px; width:600px; z-index:1">
+<center>
+<font color="blue">
+<h1>
+Computational Chemistry Workshop<br>
+West Ridge Research Building-UAF Campus<br>
+9:00am-4:00pm, Room 009
+</h1>
+<h2>
+Molecular Dynamics - July 26-28, 2016<br><br>
+NAMD: MD Simulation of Deca-Alanine
+</h2>
+</font>
+</center>
+</div>
+
+<div id="LayerSidebar" style="position:absolute; left:35px; top:300px; width:180px; z-index:3" class="navDiv">
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b>Home</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/teaching.htm"><center><b>Teaching Experience</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/research/index.html"><center><b>Research Interests</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/comp_chem_links.htm"><center><b>Computational Chemistry Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/hpc.htm"><center><b>High Performance<br>Computing Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/workshop"><center><b>Computational Chemistry Workshops</b></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/workshop-overview.htm"><center><small><b><font color="blue"><u>Overview and Registration</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/topics.htm"><center><small><b><font color="blue"><u>Topics and Exercises</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/resources.htm"><center><small><b><font color="blue"><u>Workshop Resources</u></b></font></small></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b> </b></center></a></p>
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:250px; top:300px; width:800px; z-index:1" align="center">
+<center>
+<!-- <hr width="100%" size="1"> -->
+<hr shade="" align="center" size="3" width="800" color="#0000FF">
+<center>
+</div>
+
+<div id="LayerMain" style="position:absolute; left:250px; top:325px; width:800px; z-index:4" class="maindiv" align="left">
+
+<h1>Molecular Dynamics Simulation of Deca-Alanine</h1>
+<p>
+This tutorial provides an introduction to NAMD, and some of its basic capabilities, including the steps of a molecular dynamics simulation, including 
+preparation, minimization, equilibration, production, and finally, analysis of a system.   
+Also, various options and output of the NAMD simulation program are described.
+In addition, typical simulation techniques are introduced, and the analysis of properties for molecular systems is also illustrated.
+</p>
+
+<h1>Stages in a Typical MD Simulation</h1>
+<p>
+A typical Molecular Dynamics simulation using NAMD includes the following stages:
+</p>
+<center>
+<p>
+<h4>
+System Preparation &#8594; Energy Minimization &#8594; Heating + Equilibration &#8594; Production Dynamics &#8594; Analysis
+</h4>
+</p>
+</center>
+
+<h1>System Preparation</h1>
+
+<h2>Building the Initial Structure</h2>
+<p>
+To build the initial structure, one needs the following:
+<ul>
+<li>The psfgen program which is available with any NAMD or VMD distribution.</li>
+<li>The CHARMM topology and parameter files, such as top_all36_prot.rtf and par_all36_prot.prm for deca-alanine.</li>
+<li>A PDB file, available from the Protein Data Bank at http://www.pdb.org/ or other sources.<br>
+</ul>
+</p>
+<p>
+In this exercise, the coordinates for deca-alanine are given by the file <b>alanine_original.pdb</b> in PDB format.
+</p>
+<p>
+The file <b>deca-alanine.pgn</b> constructs an initial deca-alanine structure and contains the following statements: 
+<pre>
+package require psfgen
+resetpsf
+topology toppar_c36_feb16/top_all36_prot.rtf
+pdbalias residue HOH TIP3
+pdbalias residue HIS HSE
+pdbalias atom ILE CD1 CD
+segment seg0 {
+ first ACE
+ last  CT3
+ pdb alanine.pdb
+}
+coordpdb alanine.pdb seg0
+guesscoord
+writepsf output/deca-alanine.psf
+writepdb output/deca-alanine.pdb
+exit
+</pre>
+The above file can be executed with the either of the following commands:
+<pre>
+<b>psfgen alanine.pgn &#62; alanine.log</b>
+
+             or
+
+<b>vmd -dispdev text -e alanine.pgn &#62; alanine.log</b>
+</pre>
+where both the <b>vmd</b> and <b>psfgen</b> (contained in the namd directory) executables must be in the directories listed in the PATH environment variable. 
+</p>
+
+<h1>Minimization of Initial Structure</h1>
+<p>
+The generated files from the psfgen step can be used to minimize the isolated protein,  using the NAMD configuration file ( <b>alanine_min.conf</b>):
+<pre>
+# namd configuration file to minimize deca-alanine protein chain
+
+# molecular system
+structure           output/deca-alanine.psf
+coordinates         output/deca-alanine.pdb
+temperature         300
+
+# Output Control
+set outputname      output/deca-alanine-minimize
+outputName          $outputname
+
+
+###########################
+## SIMULATION PARAMETERS ##
+###########################
+
+# CHARMM Force Field Parameters
+paraTypeCharmm        on
+parameters toppar_c36_feb16/par_all36_prot.prm
+parameters toppar_c36_feb16/par_all36_lipid.prm
+parameters toppar_c36_feb16/par_all36_na.prm
+parameters toppar_c36_feb16/par_all36_carb.prm
+parameters toppar_c36_feb16/par_all36_cgenff.prm
+parameters toppar_c36_feb16/toppar_water_ions.str
+
+# Simulation space partitioning
+exclude scaled1-4
+1-4scaling 1.0
+cutoff 12.
+switching on
+switchdist 10.
+pairlistdist 13.5
+
+#Minimize for a number of steps
+minimize        100
+
+<b>namd2 deca-alanine-minimize.namd &#62; deca-alanine-minimize.log</b>
+
+</pre>
+</p>
+
+<h1>Solvation, Neutralization, Adding Ions</h1>
+Next, the protein is first solvated,  and then ions are added to neutralize the system, to increase the ionic strength, or to do both.  
+The following is a VMD script file, <b>solvate_add_ions.tcl</b>, which accomplishes these steps:
+<p>
+<pre>
+# Load PSF and binary coordinate file
+mol new     output/deca-alanine.psf type psf
+mol addfile output/deca-alanine-minimize.coor type namdbin
+
+#measure the minimum and maximum values of coordinates
+set coords [atomselect top all]
+measure minmax $coords
+
+#center the alanine helix
+set a [measure center $coords]
+set aminus [vecscale -1 $a]
+$coords moveby $aminus
+
+#see if it worked
+measure center $coords
+
+# Write out the centered alanine helix
+$coords writepdb output/deca-alanine-centered.pdb
+
+#solvate the recentered alanine helix with a water box
+#new psf and pdb files are written
+package require solvate
+solvate output/deca-alanine.psf output/deca-alanine-centered.pdb -t 10 -o output/deca-alanine-centered-solvated
+
+#check coordinates to see if the solvated alanine helix box is centered
+set coords [atomselect top all]
+measure center $coords
+
+#Now add ions.  
+#new psf and pdb files are written
+package require autoionize
+autoionize -psf output/deca-alanine-centered-solvated.psf -pdb output/deca-alanine-centered-solvated.pdb \
+                             -sc 0.15 -cation POT -anion CLA -o output/deca-alanine-solvated-ions
+
+#recenter the alanine helix after solvation and adding ions
+set coords [atomselect top "not protein"]
+measure minmax $coords
+set a [measure center $coords]
+set aminus [vecscale -1 $a]
+$coords moveby $aminus
+
+set coords [atomselect top protein]
+measure minmax $coords
+set a [measure center $coords]
+set aminus [vecscale -1 $a]
+$coords moveby $aminus
+
+#analyze the geometric components of the solvated and ionized system 
+set coords [atomselect top all]
+measure center $coords
+
+#measure the minimum and maximum values of coordinates
+#to get an idea of the cell parameters
+measure minmax $coords
+
+quit
+
+<b>vmd -dispdev text -e solvate_add_ions.tcl</b>
+</pre>
+</p>
+
+<h1>Heating + Equilibration and Production</h1>
+<p>
+NAMD configuration scripts for heating + equilibration and production are similar, but there are several differences as well.  Below is shown only 
+the NAMD production script, <b>deca-alanine-solvated-ions-production.namd</b>:
+<pre>
+######################################################################
+# Production Dynamics of alanine in a Water Box                       #
+######################################################################
+
+# Molecular system
+structure             output/deca-alanine-solvated-ions.psf
+
+# Output Control
+set outputname        output/deca-alanine-solvated-ions-production5
+outputName            $outputname
+binaryoutput          no
+restartfreq           500 ;# 500steps = every 1ps
+dcdfreq               500
+velDCDfile            $outputname.vel.dcd
+velDCDfreq            500
+xstFreq               500
+dcdunitcell           yes
+outputEnergies        500
+outputPressure        500
+
+# Input Control
+set inputname         output/deca-alanine-solvated-ions-equilibrate
+binaryrestart         yes
+bincoordinates        $inputname.restart.coor
+binvelocities         $inputname.restart.vel
+extendedSystem        $inputname.restart.xsc
+coordinates           output/deca-alanine-solvated-ions-equilibrate.coor
+
+firsttimestep         0
+
+###########################
+## SIMULATION PARAMETERS ##
+###########################
+
+# CHARMM Force Field Parameters
+paraTypeCharmm        on
+parameters toppar_c36_feb16/par_all36_prot.prm
+parameters toppar_c36_feb16/par_all36_lipid.prm
+parameters toppar_c36_feb16/par_all36_na.prm
+parameters toppar_c36_feb16/par_all36_carb.prm
+parameters toppar_c36_feb16/par_all36_cgenff.prm
+parameters toppar_c36_feb16/toppar_water_ions.str
+
+
+# Simulation space partitioning
+exclude               scaled1-4
+1-4scaling            1.0
+cutoff                12.
+switching             on
+switchdist            10.
+pairlistdist          13.5
+
+# Integrator Parameters
+timestep              2.0 ;# 2fs/step
+rigidBonds            all ;# needed for 2fs steps
+nonbondedFreq         1
+fullElectFrequency    2
+stepspercycle         10
+
+# Constant Temperature and Pressure Control - NPT Dynamics
+# langevin piston is required, which provides the pressure control
+langevinPiston on
+langevinPistonTarget 1.01325
+langevinPistonPeriod 200
+langevinPistonDecay  50
+langevinPistonTemp   300
+useGroupPressure     yes ;# needed for rigidBonds
+useFlexibleCell      yes
+useConstantArea      yes
+
+# Periodic Boundary Conditions
+cellBasisVector1      32.0 0.00 0.00
+cellBasisVector2      0.00 32.0 0.00
+cellBasisVector3      0.00 0.00 32.0
+cellOrigin            0.00 0.00 0.00
+wrapAll on
+
+# PME for full-system periodic electrostatics
+PME                   yes
+PMEGridSizeX          32
+PMEGridSizeY          32
+PMEGridSizeZ          32
+
+run                    10000;  #run sets the number of timesteps over which 
+                               #to run MD equilibration or production
+</pre>
+To run this script, the following command is used:
+<pre>
+<b>namd2 +p12 deca-alanine-solvated-ions-production.namd &#62; deca-alanine-solvated-ions-production.log</b>
+</pre>
+Notice, that the "<b>+p12</b>" option is added to the namd2 command for the production run.  This means that the production run is capable of 
+running on one unique compute node with 12-way SMP processors.  This is very desirable because production jobs are longer, and parallel capabilities will
+increase turn around while decreasing elapsed execution time.
+</p>
+
+<h1>Analysis</h1>
+<p>
+When one or more trajectory files are available from production runs, then it becomes possible to use them for performing an analysis of the solvated protein system
+One important property for analysis involves RMSD, 
+which is the root mean square deviation of a protein from a reference structure.  
+</p>
+<p>
+The Root Mean Squared Difference (RMSD) with respect to a reference structure (<i>e.g.</i>, the
+starting point of a simulation), tells us something about the
+dissimilarity between the structures - 1 &#197; RMSD is barely visible to
+the eye, while an RMSD of 10 &#197; is leading to a significantly different structure.
+</p>
+<p>
+Thus, if the behavior of the protein from an initial starting structure or a crystal reference structure is desired, the following script (<b>rmsd.tcl</b>) can provide that:
+<pre>
+source bigdcd.tcl
+
+# This script computes the RMS distance between each frame in a sequence of
+# .xyz files and a reference pdb file. The script is set up for
+# batch processing, i.e. it waits for the analysis to complete
+# and then exits.
+#
+
+set outfile  [open "rmsd.dat"  w]
+
+proc myrmsd { frame } {
+  global outfile ref sel all
+  $all move [measure fit $sel $ref]
+  puts $outfile "$frame [measure rmsd $sel $ref]"
+}
+
+set mol [mol new test_ions.psf type psf waitfor all]
+mol addfile test_ions.pdb type pdb waitfor all
+set all [atomselect $mol all]
+set ref [atomselect $mol "name CA" frame 0]
+set sel [atomselect $mol "name CA"]
+
+bigdcd myrmsd dcd test_ions_production.dcd
+bigdcd_wait
+
+quit
+
+<b>vmd -dispdev -e rmsd.tcl</b>
+</pre>
+This creates a file containing two columns of data, including the time versus RMSD value.  This can be used as one measure of whether or not the system has equilibrated, and a 
+graph of the RMSD of the protein versus time is shown below:
+<center>
+<img src="files/rmsd.png" name="RMSD of CA Atoms" width="690" height="533" alt="RMSD of CA Atoms">
+</center>
+</p>
+
+<p class="footer" align="center">
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+  </p>
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>

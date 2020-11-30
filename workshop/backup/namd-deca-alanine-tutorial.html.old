@@ -1,0 +1,301 @@
+<html>
+<body>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshops - Simulation of Deca-Alanine</title>
+
+<h2>Molecular Dynamics Simulation of Deca-Alanine</h2>
+
+<p>
+This tutorial provides an introduction to NAMD, and some of its basic capabilities, including the steps of a molecular dynamics simulation, including 
+preparation, minimization, equilibration, production, and finally, analysis of a system.   
+Also, various options and output of the NAMD simulation program are described.
+In addition, typical simulation techniques are introduced, and the analysis of properties for molecular systems is also illustrated.
+
+<h2>Stages in a Typical MD Simulation</h2>
+A typical Molecular Dynamics simulation using NAMD follows the following stages:
+<center>
+<p>
+<font size=4>
+<b>System Preparation &#8594; Energy Minimization &#8594; Heating &#8594; Equilibration &#8594; Production Dynamics &#8594; Analysis</b>
+</font>
+</p>
+</center>
+
+<h2>System Preparation</h2>
+
+<h4>Building the Initial Structure</h4>
+To build the initial structure, one needs the following:
+<ul>
+<li>The psfgen program from any NAMD or VMD distribution.</li>
+<li>The CHARMM topology and parameter files top_all36_prot.rtf and par_all36_prot.prm.</li>
+<li>A PDB file, available from the Protein Data Bank at http://www.pdb.org/ or other sources.<br>
+</ul>
+
+<p>
+In this exercise, the coordinates for deca-alanine are given by the file <b>alanine_original.pdb</b> in PDB format.
+</p>
+<p>
+The file <b>alanine.pgn</b> contains the following statements, 
+<pre>
+package require psfgen
+resetpsf
+topology top_all36_prot.rtf
+pdbalias residue HOH TIP3
+pdbalias residue HIS HSE
+pdbalias atom ILE CD1 CD
+segment seg0 {
+ first ACE
+ last  CT3
+ pdb alanine_original.pdb
+}
+coordpdb alanine_original.pdb seg0
+guesscoord
+writepsf alanine.psf
+writepdb alanine.pdb
+exit
+</pre>
+and can be executed with the either of the following commands:
+<pre>
+<b>psfgen alanine.pgn &#62; alanine.log</b>
+
+             or
+
+<b>vmd -dispdev text -e alanine.pgn &#62; alanine.log</b>
+</pre>
+</p>
+
+<h2>Minimization of Initial Structure</h2>
+<p>
+The generated files from the psfgen step can be used to minimize the isolated protein,  using the NAMD configuration file ( <b>alanine_min.conf</b>):
+<pre>
+# namd configuration file to minimize alanine chain
+
+# molecular system
+structure       alanine.psf
+coordinates     alanine.pdb
+
+# Force-Field Parameters
+exclude scaled1-4
+1-4scaling 1.0
+cutoff 12.
+switching on
+switchdist 10.
+pairlistdist 13.5
+
+#Temperature
+temperature     300
+
+#Minimize for a number of steps
+minimize        100
+
+<b>namd2 alanine_min.conf &#62; alanine_min.log</b>
+
+</pre>
+</p>
+
+<h2>Solvation, Neutralization, Adding Ions</h2>
+Next, the protein is first solvated,  and then ions are added to neutralize the system, to increase the ionic strength, or to do both.  
+The following is a VMD script file, <b>solvate_add_ions.tcl</b>, which accomplishes these steps:
+<p>
+<pre>
+# Load PSF and binary coordinate file
+mol new     alanine.psf      type psf
+mol addfile alanine_min.pdb  type pdb
+
+#measure the minimum and maximum values of coordinates
+set coords [atomselect top all]
+measure minmax $coords
+
+#center the alanine helix
+set a [measure center $coords]
+set aminus [vecscale -1 $a]
+$coords moveby $aminus
+
+#see if it worked
+measure center $coords
+
+# Write out the centered alanine helix
+$coords writepdb alanine_min.pdb
+
+#solvate the recentered alanine helix with a water box
+#new psf and pdb files are written
+package require solvate
+solvate alanine.psf alanine_min.pdb -t 10 -o test
+
+#check coordinates to see if the solvated alanine helix box is centered
+set coords [atomselect top all]
+measure center $coords
+
+#Now add ions.  new psf and pdb files are written
+package require autoionize
+autoionize -psf test.psf -pdb test.pdb -sc 0.15 -cation POT -anion CLA -o test_ions
+
+#analyze the geometric components of the solvated and ionized system
+set coords [atomselect top all]
+measure center $coords
+
+#see if it worked
+measure minmax $coords
+
+<b>vmd -dispdev text -e solvate_add_ions.tcl</b>
+</pre>
+</p>
+
+<h2>Heating, Equilibration, and Production</h2>
+<p>
+NAMD configuration scripts for heating, equilibration, and production are similar, but there are several differences as well.  Below is the the NAMD production script, 
+<b>production.conf</b>:
+<pre>
+################################################
+# Production Dynamics of alanine in a Water Box #
+################################################
+
+# Molecular system
+structure             test_ions.psf
+coordinates           test_ions.pdb
+
+# Output Control
+set outputname        test_ions_production
+set inputname         test_ions_equilibrate
+outputName            $outputname
+binaryoutput          yes
+restartfreq           500 ;# 500steps = every 1ps
+dcdfreq               500
+xstFreq               500
+dcdunitcell           yes
+outputEnergies        100
+outputPressure        100
+
+# Input Control
+binaryrestart         yes
+bincoordinates        $inputname.restart.coor
+binvelocities         $inputname.restart.vel
+extendedSystem        $inputname.restart.xsc
+
+firsttimestep         0
+
+###########################
+## SIMULATION PARAMETERS ##
+###########################
+
+# CHARMM Force Field Parameters
+paraTypeCharmm        on
+parameters ./par_all36_prot.prm
+parameters ./par_all36_lipid.prm
+parameters ./par_all36_na.prm
+parameters ./par_all36_carb.prm
+parameters ./par_all36_cgenff.prm
+parameters ./toppar_water_ions_mod.str
+
+# Simulation space partitioning
+exclude               scaled1-4
+1-4scaling            1.0
+cutoff                12.
+switching             on
+switchdist            10.
+pairlistdist          13.5
+
+# Integrator Parameters
+timestep              2.0 ;# 2fs/step
+rigidBonds            all ;# needed for 2fs steps
+nonbondedFreq         1
+fullElectFrequency    2
+stepspercycle         10
+
+# Constant Temperature and Pressure Control - NPT Dynamics
+# langevin piston is required, which provides the pressure control
+langevinPiston on
+langevinPistonTarget 1.01325
+langevinPistonPeriod 200
+langevinPistonDecay  50
+langevinPistonTemp   300
+useGroupPressure     yes ;# needed for rigidBonds
+useFlexibleCell      yes
+useConstantArea      yes
+
+# Periodic Boundary Conditions
+cellBasisVector1      32.0 0.00 0.00
+cellBasisVector2      0.00 32.0 0.00
+cellBasisVector3      0.00 0.00 32.0
+cellOrigin            0.00 0.00 0.00
+wrapAll on
+
+# PME for full-system periodic electrostatics
+PME                   yes
+PMEGridSizeX          32
+PMEGridSizeY          32
+PMEGridSizeZ          32
+
+run                    10000 ;       #run sets the number of timesteps over which to run an MD equilibration or production run
+</pre>
+To run this script, the following command is used:
+<pre>
+<b>namd2 production.conf &#62; test_ions.log</b>
+</pre>
+</p>
+
+<h2>Analysis</h2>
+<p>
+When one or more trajectory files are available from production runs, then it becomes possible to use them for performing  an analysis of the solvated protein system
+in order to determine important properties of the solvated protein system.  One property for analysis involves RMSD, 
+which is the root mean square deviation of a protein from a reference structure.  Thus, if the behavior of the protein from an 
+initial starting structure or a crystal reference structure is desired, the following script can provide that:
+<pre>
+source bigdcd.tcl
+
+# This iscript computes the RMS distance between each frame in a sequence of
+# .xyz files and a reference pdb file. The script is set up for
+# batch processing, i.e. it waits for the analysis to complete
+# and then exits.
+#
+
+set outfile  [open "rmsd.dat"  w]
+
+proc myrmsd { frame } {
+  global outfile ref sel all
+  $all move [measure fit $sel $ref]
+  puts $outfile "$frame [measure rmsd $sel $ref]"
+}
+
+set mol [mol new test_ions.psf type psf waitfor all]
+mol addfile test_ions.pdb type pdb waitfor all
+set all [atomselect $mol all]
+set ref [atomselect $mol "name CA" frame 0]
+set sel [atomselect $mol "name CA"]
+
+bigdcd myrmsd dcd test_ions_production.dcd
+bigdcd_wait
+
+quit
+
+<b>vmd -dispdev rmsd.tcl</b>
+</pre>
+This creates a file containing two columns of data, including the time versus RMSD value.  This can be used as one measure of whether or not the system has equilibrated, and a 
+graph of the RMSD of the protein versus time is shown below:
+<center>
+<img src="files/rmsd.png" name="RMSD of CA Atoms" width="690" height="533" alt="RMSD of CA Atoms">
+</center>
+</p>
+
+<center>
+<h3><a href="http://homepages.uconn.edu/rossi/workshop/topics.htm">Go Back to the Topics Page</a></h3>
+</center>
+<br>
+<br>
+<center>
+<p class="footer">
+<b>
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+<!--  FAX: 973-972-7412<br> -->
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+</b>
+</p>
+</center>
+
+
+</body>
+</html>
+<p>

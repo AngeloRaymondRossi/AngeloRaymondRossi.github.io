@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+   <TITLE>thermochemistry I</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Thermochemistry</H2></CENTER>
+<HR>
+
+
+<P>
+A detailed account of how thermochemical values are calculated in <I>Gaussian</I>
+by by Joseph W. Ochterski (<I>Gaussian Inc.</I>) is available 
+<A HREF=http://www.gaussian.com/g_whitepap/thermo.htm>here</A> as pdf and html
+file.<BR><BR>
+
+A number of constants and conversion factors helpful in thermochemical calculations can be
+found <A HREF="../constants.html">here</A>.<BR><BR>
+
+The thermochemical analysis in <I>Gaussian</I> is based on the harmonic vibrational frequencies 
+calculated before and predicts by default thermochemical values for 298.15K and 1.0 atm.
+The key thermochemical properties are:<BR><BR>
+
+<TABLE BORDER=0>
+<TR>
+<TD valign=top>E<SUB>tot</SUB>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD>the total electronic energy E<SUB>tot</SUB> as calculated by a given theoretical model. This is the 
+energy of the molecular system under study relative to separate nuclei and electrons.
+Remember that semiempirical methods such as AM1 use a different point of reference and 
+produce heats of formation. Taking the dihydrogen molecule H<SUB>2</SUB> as calculated
+at the Hartree-Fock level in combination with the standard 6-31G basis set (HF/6-31G) as an example,
+the total energy of the system at its equilibrium position (H-H = 72.996 pm) amounts to
+-1.12682782541 hartree. This result appears in the output file before any other thermochemical
+data as:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+SCF Done:  E(RHF) =  -1.12682782541     A.U. after    4 cycles
+</PRE></FONT><BR>
+</TD>
+
+
+<TR>
+<TD valign=top>ZPVE</TD>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>the zero point vibrational energy ZPVE (or ZPE) results from the vibrational motion of
+molecular systems even at 0 K and is calculated for a harmonic oscillator
+model as a sum of contributions from all <I>i</I> vibrational modes of the system:<BR><BR>
+
+<IMG SRC="thermo1_1.gif"><BR>
+
+For the H<SUB>2</SUB> example cited above there is only one vibrational mode with a wavenumber 
+of 4646.1744 cm<SUP>-1</SUP>. With 0.5hc = 2.27827*10<SUP>-6</SUP> cm hartree we obtain a
+zero point vibrational energy of 0.010585 hartree. This result is given in the <I>Gaussian</I>
+output file as:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+Zero-point correction=                           0.010585 (Hartree/Particle)
+</FONT></PRE>
+
+Multiplication with <A HREF="../constants.html">Avogadro's number</A>
+and conversion to Joules or calories gives molar values listed as:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+Zero-point vibrational energy      27790.3 (Joules/Mol)
+                                   6.64204 (Kcal/Mol)
+</FONT></PRE><BR>
+</TD>
+
+
+<TR>
+<TD valign=top>E<SUB>0</SUB></TD>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>The zero point corrected total energy E<SUB>0</SUB> is the sum of the total electronic energy 
+E<SUB>tot</SUB> and the zero point vibrational energy ZPVE:<BR><BR>
+
+E<SUB>0</SUB> = E<SUB>tot</SUB> + ZPVE<BR><BR>
+
+For the H<SUB>2</SUB> example, this result is listed in the output file as:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+Sum of electronic and zero-point Energies=             -1.116243
+</FONT></PRE><BR>
+</TD>
+
+<TR>
+<TD valign=top>E(0-298)
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD>is the thermal correction to the internal energy at 298.15K and is given as a sum over 
+four components for contributions from electronic, vibrational, rotational and translational 
+degrees of freedom:<BR><BR>
+
+E(0-298) = dE<SUB>el</SUB> + dE<SUB>vib</SUB> + dE<SUB>rot</SUB> + dE<SUB>trans</SUB><BR><BR>
+
+The first of these terms dE<SUB>el</SUB> describes the contribution of 
+<FONT COLOR="#0000FF">electronically excited states</FONT> to the internal energy of the system. 
+With excitation energies even to the first 
+electronically excited state being much higher than k<SUB>B</SUB>T at room termperature
+and with the zero point of energy taken as the electronic energy of the ground electronic
+state, there is usually no contribution to the internal energy from occupation of
+electronically excited states at room termperature.<BR><BR>
+
+By far the largest contribution to the internal energy at room temperature stems from 
+<FONT COLOR="#0000FF">vibrational degrees of freedom</FONT>, the zero point vibrational energy 
+being one important component. The occupation of higher vibrational levels gives rise to an 
+additional contribution dE<SUB>vib</SUB> which can be calculated according to:<BR><BR>
+
+<IMG SRC="thermo1_3.gif"><BR><BR>
+
+The vibrational temperature of each mode <I>i</I> is not just a helpful quantity for evaluation
+of E(0-298) using the above equation, but also serves as a qualitative guideline for 
+the extend of thermal excitation of vibrational modes. For the example of H<SUB>2</SUB> there 
+is only one vibrational mode and thus only one vibrational temperature listed in the output file:<BR><BR>
+
+<PRE><FONT COLOR="#0000FF">
+VIBRATIONAL TEMPERATURES:   6684.77
+          (KELVIN)
+</FONT></PRE>
+
+This vibrational temperatur is so much larger than 298.15 K that vibrational excitation can
+safely be excluded. The internal energy at 298.15 K due to vibrational motion is therefore
+practically identical to the zero point vibrational energy of 6.642 kcal/mol.<BR><BR> 
+
+The spacing of <FONT COLOR="#0000FF">rotational energy levels</FONT> is much narrower than 
+that of vibrational energy levels. An approximate formula for the contribution of rotational 
+energy levels to the internal energy at room temperature (or above) is:<BR><BR>
+
+
+dE<SUB>rot</SUB> = RT<BR><BR>
+
+This implies that there is no rotational motion at 0 K and that the contribution of
+rotational motion to the internal energy at 298.15K is 0.5925 kcal/mol (or 2.479 kJ/mol).<BR><BR>
+
+The <FONT COLOR="#0000FF">translational energy</FONT> of an ideal gas dE<SUB>trans</SUB> 
+at temperature <I>T</I> is given (in molar quantities) as<BR><BR>
+
+dE<SUB>trans</SUB> = 3/2 RT<BR><BR>
+
+implying that at 0 K there is no contribution to the internal energy from
+translational motion, but that the translational energy increases linearly with
+increasing absolute temperature. At 298.15 K this amounts to 0.8887 kcal/mol (or 3.7185 kJ/mol).
+<BR><BR>
+
+The overall value for E(0-298) is not listed explicitly in the output
+file, but appears together with the ZPVE as "Thermal correction to Energy":<BR>
+
+<PRE><FONT COLOR="#0000FF">
+Zero-point correction=                           0.010585 (Hartree/Particle)
+Thermal correction to Energy=                    0.012945
+</FONT></PRE><BR>
+
+The individual components of the internal energy at 298.15K are listed a few lines
+later in the following format (together with contributions to heat capacities <I>c<SUB>v</SUB></I>
+and entropies <I>S</I>:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+                     E (Thermal)             CV                S
+                      KCAL/MOL        CAL/MOL-KELVIN    CAL/MOL-KELVIN
+ TOTAL                    8.123              4.968             31.063
+ ELECTRONIC               0.000              0.000              0.000
+ TRANSLATIONAL            0.889              2.981             28.080
+ ROTATIONAL               0.592              1.987              2.983
+ VIBRATIONAL              6.642              0.000              0.000
+</FONT></PRE><BR>
+</TD>
+
+<TR>
+<TD valign=top>E<SUB>298</SUB>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD>is the sum of E<SUB>0</SUB> and E(0-298). For H<SUB>2</SUB> this appears in the output file as:<BR>
+
+<PRE><FONT COLOR="#0000FF">
+Sum of electronic and thermal Energies=                -1.113883
+</FONT></PRE><BR>
+</TD>
+	
+<TR>
+<TD valign=top>H<SUB>298</SUB>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD>calculation of the enthalpy at 298.15K H<SUB>298</SUB> is based on the equation:<BR><BR>
+
+H<SUB>298</SUB> = E<SUB>298</SUB> + pv = E<SUB>298</SUB> + RT<BR><BR>
+
+the latter equality only being valid for molar quantities of an ideal gas (k<SUB>B</SUB>T
+being used for one particle). At 298.15 K k<SUB>B</SUB>T equates to 0.0009442 hartree and this
+is the only difference between the thermal energies and enthalpies listed in the output as:
+
+<PRE><FONT COLOR="#0000FF">
+Sum of electronic and thermal Energies=                -1.113883
+Sum of electronic and thermal Enthalpies=              -1.112938
+</FONT></PRE><BR>
+</TD>
+
+<TR>
+<TD valign=top>G<SUB>298</SUB>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD>the free enthalpy (or Gibbs free energy) at 298.15K G<SUB>298</SUB> is obtained as
+	H<SUB>298</SUB> -T*S<SUB>298</SUB> and appears in the output files as:
+	
+<PRE><FONT COLOR="#0000FF">
+ Sum of electronic and thermal Free Energies=           -1.127698
+</FONT></PRE><BR>
+</TD>
+</TABLE>
+
+
+<HR>
+<PRE>
+<TT>last changes: 11.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+

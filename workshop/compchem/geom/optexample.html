@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+   <TITLE>comparative examples</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Optimization in Different Coordinate Systems<BR> - Comparative Examples</H2></CENTER>
+<HR>
+
+<P>
+A first example chosen here for the sake of comparison is that of neutral
+alanine. A complete input file for optimization of this system at the HF/6-31G(d)
+level of theory can be found <A HREF="ala1.html">here</A>. The total electronic
+energy of the system at its starting point is -321.8330969au. The following table
+summarizes the results obtained in geometry optimizations using the the three 
+different coordinate systems:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>coordinates</TH><TH>opt.<BR>cycles</TH><TH>final energy<BR>(Hartree)</TH><TH>CPU-time<BR>(sec.)</TH><TH>CPU-time<BR>(per step)</TH>
+<TR ALIGN=center><TD>internal</TD><TD>18</TD><TD>-321.8647897</TD><TD>840</TD><TD>47</TD>
+<TR ALIGN=center><TD>cartesian</TD><TD>57</TD><TD>-321.8647910</TD><TD>2627</TD><TD>46</TD>
+<TR ALIGN=center><TD>redundant</TD><TD>18</TD><TD>-321.8647911</TD><TD>833</TD><TD>46</TD>
+</TABLE><BR>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="alaopt.html"><IMG SRC="ala1.gif"></A></TD>
+</TABLE><BR>
+
+One can see that the geometry optimization proceeds equally well in Z-Matrix and in
+redundant internal coordinates in this case. Optimization in cartesian coordinates
+is, in contrast, much less efficient.
+This is reflected in both the number of optimization cycles as well as the total
+CPU time needed for the geometry optimization (performed here on Xeon/2.6GHz Linux PCs).
+The CPU time needed for each of the optimization cycles is, however, almost identical 
+for all three options. The HF/6-31G(d) optimized structure can be viewed by clicking 
+on the alanine molecule.<BR><BR>
+
+
+<P>
+A second, slightly larger, model system has been chosen with the end-capped alanyl alanine 
+(see structure below). The N-terminal end is here capped with the acetyl group, the C-terminal
+end with an N-methyl amide. For quantum mechanical methods this dipeptide, containing 32 atoms 
+and 90 independent structural degrees of freedom, might already be considered a medium sized to 
+large molecule. A complete input file for optimization of this system at the HF/6-31G(d)
+level of theory can be found <A HREF="alaala3.html">here</A>. Optimization of this systems has 
+been performed again using the HF/6-31G(d) method from the same starting structure with total
+energy of -738.6310951 Hartree in all three coordinate systems available in <I>Gaussian</I>. 
+The following results have been obtained:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>coordinates</TH><TH>opt.<BR>cycles</TH><TH>final energy<BR>(Hartree)</TH><TH>CPU-time<BR>(sec.)</TH><TH>CPU-time<BR>(per step)</TH>
+<TR ALIGN=center><TD>internal</TD><TD>43</TD><TD>-738.7149776</TD><TD>19313</TD><TD>449</TD>
+<TR ALIGN=center><TD>cartesian</TD><TD>>318</TD><TD> (-738.7149762) </TD><TD>>144353</TD><TD>454</TD>
+<TR ALIGN=center><TD>redundant</TD><TD>40</TD><TD>-738.7149777</TD><TD>17141</TD><TD>429</TD>
+</TABLE><BR>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="alaalaopt.html"><IMG SRC="alaala3.gif"></A></TD>
+</TABLE><BR> 
+ 
+For this very flexible system the optimization in redundant internals slightly outruns the optimization
+in Z-Matrix coordinates, while the optimization in cartesian coordinates is incomplete even after
+318 optimization cycles. Optimization in redundant internals is particularly effective in the endgame
+and uses less SCF cycles per geometry optimization step in this last part of the optimization . On
+average this leads to slightly lower CPU times per cycle than for optimizations in Z-Matrix coordinates.  
+This result is typical for large, unsymmetric structures. A different relative performance can be expected 
+for smaller or highly symmetric systems.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 28.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

@@ -1,0 +1,369 @@
+<HTML>
+<HEAD>
+   <TITLE>convergence</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2>Convergence in Hartree-Fock Calculations</H2> 
+</CENTER>
+<HR>
+The convergence of Hartree-Fock SCF calculations depends on a series of
+options. All of these have sensible defaults which lead to usually
+well behaved SCF calculations. The most obvious parameter is the number
+of SCF cycles which can be set with<BR><BR>
+
+<FONT COLOR="#0000FF">SCF=(MaxCycle=N)</FONT><BR><BR>
+
+the default being N=64. This default is sufficient for most systems, but
+significantly higher numbers are required for systems with closely spaced
+orbitals such as some transition metal complexes. The
+convergence criterion for rms deviations in electron density matrix elements
+of the SCF algorithm can be set directly by<BR><BR>
+
+<FONT COLOR="#0000FF">SCF=(Conver=n)</FONT><BR><BR>
+
+the default for n being 8 for geometry optimization and frequency jobs and
+n=4 for single point calculations. The latter default is rarely appropriate
+and should be adjusted to the same value as for geometry optimizations. Using
+<FONT COLOR="#0000FF">SCF=tight</FONT> is synonymous with <FONT COLOR="#0000FF">SCF=(Conver=8)</FONT>
+and <FONT COLOR="#0000FF">SCF=SinglePoint</FONT> is synonymous with 
+<FONT COLOR="#0000FF">SCF=(Conver=4)</FONT>. The following table illustrates
+how much the number of SCF cycles varies with the SCF convergence criterion
+for the HF/STO-3G calculation on formaldehyde :<BR><BR>
+
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>Conver=n<TH>optimization-<BR>cycles<TH>final energy<BR>(Hartree)
+<TR ALIGN=center><TD>4<TD>6<TD>-112.354346245
+<TR ALIGN=center><TD>5<TD>7<TD>-112.354347141
+<TR ALIGN=center><TD>6<TD>8<TD>-112.354347141
+<TR ALIGN=center><TD>7<TD>9<TD>-112.354347141
+<TR ALIGN=center><TD>8<TD>10<TD>-112.354347141
+<TR ALIGN=center><TD>9<TD>11<TD>-112.354347141
+</TABLE><BR>
+
+
+One can clearly see that the total energy of the system is converged to within 10<SUP>-9</SUP>
+Hartree already with <FONT COLOR="#0000FF">SCF=(Conver=5)</FONT> and that each increase in the
+convergence criterion is accompanied by an increase in the number of SCF cycles. For larger and
+for less well behaved systems the consequences of changing the convergence criterion are usually
+much more pronounced. Calculations on large systems can be accelerated substantially by lowering
+various cutoffs and convergence parameters using <FONT COLOR="#0000FF">SCF=sleazy</FONT>. This is 
+particularly helpful in geometry optimizations when still far away from the minimum.
+<BR><BR>
+
+The initial guess used to start the SCF calculation is of great importance for both the 
+efficiency as well as the final result obtained in the SCF calculation. The latter point is
+of particular importance in symmetric species in which the symmetry of the initial guess decides
+over the symmetry of the converged SCF wavefunction. Whether the symmetry of the initial guess 
+is retained during SCF cycles depends on the version of <I>Gaussian</I> in use. Newer versions
+do NOT retain the symmetry of the initial guess unless <FONT COLOR="#0000FF">SCF=Symm</FONT> is
+specified. Using the NH<SUB>2</SUB> radical as an example, we will see how either the <SUP>2</SUP>A<SUB>1</SUB>
+or the  <SUP>2</SUP>B<SUB>1</SUB> states can be obtained at the ROHF/STO-3G level of theory
+depending on the initial guess being used. Starting the SCF calculation with the default (Harris)
+guess with:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#ROHF/STO-3G scf=(symm,tight)
+
+rohf/STO-3G amide radical NH2, 2B1 state
+
+0 2
+N1
+H2  1  r2
+H3  1  r2  2  a3
+
+r2=1.05726795
+a3=100.0637224
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="hf2_pict1.gif"></TD>
+</TABLE><BR>
+
+will give the following result:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+ Harris functional with IExCor=  205 diagonalized for initial guess.
+ ExpMin= 1.69D-01 ExpMax= 9.91D+01 ExpMxC= 9.91D+01 IAcc=1 IRadAn=         1 AccDes= 1.00D-06
+ HarFok:  IExCor= 205 AccDes= 1.00D-06 IRadAn=         1 IDoV=1
+ ScaDFX=  1.000000  1.000000  1.000000  1.000000
+ Initial guess orbital symmetries:
+       Occupied  (A1) (A1) (B2) (A1) (B1)
+       Virtual   (A1) (B2)
+ The electronic state of the initial guess is 2-B1.
+ Requested convergence on RMS density matrix=1.00D-08 within 128 cycles.
+ Requested convergence on MAX density matrix=1.00D-06.
+ Requested convergence on             energy=1.00D-06.
+ No special actions if energy rises.
+ Keep R1 and R2 integrals in memory in canonical form, NReq=      419815.
+ SCF Done:  E(ROHF) =  -54.8368134090     A.U. after    7 cycles
+             Convg  =    0.5123D-11             -V/T =  2.0047
+             S**2   =   0.7500
+ Annihilation of the first spin contaminant:
+ S**2 before annihilation     0.7500,   after     0.7500
+
+ **********************************************************************
+
+            Population analysis using the SCF density.
+
+ **********************************************************************
+
+ Orbital symmetries:
+       Occupied  (A1) (A1) (B2) (A1) (B1)
+       Virtual   (A1) (B2)
+ The electronic state is 2-B1.
+</PRE>
+</FONT>
+
+The Harris functional guess predicts a highest (singly) occupied orbital of "(B1)" symmetry leading to
+a doublet <SUP>2</SUP>B<SUB>1</SUB> state in the converged wavefunction. The SCF algorithm retains
+the number of occupied orbitals in each irreducible representation (3*A1, 1*B2, 1*B1). 
+The first unoccupied 
+molecular orbital (LUMO) is of A1 symmetry. Interchange of the SOMO and LUMO will in this
+case lead to occupation of orbitals of different symmetry and thus to a different electronic state.
+Adjustment of the initial guess orbitals can be achieved with the <FONT COLOR="#0000FF">guess=alter</FONT>
+keyword and definition of the list of orbital exchanges after the geometry definition. In
+the following input orbitals 5 and 6 of the initial guess will be interchanged.<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#ROHF/STO-3G scf=(symm,tight) guess=alter  
+
+rohf/STO-3G opt amide radical NH2, 2A1 state
+
+0 2
+N1
+H2  1  r2
+H3  1  r2  2  a3
+
+r2=1.05726795
+a3=100.0637224
+
+5 6
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="hf2_pict2.gif"></TD>
+</TABLE><BR>
+
+In some cases it might be advantageous to inspect the initial guess before actually doing an 
+SCF calculation with <FONT COLOR="#0000FF">guess=only</FONT> and also to check the intended alterations 
+with <FONT COLOR="#0000FF">guess=(only,alter)</FONT>. With the SCF calculation for the 
+<SUP>2</SUP>B<SUB>1</SUB> state in hand, we can compfortably skip this procedure. Here the SCF
+procedure gives the following final result:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+ Harris functional with IExCor=  205 diagonalized for initial guess.
+ ExpMin= 1.69D-01 ExpMax= 9.91D+01 ExpMxC= 9.91D+01 IAcc=1 IRadAn=         1 AccDes= 1.00D-06
+ HarFok:  IExCor= 205 AccDes= 1.00D-06 IRadAn=         1 IDoV=1
+ ScaDFX=  1.000000  1.000000  1.000000  1.000000
+ Pairs of Alpha orbitals switched:
+    5   6
+ Initial guess orbital symmetries:
+       Occupied  (A1) (A1) (B2) (A1) (A1)
+       Virtual   (B1) (B2)
+ The electronic state of the initial guess is 2-A1.
+ Requested convergence on RMS density matrix=1.00D-08 within 128 cycles.
+ Requested convergence on MAX density matrix=1.00D-06.
+ Requested convergence on             energy=1.00D-06.
+ No special actions if energy rises.
+ Keep R1 and R2 integrals in memory in canonical form, NReq=      419815.
+ SCF Done:  E(ROHF) =  -54.3257900934     A.U. after    9 cycles
+             Convg  =    0.7698D-09             -V/T =  1.9800
+             S**2   =   0.7500
+ Annihilation of the first spin contaminant:
+ S**2 before annihilation     0.7500,   after     0.7500
+
+ **********************************************************************
+
+            Population analysis using the SCF density.
+
+ **********************************************************************
+
+ Orbital symmetries:
+       Occupied  (A1) (A1) (B2) (A1) (A1)
+       Virtual   (B1) (B2)
+ The electronic state is 2-A1.
+</PRE>
+</FONT><BR>
+
+After performing the default Harris functional guess all orbital changes are listed (here only 5 and 6
+are interchanged). This leads to an initial guess wavefunction with a SOMO of A1 symmetry.
+The relative order of orbital symmetries is retained during the SCF optimization and the
+final wavefunction therefore describes an <SUP>2</SUP>A<SUB>1</SUB> state. This wavefunction
+is stored in the checkpoint file on completion of the calculation and can be read from there 
+as the initial guess for yet another calculation with <FONT COLOR="#0000FF">guess=read</FONT>.
+The following input file reads, for example the geometry as well as the wavefunction obtained
+in the previous calculation from the checkpoint file (here named /scr1/testit.chk) and calculates the
+ROHF/STO-3G energy within a single SCF cycle. Since the wavefunction stored in the checkpoint
+file is of <SUP>2</SUP>A<SUB>1</SUB> symmetry, the SCF will converge to the <SUP>2</SUP>A<SUB>1</SUB>
+state without any orbital interchanges.
+<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+%chk=/scr1/testit.chk
+#ROHF/STO-3G scf=(symm,tight) guess=read geom=check 
+
+rohf/STO-3G opt amide radical NH2, 2A1 state
+
+0 2
+
+</PRE>
+</FONT>
+
+Comparison of the two states optimized here shows that the <SUP>2</SUP>B<SUB>1</SUB> state based on the 
+default Harris functional guess is energetically more favorable at -54.8368134090 au than the <SUP>2</SUP>A<SUB>1</SUB> 
+state at -54.3257900934 au. Thus, the default guess arrives at the electronically more
+favorable state. This is, however, not always the case.<BR><BR>
+
+Selection and manipulation of the initial guess for UHF wavefunctions is only slightly more 
+challenging than that for the ROHF case. The added difficulty consists in deciding whether
+alpha or beta orbitals should be interchanged in order to arrive at the desired electronic state. 
+For the current case of the NH<SUB>2</SUB> radical, use of the default Harris functional 
+guess yields again the energetically more favourable <SUP>2</SUP>B<SUB>1</SUB> state at 
+-54.8392961557 au. Please note the ROHF/UHF energy lowering of only -0.0025au (-6.5 kJ/mol) 
+in this case, suggesting that the wavefunction is well described already in the ROHF picture. 
+The orbital listing obtained for the converged UHF wavefunction is:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+ SCF Done:  E(UHF) =  -54.8392961557     A.U. after   10 cycles
+             Convg  =    0.4780D-08             -V/T =  2.0048
+             S**2   =   0.7585
+ Annihilation of the first spin contaminant:
+ S**2 before annihilation     0.7585,   after     0.7500
+
+ **********************************************************************
+
+            Population analysis using the SCF density.
+
+ **********************************************************************
+
+ Orbital symmetries:
+ Alpha Orbitals:
+       Occupied  (A1) (A1) (B2) (B1) (A1)
+       Virtual   (A1) (B2)
+ Beta  Orbitals:
+       Occupied  (A1) (A1) (B2) (A1)
+       Virtual   (B1) (A1) (B2)
+ The electronic state is 2-B1.
+</PRE>
+</FONT>
+
+Comparison of the occupied alpha and beta spin orbitals shows that the additional alpha electron
+is located in an orbital of B1 symmetry. The complementary beta spin orbital is not occupied. 
+Excitation of the electron in the highest lying beta orbital (A1 symmetry) to the next higher 
+beta orbital (of B1 symmetry) changes the situation such that in both the alpha and beta orbitals 
+there is one B1 and one B2 occupied orbital while the number of alpha orbitals with A1 symmetry 
+exceeds that of the beta orbitals by one:<BR><BR> 
+ 
+<P align=center><IMG SRC="hf2_pict3.gif">
+
+<P>
+In order to effect the interchange of beta orbitals 4 and 5 the following input file
+will be used. Please observe the <B>two</B> empty lines after the geometry input. The first
+empty line terminates the geomtry input section, the second empty line specifies no changes
+in the alpha spin orbitals, and the following line specifies the changes in beta spin 
+orbitals:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#UHF/STO-3G scf=(symm,tight) guess=alter
+
+uhf/STO-3G opt amide radical NH2, 2A1 state
+
+0 2
+N1
+H2  1  r2
+H3  1  r2  2  a3
+
+r2=1.05808265
+a3=100.14734623
+							one empty line!!
+							a second empty line!!
+4 5
+							final empty line!!!
+</PRE>
+</FONT><BR>
+
+The final orbital ordering obtained after the SCF in this case is:<BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+ SCF Done:  E(UHF) =  -54.7318269247     A.U. after   10 cycles
+             Convg  =    0.6550D-08             -V/T =  2.0029
+             S**2   =   0.7508
+ Annihilation of the first spin contaminant:
+ S**2 before annihilation     0.7508,   after     0.7500
+
+ **********************************************************************
+
+            Population analysis using the SCF density.
+
+ **********************************************************************
+
+ Orbital symmetries:
+ Alpha Orbitals:
+       Occupied  (A1) (A1) (B2) (A1) (B1)
+       Virtual   (A1) (B2)
+ Beta  Orbitals:
+       Occupied  (A1) (A1) (B2) (B1)
+       Virtual   (A1) (A1) (B2)
+ The electronic state is 2-A1.
+</PRE>
+</FONT><BR>
+
+Please observe that the difference between the ROHF/STO-3G (at -54.3257900934 au) and
+the UHF/STO-3G (at -54.7318269247 au) energies of the <SUP>2</SUP>A<SUB>1</SUB> state is much
+larger at 1066 kJ/mol than found for the <SUP>2</SUP>B<SUB>1</SUB> state at the same 
+theoretical levels.<BR><BR>
+
+There are two different SCF algorithms available in <I>Gaussian</I>. The default
+algorithm <FONT COLOR="#0000FF">DIIS</FONT> is quite fast and works well for most 
+systems. For problematic cases the <FONT COLOR="#0000FF">quadratically convergent</FONT> 
+(QC) algorithm is much more reliable but also much slower than DIIS. The latter option is
+used with the <FONT COLOR="#0000FF">SCF=QC</FONT> keyword and becomes quite usefull
+in the case of convergence problems with the default DIIS algorithm.<BR><BR>
+
+In the case of severe convergence problems, a few further strategies exist to approach the
+problem. As a first point it is important to check the geometry of the system under
+investigation. Errors in the Z-Matrix definition, which position atomic centers too 
+close together, often result in convergence problems during SCF calculations.
+Also, it is often found that self consistency is achieved with one method, but not another. 
+It is therefore quite helpful to calculate a wavefunction first with one method
+and then use the converged wavefunction as the initial guess for another calculation. It
+is, for example frequently found that Hartree-Fock calculations converge more readily
+than DFT calculations and initial calculation of the HF wavefunction can therefore aid
+in getting the DFT calculation started. Ultimately, the convergence behaviour also 
+improves with reduced electron numbers. If, for example, calculations for neutral
+radicals do not converge, a converged wavefunction can often be obtained for the
+corresponding cationic systems (lacking one electron). The cation wavefunction can then
+be used as the initial guess of the radical system. If still no convergence can be achieved:
+go look for another project!<BR><BR>
+
+<hr>
+<PRE>
+<TT>last changes: 27.11.2006, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>

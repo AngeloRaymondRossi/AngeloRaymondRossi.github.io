@@ -1,0 +1,225 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshops - Resources</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all" />
+<script type="text/javascript">
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+<!--
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader("w3csheet.css");
+//-->
+</script>
+
+<body>
+<center>
+<div id="LayerLogo" style="position:absolute; left:45px; right:50px; top:25px; width:900px; z-index:1">
+<img src="http://homepages.uconn.edu/rossi/images/uconn-wordmark-single-blue.png" width="341" height="74" alt="University of Alaska-Fairbanks">
+<h2>
+Workshops on Computational Chemistry<br><br>
+Resources<br>
+</h2>
+</div>
+</center>
+
+<div id="LayerLogo" style="position:absolute; left:45px; right:50px; top:250px; width:900px; z-index:1" align="center">
+<center>
+<hr width="125%" size="2">
+<center>
+</div>
+
+<div id="LayerMain" style="position:absolute; left:45px; right:50px; top:300px; width:900px;z-index:4" class="maindiv" align="left">
+<h1><u>Recommended Textbooks</u></h1>
+<ul>
+<li>Electronic Structure: 
+<ul>
+<li><b><i>Essentials of Computational Chemistry: Theories and Models, Second Edition</i></b>, Christopher J. Cramer, John Wiley and Sons Ltd., 2004.
+<li><b><i>Introduction to Computational Chemistry, Second Edition</i></b>, Frank Jensen, John Wiley and Sons Ltd., 2007.
+<li><b><i>Computational Chemistry: Introduction to the Theory and Applications of Molecular and Quantum Mechanics, Second Edition</i></b>, Errol G. Lewars, Springer, New York, 2011.
+<li><b><i>Molecular Modeling Basics</i></b>, Jan H. Jensen, CRC Press, 2010.
+<li><b><i>Exploring Chemistry with Electronic Structure Methods, Second Edition</i></b>, James B. Foresman and AEleen Frisch, Gaussian, Inc., 1995-1996.
+<li><b><i>Computational Inorganic and Bioinorganic Chemistry</i></b>, Editors: Edward I. Solomon, Robert A. Scott, and R. Bruce King, John Wiley and Sons Ltd., 2009.
+</ul>
+<li>Molecular Modeling and Molecular Dynamics
+<ul>
+<li><b><i>Molecular Modeling:Principles and Applications, Second Edition</i></b>, Andrew R. Leach, Pearson Education Limited, 2001
+<li><b><i>Molecular Dynamics Simulation</i></b>, J. M. Haile, John Wiley and Sons Ltd., 1992
+<li><b><i>Understanding Molecular Simulation: From Algorithims to Applications</i></b>, Daan Frenkel and Berend Smit, Academic Press, 2002
+<li><b><i>Computer Simulation of Liquids</i></b>, M. P. Allen and D. J. Tildesley, Oxford University Press, 1989
+<li><b><i>Chemical Applications of Molecular Modeling</i></b>, Jonathan M. Goodman, The Royal Society of Chemistry, 1998
+</ul>
+<li>General, Inorganic, and Symmetry
+<ul>
+<li><b><i>Molecular Driving Forces: Statistical Thermodynamics in Chemistry and Biochemistry</i></b>, Ken A. Dill and Sarina Bromberg, Garland Science-Taylor & Francis Group, 2003.
+<li><b><i>Ligand Field Theory and Its Applications</i></b>, Brian N. Figgis and Michael A.Hitchman, Wiley-VCH, 2000.
+<li><b><i>Symmetry and Spectroscopy: An Introduction to Vibrational and Electronic Spectroscopy</i></b>, Daniel C. Harris and Michael D. Bertolucci, Dover Publications, 1989.
+<li><b><i>Molecular Symmetry and Group Theory, Second Edition</i></b>,Alan Vincent, John Wiley and Sons Ltd., 2001.
+<li><b><i>Group Theory for Chemists</i></b>, George Davidson, MacMillan Physical Science Series, 1991.
+</ul>
+</ul>
+
+<b>
+<h1><u>Electronic Structure Programs</u></h1>
+<ul>
+<li><a href="http://www.msg.ameslab.gov/gamess/" target="_new">GAMESS</a> 
+<ul>
+<li><a href="http://cmb.bio.uni-goettingen.de/pract/p6/" target="_new">Introduction to Electronic Structure Calculations using GAMESS</a>
+<li><a href="http://www.ks.uiuc.edu/Training/SumSchool/materials/sources/tutorials/05-qm-tutorial/qm_tutorial.html" target="_new">UIUC - Introduction to QM Simulations</a>
+<li><a href="https://www2.chemistry.msu.edu/courses/cem888/gamess-instr.html" target="_new">MSU - Instructions for Using GAMESS</a>
+<li><a href="http://www.d.umn.edu/~psiders/courses/chem4642/quantumchemsoftware/tutorial/gamess/gamess.html" target="_new">P. Siders, UMD - GAMESS Tutorial</a>
+<li><a href="http://wiki.wxmacmolplt.googlecode.com/git/MacMolPlt_Manual.html" target="_new">MacMolPlt</a>
+</ul>
+<ul>
+</ul>
+<li><a href="http://www.gaussian.com" target="_new">Gaussian</a>
+<ul>
+<li><a href="http://www.gaussian.com/g_prod/gv5_plat.htm" target="_new">GaussView</a> 
+<li><a href="http://www.gaussian.com/g_tech/g09ur.htm" target="_new">Gaussian 09 User's Reference</a>
+<li><a href="http://www.gaussian.com/g_tech/g_ur/l_keywords09.htm" target="_new">Gaussian 09 Keywords</a>
+<li><a href="http://www.gaussian.com/g_tech/white.htm" target="_new">Gaussian 09 White Papers and Technical Notes</a>
+</ul>
+<li><a href="http://www.emsl.pnl.gov/docs/nwchem/nwchem.html" target="_new">NWChem</a></li>
+<ul>
+<li><a href="http://www.predictivestatmech.org/wiki/NWChem" target="_new">NWChem Examples</a></li>
+<li><a href="http://www.cenapad.unicamp.br/parque/manuais/NWChem/NWChem_FAQ.html#symm" target="_new">NWChem Frequently Asked Questions</a></li>
+<li><a href="https://sites.google.com/a/ncsu.edu/cjobrien-nwchem-tips/" target="_new">NC STATE - NWChem Tips</a></li>
+</ul>
+<li><a href="https://orcaforum.cec.mpg.de/" target="_new">ORCA</a></li>
+<ul>
+<li><a href="https://sites.google.com/site/orcainputlibrary/home" target="_new">ORCA Input Library</a></li>
+<li><a href="https://www.sharcnet.ca/help/index.php/ORCA" target="_new">SHARCNET Orca</a></li>
+<li><a href="http://molphys.org/orca_tutorial/orca_hands_on.html" target="_new">FAMAlab: ORCA Tutorial</a></li>
+<li><a href="http://www.cup.uni-muenchen.de/oc/zipse/orca-input-files.html" target="_new">Zipse Group - ORCA Input Files</a></li>
+<li><a href="http://orca2014.blogspot.com/2014/03/orca.html" target="_new">ORCA Blogspot</a></li>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/orca-examples.pdf" target="_new">Sample ORCA Input Files</a>
+<li><a href="http://www.cup.uni-muenchen.de/oc/zipse/orca-input-files.html" target="_new">Zipse Group - ORCA Input Files</a></li>
+</ul>
+</ul>
+</ul>
+
+<h1><u>Basis Sets for Electronic Structure Calculations</u></h1>
+<ul>
+<li><a href="https://bse.pnl.gov/bse/portal" target="_new">Basis Set Exchange</a>
+</ul>
+
+<h1><u>Molecular Dynamics Programs</u></h1>
+<ul>
+<li><a href="http://ambermd.org/" target="_new">Amber</a>
+<li><a href="http://www.charmm.org" target="_new">CHARMM</a>
+<ul>
+<li><a href="http://www.charmmtutorial.org/index.php/CHARMM_Tutorial" target="_new">CHARMM Tutorial</a>
+<li><a href="http://mackerell.umaryland.edu/charmm_ff.shtml" target="_new">CHARMM Force Field Files</a>
+<li><a href="https://www.paramchem.org/tech.php" target="_new">ParaChem Technologies</a>
+<li><a href="https://cgenff.paramchem.org/" target="_new">CGenFF Program</a>
+</ul>
+<li><a href="http://www.gromacs.org/" target="_new">Gromacs</a>
+<ul>
+<li><a href="http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials" target="_new">Gromacs Tutorials - Justin A. Lemkul</a>
+<li><a href="http://becksteinlab.physics.asu.edu/learning/33/tutorial-simulating-adk-with-gromacs" target="_new">Simulating AdK With Gromacs - Oliver Beckstein</a>
+<li><a href="http://ringo.ams.sunysb.edu/index.php/MD_Simulation:_Protein_in_Water" target="_new">MD Simulation: Protein in Water - The R. C. Rizzo Laboratory</a>
+<li><a href="http://cinjweb.umdnj.edu/~kerrigje/pdf_files/fwspidr_tutor.pdf" target="_new">Gromacs Introductory Tutorial - John E. Kerrigan</a>
+<li><a href="http://cinjweb.umdnj.edu/~kerrigje/pdf_files/trp_drug_tutor.pdf" target="_new">Tutorial for Solvated Trypsin-Benzamidine Complex - John E. Kerrigan</a>
+</ul>
+<li><a href="http://www.ks.uiuc.edu/Research/namd/" target="_new">NAMD</a>
+<ul>
+<li><a href="http://www.ks.uiuc.edu/Training/Tutorials/" target="_new">NAMD Tutorials-Theoretical and Computational Physics Group</a >
+<li><a href="https://research.cchmc.org/wiki/index.php/NAMD_Tutorial" target="_new">NAMD Tutorial-Cincinnati Children's Research</a>
+</ul>
+</ul>
+
+<h1><u>Analysis Tools for QM Calculations and MD Simulations</u></h1>
+<ul>
+<li>Electronic Structure: 
+<ul>
+<li><a href="http://gausssum.sourceforge.net/" target="_new">GaussSum</a>
+<li><a href="http://www.sg-chem.net/swizard/" target="_new">SWizard</a>
+<li><a href="http://www.chemissian.com/" target="_new">Chemissian</a>
+<li><a href="https://multiwfn.codeplex.com/" target="_new">Multiwfn</a>
+<li><a href="http://www.cmbi.ru.nl/molden/molden.html" target="_new">Molden</a> 
+<li><a href="http://www.ks.uiuc.edu/Research/vmd/" target="_new">VMD</a> 
+<li><a href="http://jmol.sourceforge.net/" target="_new">Jmol</a>
+<li><a href="http://gnuplot.info/" target="_new">Gnuplot</a> and <a href="http://plasma-gate.weizmann.ac.il/Grace/" target="_new">Grace</a>
+</ul>
+<li>Molecular Dynamics: 
+<ul>
+<li><a href="http://www.ks.uiuc.edu/Research/vmd/" target="_new">VMD</a> 
+<li><a href="http://ambermd.org/#AmberTools" target="_new">AmberTools</a> 
+<li><a href="http://jmol.sourceforge.net/" target="_new">Jmol</a>
+<li><a href="http://pymol.org/" target="_new">PyMol</a>
+<li><a href="http://gnuplot.info/" target="_new">Gnuplot</a> and  <a href="http://plasma-gate.weizmann.ac.il/Grace/" target="_new">Grace</a>
+</ul>
+</ul>
+
+<h1><u>External Links</u></h1>
+<ul>
+<li><a href="http://pollux.chem.umn.edu/8021/" target="_new">Christopher J. Cramer, CHEM 4021/8021</a>
+<li><a href="http://www.cup.uni-muenchen.de/oc/zipse/computationalchemistry1.html" target="_new">Computational Chemistry Tutorial by Professor Hendrik Zipse</a>
+<li><a href="https://bse.pnl.gov/bse/portal" target="_new">EMSL Basis Set Exchange</a>
+<li><a href="http://en.wikipedia.org/wiki/OLED" target="_new">Organic Light-Emitting Diode (OLED)</a>
+
+</ul>
+
+<h1><u>Mailing Lists and Blogs</u></h1>
+<ul>
+<li><a href="http://www.ccl.net/chemistry.html" target="_new">Computational Chemistry Mailing List</a>
+<li><a href="http://molecularmodelingbasics.blogspot.com" target="_new">Molecular Modeling Basics Blog Spot</a>
+</ul>
+
+<h1><u>Reference Material</u></h1>
+<ul>
+<li> <a href="http://webbook.nist.gov" target="_new">NIST Chemistry WebBook</a>
+<li> <a href="http://cccbdb.nist.gov/" target="_new">Computational Chemistry Database</a>
+<li> <a href="http://cccbdb.nist.gov/thermo.asp" target="_new">Computational Chemistry Database-Discussion of Thermochemistry</a>
+<li> <a href="http://www.rcsb.org/pdb/home/home.do" target="_new">Protein Data Bank (PDB)</a>
+<li> <a href="http://www.webelements.com/" target="_new">Web elements - Periodic Table</a>
+</ul>
+
+<h1><u>Linux Tutorials</u></h1>
+<ul>
+<li> <a href="http://www.tutorialspoint.com/unix/" target="_new">Learn Unix</a>
+<li> <a href="http://genepath.med.harvard.edu/~depalma/unixPrimer.html" target="_new">A brief Unix Primer</a>
+<li> <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/" target="_new">UNIX/Linux Tutorial for Beginners</a>
+</ul>
+
+<h1><u>Text Editors for Linux</u></h1>
+<ul>
+<li> <a href="http://www.linux.com/learn/tutorials/325049:linuxables-introduction-to-the-nano-text-editor" target="_new">Introducton to the Nano Text Editor</a>
+<li> <a href="http://www.unix-manuals.com/tutorials/vi/vi-in-10-1.html" target="_new">vi Tutorial</a>
+<li> <a href="http://www.gnu.org/software/emacs/tour/" target="_new">A Guided Tour of the Emacs Text Editor</a>
+</ul>
+
+</b>
+
+<br>
+<br>
+<div align="center">
+<p class="footer">
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+<!--  FAX: 973-972-7412<br> -->
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+  </p>
+</div>
+
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>

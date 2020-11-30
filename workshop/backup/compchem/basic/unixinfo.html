@@ -1,0 +1,123 @@
+<HTML>
+
+<HEAD>
+<TITLE>Information on UNIX commands</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2> Information on basic UNIX commands </H2></CENTER>
+<HR>
+
+The most important UNIX commands needed in this course are:<BR><BR>
+
+<pre>
+<FONT COLOR="#0000FF">pwd</FONT> ................ prints the name of the current working directory.
+
+<FONT COLOR="#0000FF">cd</FONT> ................. changes the directory; when given without any arguments, the shell
+                     moves to the users home directory. In order to change to a specific directory, 
+                     the full pathname must be given e.g. <FONT COLOR="#0000FF">cd /usr/local/bin</FONT> changes 
+                     to the directory /usr/local/bin. Moving up one directory can be done more 
+                     easily by using <FONT COLOR="#0000FF">cd ..</FONT>
+
+<FONT COLOR="#0000FF">du</FONT> ................. calculates the size of the current directory. If used with the <FONT COLOR="#0000FF">-k</FONT> modifier, 
+                     the directory size is given in units of 1K. On some systems this is the default, 
+                     on others the size is still given in units of 512-byte blocks. On most systems 
+                     the <FONT COLOR="#0000FF">-h</FONT> modifier is also supported giving the sizes of the mounted volumes in 
+                     "human readable" units such as MB, GB, or TB.
+
+<FONT COLOR="#0000FF">mkdir <I>name</I></FONT> ......... creates directory <I>name</I> as a subdirectory of the current working directory.
+
+<FONT COLOR="#0000FF">rmdir <I>name</I></FONT> ......... removes directory <I>name</I>. This only works if there are no files left in
+                     directory <I>name</I>. 
+
+<FONT COLOR="#0000FF">df</FONT> ................. shows all volumes mounted on the system together with the current usage. 
+                     If used with the <FONT COLOR="#0000FF">-k</FONT> modifier, the usage information is given in units of 1K. 
+                     On some systems this is the default, on others the size is given in 
+                     units of 512-byte blocks. On most systems the <FONT COLOR="#0000FF">-h</FONT> modifier is also supported
+                     giving the sizes of the mounted volumes in "human readable" units such as 
+                     MB, GB, or TB.
+
+<FONT COLOR="#0000FF">ls</FONT> ................. list all files as well as subdirectories of a directory in alphabetical order
+                     using the <FONT COLOR="#0000FF">-l</FONT> modifier gives a more informative listing, one file per line. 
+                     The command can be combined with search strings in order to produce partial 
+                     listings. For example <FONT COLOR="#0000FF">ls test*.com</FONT> will list all files starting with the 
+                     string <I>test</I> and ending on <I>.com</I>.
+              
+<FONT COLOR="#0000FF">cp <I>file1</I> <I>file2</I></FONT> ..... copies <I>file1</I> to <I>file2</I>.
+
+<FONT COLOR="#0000FF">mv <I>file1</I> <I>file2</I></FONT> ..... changes the name of <I>file1</I> to <I>file2</I>.
+
+<FONT COLOR="#0000FF">rm <I>file1</I></FONT> ........... removes file <I>file1</I>. This only works if file <I>file1</I> is owned by the user or
+                     if the user has write permission for this file. One helpful variant is <FONT COLOR="#0000FF">rm -i</FONT>
+                     which prompts the user to confirm deletion of a file. 
+
+<FONT COLOR="#0000FF">more <I>file1</I></FONT> ......... displays the content of <I>file1</I> page by page. This only makes sense for 
+                     text files, of course, and also works for output files that are too large 
+                     to be loaded into an text editor.
+
+<FONT COLOR="#0000FF">grep <I>string1</I> <I>file2</I></FONT>   search for <I>string1</I> in file <I>file2</I>. The command <FONT COLOR="#0000FF">grep "B3LYP" test*.log</FONT> 
+                     will search for string <I>B3LYP</I> in all files starting with <I>test</I> and ending with <I>.log</I> 
+                     Please observe that UNIX is case sensitive (e.g. "B3LYP" is different from "b3lyp"). 
+                     In case the search string occurs repeatedly in one file, all occurences are listed. 
+                     This can be used efficiently to follow the progress of, for example, geometry 
+                     optimizations by searching for a string that reappears in the output file for each 
+                     optimization cycle. The strings "SCF" or "RMS     Force" (observe the blanks!) will, 
+                     for example, be helpful in many optimizations done with Gaussian 98. For searching 
+                     binary files, use <FONT COLOR="#0000FF">grep -a</FONT>.
+
+<FONT COLOR="#0000FF">tail <I>file1</I></FONT> ......... shows the last few lines of file <I>file1</I>. <FONT COLOR="#0000FF">tail -50 <I>file1</I></FONT> gives the 
+                     last 50 lines of <I>file1</I>. Output files of calculations that are currently running
+                     can most easily be followed by <FONT COLOR="#0000FF">tail -f <I>file1</I></FONT>,  <I>file1</I> being the name of the 
+                     output file.
+
+<FONT COLOR="#0000FF">gzip <I>file1</I></FONT> ......... compress <I>file1</I> using the gzip program. Upon compression a new (compressed) 
+                     file <FONT COLOR="#0000FF"><I>file1.gz</I></FONT> will be generated. Decompression is possible using either 
+                     <FONT COLOR="#0000FF"><I>gunzip file1.gz</I></FONT> or <FONT COLOR="#0000FF"><I>gzip -d file1.gz</I></FONT>.
+
+<FONT COLOR="#0000FF">compress <I>file1</I></FONT> ..... compress <I>file1</I> using the standard UNIX compression command. Upon 
+                     compression a new (compressed) file <FONT COLOR="#0000FF"><I>file1.Z</I></FONT> will be generated.  Decompression 
+                     of the latter is possible with the <FONT COLOR="#0000FF">uncompress <I>file1.Z</I></FONT> command.
+
+<FONT COLOR="#0000FF">ps</FONT> ................. shows processes running on the system. Use of the <FONT COLOR="#0000FF">-f</FONT> or <FONT COLOR="#0000FF">-l</FONT> modifiers produces 
+                     a longer listing containing more information. Use of the <FONT COLOR="#0000FF">-e</FONT> modifier gives 
+                     information on processes of all users. Unfortunately, the exact format and 
+                     meaning of the modifiers depends substantially on the particular UNIX version used. 
+                     Using Red Hat LINUX 7.x,  <FONT COLOR="#0000FF">ps -ef</FONT> will give all the required information.
+
+<FONT COLOR="#0000FF">ssh <I>host1</I></FONT> .......... connects to <I>host1</I> for an interactive session. This command is preferred over
+                     the older, insecure <FONT COLOR="#0000FF">telnet</FONT> command. 
+
+<FONT COLOR="#0000FF">sftp <I>host1</I></FONT> ......... connects to <I>host1</I> for a file transfer session.
+                     This commmand is preferred over the older, insecure <FONT COLOR="#0000FF">ftp</FONT> commmand.
+
+<FONT COLOR="#0000FF">logout</FONT> or <FONT COLOR="#0000FF">exit</FONT> ..... terminate a shell (window).
+
+<FONT COLOR="#0000FF">passwd</FONT> ............. change your password.
+
+<FONT COLOR="#0000FF">who</FONT> ................ shows who is logged into the local system.
+</PRE><BR><BR>
+
+Several UNIX commands can effectively be combined through the pipe symbol <FONT COLOR="#0000FF">|</FONT>. The command
+<FONT COLOR="#0000FF">ps -ef | grep "g03"</FONT> for example will show you how many processes connected to <I>Gaussian</I> (short: g03)
+are currently running on your system.<BR><BR>
+
+Information on UNIX commands can also be obtained using the standard UNIX manual pages.
+In order to get information on, for example, the <FONT COLOR="#0000FF">mkdir</FONT> command, simply type 
+<FONT COLOR="#0000FF">man mkdir</FONT>.<BR><BR>
+
+A short list of the most important UNIX commands can also be found <A HREF="http://www.bsd.org/unixcmds.html">here</A>.<BR>
+A quick reference card (ps format) can be found on the <A HREF="http://www.kfa-juelich.de/zam/docs/rfk_d.html">KFA Juelich</A>  web page.
+
+<HR>
+<PRE>
+<TT>last changes: 16.10.2006, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+	
+</BODY>
+</HTML>
+

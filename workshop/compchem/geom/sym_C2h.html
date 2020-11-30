@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+   <TITLE>the C2h point group</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>The C<sub>2h</sub> Point Group</H2></CENTER>
+<HR>
+
+<P>
+This point group contains four symmetry operations:<BR><BR>
+
+<B>E</B>&nbsp;&nbsp;&nbsp;&nbsp; the identity operation<BR>
+<B>C<SUB>2</SUB></B>&nbsp;&nbsp; a twofold symmetry axis<BR>
+<B>i</B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a center of inversion<BR>
+<B>&sigma;<SUB>h</SUB></B>&nbsp;&nbsp; a horizontal mirror plane<BR><BR>
+
+A simple example for a C<sub>2h</sub> symmetric molecule is <I>trans</I>
+-1,2-dichloroethylene, here in its HF/6-31G(d) optimized structure:<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=(Z-Matrix,tight)
+
+test1 HF/6-31G(d) opt trans-1,2-dichloroethylene
+
+0 1
+Cl1
+C2   1  r2
+C3   2  r3  1  a3
+Cl4  3  r2  2  a3  1  180.0
+H5   3  r5  2  a5  1  0.0
+H6   2  r5  3  a5  4  0.0
+
+r2=1.729226
+r3=1.310646
+r5=1.070566
+a3=121.7652
+a5=123.8226
+
+</FONT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="sym_c2h.gif">
+</TABLE><BR>
+
+In this case the symmetry of the system is reflected in the Z-Matrix
+through the use of identical variable names for the C-Cl and C-H bond distances
+and the Cl-C-C and H-C-C bond angles. All atoms are also constrained
+to the horizontal mirror plane of the C<sub>2h</sub> point group.
+This reduces the number of independent structural variables 
+from 12 (for an asymmetric, non-linear molecule containing 6 
+centers) to 5.<BR><BR>
+
+Molecular orbitals as well as harmonic vibrations (if calculated) 
+are labeled according to their symmetry properties as belonging to
+one of the four irreducible representations (<FONT COLOR="#0000FF">A<SUB>g</SUB></FONT>, 
+<FONT COLOR="#0000FF">B<SUB>g</SUB></FONT>, <FONT COLOR="#0000FF">A<SUB>u</SUB></FONT>,
+and <FONT COLOR="#0000FF">B<SUB>u</SUB></FONT>) of the C<sub>2h</sub>
+point group. 
+
+<HR>
+<PRE>
+<TT>last changes: 25.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

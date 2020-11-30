@@ -1,0 +1,668 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+
+<head>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshops - GROMACS: MD Simulation of a Protein-Ligand Complex</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+
+<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all"/>
+
+<script type="text/javascript">
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader("w3csheet.css");
+</script>
+
+<body>
+
+<div id="LayerLogo" style="position:absolute; left:50px; right:0px; top:55px; width:300px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/angelo_rossi_fix.png" width="255" height="169" alt="Angelo Raymond Rossi">
+</div>
+
+<!--
+<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:15px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/Logo-Center-1Line-281.gif" width="375" height="133" alt="University of Connecticut">
+</div>
+-->
+
+<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:45px; width:600px; z-index:1">
+<img src="http://rossi.chemistry.uconn.edu/images/UAFLogo_A_647_horiz.png" width="443" height="98" alt="University of Alaska Fairbanks">
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:375px; right:0px; top:140px; width:600px; z-index:1">
+<center>
+<font color="blue">
+<h1>
+Computational Chemistry Workshop<br>
+West Ridge Research Building-UAF Campus<br>
+9:00am-4:00pm, Room 009
+</h1>
+<h2>
+Molecular Dynamics - July 26-28, 2016<br><br>
+GROMACS: MD Simulation of a Protein-Ligand Complex
+</h2>
+</font>
+</center>
+</div>
+
+<div id="LayerSidebar" style="position:absolute; left:35px; top:300px; width:180px; z-index:3" class="navDiv">
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b>Home</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/teaching.htm"><center><b>Teaching Experience</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/research/index.html"><center><b>Research Interests</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/comp_chem_links.htm"><center><b>Computational Chemistry Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/hpc.htm"><center><b>High Performance<br>Computing Links</b></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/workshop"><center><b>Computational Chemistry Workshops</b></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/workshop-overview.htm"><center><small><b><font color="blue"><u>Overview and Registration</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/topics.htm"><center><small><b><font color="blue"><u>Topics and Exercises</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/resources.htm"><center><small><b><font color="blue"><u>Workshop Resources</u></b></font></small></center></a></p>
+<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b> </b></center></a></p>
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:250px; top:300px; width:800px; z-index:1" align="center">
+<center>
+<!-- <hr width="100%" size="1"> -->
+<hr shade="" align="center" size="3" width="800" color="#0000FF">
+</center>
+</div>
+
+<div id="LayerMain" style="position:absolute; left:250px; top:325px; width:800px; z-index:4" class="maindiv" align="left">
+
+<h1>MD Simulation of a Protein-Ligand Complex</h1>
+
+<p>
+This GROMACS tutorial mostly follows the Protein-Ligand Tutorial at 
+<a href="http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/">GROMACS Protein-Ligand Tutorial</a>
+by Justin A. Lemkul, Ph.D. with two important differences:
+
+<ul>
+<li> The CHARMM force field is used for both the protein and the ligand.
+<li> The GROMACS ligand topology and parameter files are obtained from the <a href="https://cgenff.paramchem.org">CGenFF</a> server.
+</ul>
+
+There are several other important minor differences which will become obvious as the tutoral proceeds.
+
+</p>
+
+<h1>Directory organization</h1>
+<p>The workflow for setting up, running, and analysing a simulation
+consists of multiple and rather different steps. It is useful to
+perform these different steps in separate directories in order to
+avoid overwriting files or using wrong files.</p>
+<p>For this tutorial the suggested directory layout is the following:
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coord/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ligand/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solvation/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emin/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posres/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analysis/
+</pre>
+</p>
+
+<p>
+You will work through these directories in sequence.  The following is a short description of the directories:
+</p>
+<ul>
+<li>coord/ - PDB and coordinate files</li>
+<li>ligand/ -CHARMM parameter and coordinate files in Gromacs format for the ligand</li>
+<li>top/ - topology files</li>
+<li>solvation/- add solvent and ions</li>
+<li>emin/ - energy minimization</li>
+<li>posres/ - MD simulation with position restraints on the heavy protein atoms, to allow the solvent to equilibrate around the protein without disturbing the protein structure</li>
+<li>MD/ - the results of an MD simulation. Typically, the MD input files are transferred to a Linux cluster, then executed, and subsequently, output is copied back into this directory.</li>
+<li>analysis/ - the simulations in (sub)directories under analysis.</li>
+</ul>
+<p>
+The subdirectories given above depend on the specific analysis tasks that are to be carried out.
+</p>
+
+<p>The Gromacs commands provided in each directory assume the above directory layout. Sometimes, 
+the Gromacs command does not explicitly provide the necessary associated Linux <tt class="docutils literal"><span class="pre">cd</span></tt> 
+command to change directories.  The workflow is such that each step is carried out <em>inside the appropriate directory</em> and 
+relative paths are used to access files from previous steps. 
+</p>
+<p>
+It should be clear from the context in which directory the commands are to be executed. If you get a
+<tt class="docutils literal"><span class="pre">File</span> <span class="pre">input/output</span> <span class="pre">error</span></tt> 
+from <strong class="program">grompp</strong> (or any of the other commands), then check that you are able to see the file by just
+doing a <tt class="docutils literal"><span class="pre">ls</span> <span class="pre">../path/to/file</span></tt> 
+from where you are in the file system.  If you cannot see the file then check (1) that you are in the correct
+directory, (2) that you have created the file in a previous step.</p>
+</p>
+
+<h1>Building the Simulation System</h1>
+<p>
+The problem with a protein-ligand system is that the force field parameters, as well as other parameters, must be determined for the small
+organic molecule that is within the protein.  
+</p>
+
+<p>
+On the other hand, The parameters for the protein component are well-known and usually  do not present any difficulty.
+The following steps provide one way to obtain parameters for the small molecule organic ligand when the CHARMM force field is used.
+</p>
+
+<p>
+Separate the original pdb file into two pdb files, one for the protein and one for the small-molecule ligand, jz4.
+<pre>
+conf.pdb
+jz4.pdb
+</pre>
+</p>
+
+<h2>The Protein</h2>
+      <ul>
+      <li>Generate a GROMACS topology (<b>topo.top</b>) for the protein, without the ligand, by running the <b>gmx pdb2gmx</b> command from the GROMACS suite: 
+        <br>
+	<pre>gmx pdb2gmx -f conf.pdb -ff charmm36-nov2014 -water tip3p -ignh -o conf.pdb -nochargegrp</pre>
+      </ul>
+
+<h2>The Ligand</h2>
+<ul>
+      </li>
+      <li>Convert the jz4.pdb file to a jz4.mol2 using <a href="http://openbabel.org/wiki/Babel">Babel</a>.</li>
+      <br>
+      <li>
+      <p>
+      The jz4.mol2 is then submitted to the
+      <a href="https://cgenff.paramchem.org">CGenFF</a> server, which is part of <a href="https://https://www.paramchem.org">ParaChem</a> 
+      </p>
+      <p>
+      Subsequently, the file,
+      <pre>
+      jz4.str
+      </pre>
+      is now available for download, and can be used for both CHARMM and GROMACS.
+      </p>
+      <p>
+      A separate python file, <b>cgenff_charmm2gmx-1.py</b>, required for converting a 
+      the CHARMM jz4.str file into GROMACS files, is available for download from the <i>More Info & Tools</i> section on the top of the web page.
+      </p>
+    <p>
+    The command:
+    <pre>
+    ./cgenff_charmm2gmx-1.py jz4 jz4.mol2 jz4.str charmm36-nov2014.ff
+    </pre> 
+    yields four files:
+    <pre>
+    jz4.itp - Gromacs topology file
+    jz4.prm - Gromacs parameter file
+    jz4_ini.pdb - PDB file for the initial coordinates of the jz4 ligand
+    </pre>
+    The above three files are required GROMACS files for the ligand component of the protein-ligand complex.
+    The fourth file:   
+    <pre>
+    jz4.top 
+    </pre>
+   is a Gromacs prototype topology file which indicates where to place specific files for the protein and jz4 ligand.  It may not be used 
+   and should not be confused with the required topo.top file, the system topolgy file.
+    </p>
+</li>
+</ul>
+
+<h2>The Protein-Ligand Complex</h2>
+       <ol>
+      <p>
+      <li>Merge the protein and ligand coordinates, by inserting the ATOM lines from
+	 the jz4_ini.pdb file into the conf.pdb file, right after the last line for the protein.
+	 Atoms will be automatically renumbered in the next step.
+       </p>
+      </li>
+      
+      <p>
+      <li> Modify the topo.top file generated for the protein to include the required files for the ligand.
+      </p>
+
+  </ol>
+
+<h2>Define the Unit Cell and Add Solvent</h2>
+
+        <pre>
+
+      gmx editconf -f conf.pdb -o boxed.pdb -c -d 1.0 -bt dodecahedron
+
+      gmx solvate  -cs -cp boxed.pdb -o solvated.pdb -p topol.top
+
+        </pre>
+
+<h2>Adding Ions</h2> 
+<p>
+The system is now solvated but contains a charged protein. The output of pdb2gmx told us that the protein has a net charge of +6<i>e</i>
+(based on its amino acid composition). If you missed this information in the pdb2gmx output, look at the last line of your <code>[ atoms ]</code> 
+directive in topol.top which should read (in part) &quot;qtot 6.&quot; It is necessary to add ions to obtain a neutral system in order to perform Molecular Dynamics
+with particle mesh ewald, for calculation of long-range electrostatic interactions.
+</p>
+<p>
+Use grompp to assemble a .tpr file, using any .mdp file, for example, em.mdp.  
+</p>
+<pre>
+      gmx grompp  -f em.mdp -c solvated.pdb -p topol.top -o ions.tpr
+</pre>
+<p>
+The ions.tpr files is then passed to genion:
+</p>
+<pre>
+      gmx genion  -s ions.tpr -o solvated_ions.pdb -p topol.top -pname NA -nname CL -conc 0.1
+</pre>
+<p>
+The specified atom names of ions are always the elemental symbol in all capital letters, along with the <code>[ moleculetype ]</code>. 
+Residue names may or may not append the sign of the charge (+/-). Refer to ions.itp for proper nomenclature if you encounter difficulties.
+</p>
+
+<p>Your <code[ molecules ]</code> directive should now look like:</p>
+<pre>
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+JZ4                 1
+SOL             13322
+NA                 26
+CL                 32
+</pre> 
+
+<h1>Energy Minimization (EM)</h1>
+<p>
+Now that the system is assembled, create the binary input using grompp and em_real.mdp as the input parameter file:
+</p>
+<pre>
+gmx grompp -f em_real.mdp -c solvated_ions.pdb -p topol.top -o em.tpr
+</pre>
+<p>
+Note that in the em_real.mdp file, the command:<code>energygrps = Protein JZ4</code> is set, since it may be of interest later to examine the various
+components of the nonbonded interactions between your protein and ligand. This is a good practice in case anything goes wrong.
+</p>
+
+<p>
+Make sure the topol.top file is updated each time when running
+genbox and solvate, or else you will get lots of nasty error messages
+(&quot;number of coordinates in coordinate file does not match topology,&quot; etc).
+</p>
+
+<p>
+We are now ready to invoke mdrun to carry out the EM:
+</p>
+<pre>
+gmx mdrun -v -deffnm em
+</pre>
+<p>
+The system should converge relatively quickly:
+</p>
+<pre>
+Steepest Descents converged to Fmax &lt; 1000 in 178 steps
+Potential Energy  = -5.0933919e+05
+Maximum force     =  9.1495343e+02 on atom 1266
+Norm of force     =  5.1248310e+01
+</pre>
+</p>
+
+<p>
+It is possible to monitor various components of the potential energy using the energy module. The em.edr file contains all of the energy 
+terms that GROMACS collects during EM, and  any .edr file can be analyzed  using the GROMACS energy module:
+</p>
+<pre>
+gmx energy -f em.edr -o potential.xvg
+</pre>
+<p>
+At the prompt, type "10 0" to select Potential (10); zero (0) terminates input. You will be shown the average of Epot, and a file called "potential.xvg" will be written.
+To plot this data, use the Xmgrace plotting tool. The resulting plot should look something like this, demonstrating the nice, steady convergence of Epot:
+<p>
+<center>
+<img src="files/Epot_EM_SD.jpg" width="706" height="540" name="Energy Minimization" alt="./Epot_EM_SD.jpg">
+</center>
+
+<h1>Equilibration</h1>
+<p>Now that the system is at an energy minimum, it is no possible to begin dynamics.</p>
+<p>
+Equilibrating our protein-ligand complex will be much like
+equilibrating any other system containing a protein in water. 
+There are a few special considerations, in this case:
+</p>
+<ol>
+<li/>
+<p style="margin-bottom: 0in">Applying restraints to the ligand</p>
+<li/>
+<p>Treatment of temperature coupling groups</p>
+</ol>
+
+<h2>Restraining the Ligand</h2>
+<p>
+The CGenFF server did not generate a separate restraint file for the ligand, analogous posre.itp for the protein, but GROMACS provides the means to do so with the genrestr
+module. Simply run genrestr on the jz4_ini.pdb file that we obtained from CGenFF:
+</p>
+<pre>
+gmx genrestr -f jz4_ini.pdb -o posre_jz4.itp -fc 1000 1000 1000
+</pre>
+<p>
+Now, this information must be included in the topology and can be performed in several ways.
+If we simply want to restrain the ligand whenever the protein is also restrained, add the following lines to the topology in the location
+indicated:
+</p>
+<pre>
+; Include Position restraint file
+#ifdef POSRES
+#include &quot;posre.itp&quot;
+#endif
+
+; Include ligand topology
+#include &quot;jz4.itp&quot;
+
+<font color="#008000"><b>; Ligand position restraints</b></font>
+<font color="#008000"><b>#ifdef POSRES</b></font>
+<font color="#008000"><b>#include &quot;posre_jz4.itp&quot;</b></font>
+<font color="#008000"><b>#endif</b></font>
+
+; Include water topology
+# &quot;charmm36-nov2014.ff/tip3p.itp&quot;
+</pre>
+
+<p>
+Location matters! You must put the call for posre_jz4.itp in the topology as indicated. The parameters within jz4.itp define a 
+<code>[ moleculetype ]</code> directive for our ligand. The moleculetype ends
+with the inclusion of the water topology (tip3p.itp). Placing the call to posre_jz4.itp anywhere else will attempt to apply the position
+restraint parameters to the wrong moleculetype.
+</p>
+<p>If you want a bit more control during equilibration, i.e.
+restraining the protein and ligand independently, you could instead
+control the inclusion of the ligand position restraint file in a
+different #ifdef block, like so:</p>
+<pre>
+; Include Position restraint file
+#ifdef POSRES
+#include &quot;posre.itp&quot;
+#endif
+
+; Include ligand topology
+#include &quot;jz4.itp&quot;
+
+<font color="#008000"><b>; Ligand position restraints</b></font>
+<font color="#008000"><b>#ifdef POSRES_LIG</b></font>
+<font color="#008000"><b>#include &quot;posre_jz4.itp&quot;</b></font>
+<font color="#008000"><b>#endif</b></font>
+
+; Include water topology
+#include &quot;charmm36-nov2014.ff/tip3p.itp&quot;</pre><p>
+In the latter case, in order to restrain <b>both</b> the protein and
+the ligand simultaneously, we would need to specify 
+<code>define = -DPOSRES -DPOSRES_LIG</code> in the .mdp file. How you want to
+treat your system is up to you. These examples are meant only to
+illustrate the flexibility GROMACS provides. For a standard
+equilibration procedure, restraining the protein and ligand
+simultaneously is probably sufficient. Your own needs may vary.</p>
+
+<h2>Thermostats</h2>
+<p>Proper control of temperature coupling is a sensitive issue.
+Coupling every moleculetype to its own thermostatting group is a bad
+idea. For instance, if you do the following:</p>
+<pre class="western" style="margin-bottom: 0.2in">tc_grps = Protein JZ4 SOL CL</pre><p>
+Your system will probably blow up, since the temperature coupling
+algorithms are not stable enough to control the fluctuations in
+kinetic energy that groups with a few atoms (i.e., JZ4 and CL) will
+produce. <font color="#ff0000"><b>Do not couple every single species
+in your system separately.</b></font></p>
+
+<p>
+The typical approach is to set <code class="western">tc_grps =
+Protein Non-Protein</code> and carry on. Unfortunately, the
+&quot;Non-Protein&quot; group also encompasses JZ4. Since JZ4 and the
+protein are physically linked very tightly, it is best to consider
+them as one single entity. That is, JZ4 becomes part of the protein,
+for the purposes of temperature coupling. In the same way, the few
+Cl- ions we inserted become part of the solvent. To do this, we need
+a special index group that merges the protein and JZ4. We accomplish
+this with the make_ndx module, supplying any coordinate file of the
+complete system. In this case, em.gro is used, the output for the minimized
+structure of the system:
+<pre>
+gmx make_ndx -f em.gro -o index.ndx
+...
+  0 System              : 33037 atoms
+  1 Protein             :  1693 atoms
+  2 Protein-H           :  1301 atoms
+  3 C-alpha             :   163 atoms
+  4 Backbone            :   489 atoms
+  5 MainChain           :   653 atoms
+  6 MainChain+Cb        :   805 atoms
+  7 MainChain+H         :   815 atoms
+  8 SideChain           :   878 atoms
+  9 SideChain-H         :   648 atoms
+ 10 Prot-Masses         :  1693 atoms
+ 11 non-Protein         : 31344 atoms
+ 12 Other               :    15 atoms
+ 13 JZ4                 :    15 atoms
+ 14 CL                  :     6 atoms
+ 15 Water               : 31323 atoms
+ 16 SOL                 : 31323 atoms
+ 17 non-Water           :  1714 atoms
+ 18 Ion                 :     6 atoms
+ 19 JZ4                 :    15 atoms
+ 20 CL                  :     6 atoms
+ 21 Water_and_ions      : 31329 atomsi
+</pre>
+</p>
+<p>
+Merge the &quot;Protein&quot; and &quot;JZ4&quot; groups with the
+following, where &quot;&gt;&quot; indicates the make_ndx prompt:</p>
+<pre class="western">&gt; 1 | 13
+&gt; q</pre><p>
+The command, <code>tc_grps = Protein_JZ4 Water_and_ions</code>, can be set  to achieve the  desired &quot;Protein Non-Protein&quot; effect.</p>
+</p>
+<h2><i>NVT</i> Equilibration</h2>
+<p>
+Proceed with <i>NVT</i> equilibration using the nvt.mdp file:
+</p>
+<pre>
+gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+
+gmx mdrun -deffnm nvt
+</pre>
+
+A full explanation of the parameters used can be found in the GROMACS manual, in addition to the comments provided. Take note of a few parameters in the .mdp file:
+<ul>
+<li>gen_vel = yes: Initiates velocity generation. Using different 
+random seeds (gen_seed) gives different initial velocities, and thus multiple (different) simulations can be conducted from the same starting structure.
+<li>tcoupl = V-rescale: The velocity rescaling thermostat is an improvement upon the Berendsen weak coupling method, which did not reproduce a correct kinetic ensemble.
+<li>pcoupl = no: Pressure coupling is not applied. 
+</ul>
+
+<p>
+The temperature progression, again using energy, can be analyzed:
+</p>
+<pre>
+gmx energy -f nvt.edr
+</pre>
+<p>
+Type "15 0" at the prompt to select the temperature of the system and exit. The resulting plot should look something like the following:
+
+</p>
+<center>
+<img src="files/Temp_NVT.jpg" name="NVT Simulation" width="673" height="542" alt="Temp_NVT.jpg">
+</center>
+From the plot, it is clear that the temperature of the system quickly reaches the target value (300 K), and remains stable over the remainder of the equilibration. 
+For this system, a shorter equilibration period (on the order of 50 ps) may have been adequate.
+
+<h2><i>NPT</i> Equilibration</h2>
+<p>
+Now that the <i>NVT</i> simulation is complete, one can proceed to an <i>NPT</i> simulation with the npt.mdp file:
+</p>
+<p>
+The previous step, <i>NVT</i> equilibration, stabilized the temperature of the system. Prior to data collection, we must also stabilize the pressure (and thus also the density) of the system. 
+Equilibration of pressure is conducted under an <i>NPT</i> ensemble, wherein the Number of particles(N), Pressure(P), and Temperature(T) are all constant. 
+The ensemble is also called the "isothermal-isobaric" ensemble, and most closely resembles experimental conditions.
+</p>
+<p>
+grompp and mdrun are used just as in the <i>NVT</i> equilibration. Note that we are now including the -t flag to include the checkpoint file from the <i>NVT</i> equilibration; 
+This file contains all the necessary state variables to continue th simulation. To conserve the velocities produced during <i>NVT</i>, this file must be included. 
+The coordinate file (-c) is the final output of the <i>NVT</i> simulation.
+</p>
+
+<p>
+The npt.mdp file used for an <i>NPT</i> equilibration is not drastically different from the parameter file used for <i>NVT</i> equilibration. 
+Note the addition of the pressure coupling section, using the Parrinello-Rahman barostat.
+</p>
+
+<p>
+A few other changes:
+<pre>
+    continuation = yes: continue the simulation from the NVT equilibration phase
+    gen_vel = no:       velocities are read from the trajectory (see below) 
+</pre>
+
+<pre>
+gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
+
+gmx mdrun -deffnm npt
+</pre>
+</p>
+
+<h3>Pressure</h3>
+<p>
+The pressure progression can be analyzed again using energy:
+<pre>
+gmx energy -f npt.edr -o pressure.xvg
+</pre>
+Type "16 0" at the prompt to select the pressure of the system and exit. The resulting plot should look something like the following:
+<center>
+<img src="files/Pressure_NPT.jpg" name="NPT Simulation" width="703" height="531" alt="Pressure_NPT.jpg">
+</center>
+The pressure value fluctuates widely over the course of the 100-ps equilibration phase, but this behavior is not unexpected. 
+The running average of these data are plotted as the red line in the plot. Over the course of the equilibration, the average value of the pressure is 1.05 bar.
+</p>
+
+<h3>Density</h3>
+<p>
+Let's take a look at density as well, this time using energy and entering "22 0" at the prompt.
+<pre>
+gmx energy -f npt.edr -o density.xvg
+</pre>
+<center>
+<img src="files/Density_NPT.jpg" width="710" height="539" name="NPT Simulation" alt="Density_NPT.jpg">
+</center>
+As with the pressure, the running average of the density is also plotted in red. The average value over the course of 100 ps is 998.3 kg m<sup>-3</sup>, 
+close to the experimental value of 1000 kg m<sup>-3</sup>,  and the expected density of the TIP3P model of 1008 kg m<sup>-3</sup>. 
+The density values are very stable over time, indicating that the system is well-equilibrated now with respect to pressure and density.
+Initially, it may appear that calculated density values do not match results. 
+Pressure-related terms are slow to converge, and thus may be necessary to run <i>NPT</i> equilibration slightly longer than is specified here.
+</p>
+
+<h1>Production</h1>
+<p>
+Upon completion of the two equilibration phases, the system is now well-equilibrated at the desired temperature and pressure. We are now
+ready to release the position restraints and run production MD for data collection. The process will make use of the checkpoint 
+file, which, in this case, now contains preserve pressure coupling information to grompp. 
+</p>
+<p>
+A 1-ns MD simulation will be run, the commands for which can be found in the md.mdp script file.
+<pre>
+gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -n index.ndx -o md_0_1.tpr
+</pre>
+</p>
+
+<h1>Analysis</h1>
+<p>
+The types of data that are important for a simulation is a question to ask before running the simulation, 
+so it is necessary to have ideas about the types of data you will want to collect. For this tutorial, a few basic tools will be introduced.
+</p>
+<h2>Protein-Ligand Hydrogen Bonding Interactions</h2>
+<p>
+For a ligand like JZ4, hydrogen bonding is possible, so you might use gmx hbond to determine if any occurred. 
+<pre>
+gmx hbond -f npt.trr -s npt.tpr -num hbond.xvg
+</pre>
+</p>
+<p>
+Is hydrogen bonding important?
+</p>
+
+<h2>Protein-Ligand Interactions: van der Waals and Electrostatic Energies</h2>
+<p>
+The use of energygrps in the md.mdp file will allow an examination of the various components of the nonbonded potential between JZ4 and the protein. 
+<pre>
+gmx energy -f md.edr -o vdw.xvg
+
+gmx energy -f md.edr -o  es.xvg
+</pre>
+</p>
+
+<p>
+Do electrostatic interactions or van der Waals (hydrophobic) interactions dominate the association between these two species?
+</p>
+
+<h2>trjconv</h2> 
+<p>
+trjconv is used as a post-processing tool to strip out coordinates, correct for periodicity, or manually alter the trajectory 
+(time units, frame frequency, etc). trjconv can be used account for any periodicity in the system. The protein will diffuse through 
+the unit cell, and may appear to "jump" across to the other side of the box. To account for such actions, issue the following:
+<pre>
+gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
+</pre>
+</p>
+<p>
+Select 0 ("System") for output. All analyses will be conducted on this "corrected" trajectory. 
+</p>
+<p>
+It is important to remember that GROMACS always works internally with an equivalent triclinic unit cell.
+To verify that the  solvated molecule appears correctly in the octahedral simulation cell, it is necessary to transform 
+the coordinates using the command:
+</p>
+<pre>
+gmx trjconv -s topol.tpr -f solvated_ions.pdb -o compact.pdb -ur compact -pbc mol
+</pre>
+<h2>RMSD</h2> 
+<p>
+To look at structural stability, GROMACS has a built-in utility for RMSD calculations called rms. To use rms, issue this command:
+</p>
+<pre>
+gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd.xvg -tu ns
+</pre>
+<p>
+Choose 4 ("Backbone") for both the least squares fit and the group for RMSD calculation. The -tu flag will output the results in terms of ns, 
+even though the trajectory was written in ps. This is done for clarity of the output (especially if you have a long simulation - 1e+05 ps does not look as nice as 100 ns). 
+The output plot will show the RMSD relative to the structure present in the minimized, equilibrated system:
+<center>
+<img src="files/rmsd_0_1.jpg" name="RMSD Graph of Backbone" width="690" height="533" alt="rmsd_0_1.jpg">
+</center>
+</p>
+<h2>Radius of Gyration, <i>R<sub>g</sub></i></h2> 
+<p>
+The radius of gyration of a protein is a measure of its compactness. If a protein is stably folded, it will likely maintain a relatively steady value of <i>R<sub>g</sub></i>.
+If a protein unfolds, its <i>R<sub>g</sub></i> will change over time. An analysis of the radius of gyration for protein-ligand simulation can be performed:
+</p>
+<pre>
+gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
+</pre>
+<center>
+<img src="files/Rg_0_1.jpg" width="708" height="544">
+</center>
+<p>
+The figure above shows that the <i>R<sub>g</sub></i> is reasonably invariant, indicating that the protein remains very stable, in its compact (folded) form over the course of 1 ns at 300 K. 
+This result is not unexpected, but illustrates an advanced capacity of GROMACS analysis that comes built-in.
+</p>
+<p class="footer" align="center">
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+  </p>
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>

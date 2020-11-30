@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+   <TITLE>transition state optimization</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Transition State Optimization</H2></CENTER>
+<HR>
+
+<P>
+The optimization of transition state geometries is best performed with the
+EF optimization algorithm. The <FONT COLOR="#0000FF">TS</FONT> keyword must be
+used in this case in order to tell the algorithm to look for a transition instead
+of a ground state. The following example uses the hydroboration reaction of
+ethylene with BH<SUB>3</SUB> to demonstrate the most important keywords. The 
+algorithm used for ts optimization is rather similar to the one used in
+<I>Gaussian</I> and also locates the transition state in a local search after
+calculation of the Hessian matrix.
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+AM1 TS T=128H RECALC=5 GNORM=0.1 SCFCRT=0.000001
+TS opt ethylene + BH3 (AM1)
+
+ C    0.000000 0    0.000000 0    0.000000 0       0    0    0
+ B    1.836364 1    0.000000 0    0.000000 0       1    0    0
+ C    1.677200 1   47.717037 1    0.000000 0       2    1    0
+ H    1.104000 1  120.462990 1  102.225822 1       1    3    2
+ H    1.104000 1  120.463005 1 -102.226204 1       1    3    2
+ H    1.104600 1  119.662224 1  106.660477 1       3    1    2
+ H    1.104600 1  119.662292 1 -106.660301 1       3    1    2
+ H    1.169800 1  118.564735 1  -87.511246 1       2    1    3
+ H    1.243700 1   65.253059 1 -179.998581 1       2    1    3
+ H    1.169800 1  118.563843 1   87.512947 1       2    1    3
+
+</PRE>
+</FONT>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="mopirc1.gif">
+</TABLE><BR>
+
+
+In this particular case the <FONT COLOR="#0000FF">TS</FONT> keyword is
+augmented by <FONT COLOR="#0000FF">RECALC=5</FONT> in order to recalculate the
+Hessian matrix every five geometry optimization steps. The accuracy of the
+optimization process is defined with <FONT COLOR="#0000FF">GNORM=0.1</FONT>
+setting the average gradient norm convergence criterion to 0.1 (default = 1.0).
+In order to increase the accuracy of the energies, an increased SCF convergence
+criterion with <FONT COLOR="#0000FF">SCFCRT=0.000001</FONT> is used. This defines
+a convergence criterion of 0.000001 kcal/mol between two consecutive SCF iterations
+(default = 0.0001 kcal/mol). This particular example optimizes the transition state 
+within 25 geometry optimization cycles. The last cycles are described in the output
+files as follows:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+ CYCLE:  21 TIME:    .01 TIME LEFT: 460799.2 GRAD.:      .146 HEAT: 49.08696    
+ CYCLE:  22 TIME:    .01 TIME LEFT: 460799.2 GRAD.:      .179 HEAT: 49.08178    
+ CYCLE:  23 TIME:    .01 TIME LEFT: 460799.2 GRAD.:      .195 HEAT: 49.07754    
+ CYCLE:  24 TIME:    .00 TIME LEFT: 460799.2 GRAD.:      .329 HEAT: 49.07659    
+
+          HESSIAN CALCULATED NUMERICALLY
+
+ CYCLE:  25 TIME:    .14 TIME LEFT: 460799.0 GRAD.:      .040 HEAT: 49.07637    
+
+     RMS GRADIENT =   .03970  IS LESS THAN CUTOFF =   .10000
+
+
+
+ -------------------------------------------------------------------------------
+ AM1 TS T=128H RECALC=5 GNORM=0.1 SCFCRT=0.000001
+ TS opt ethylene + BH3 (AM1)
+ 
+
+
+     GEOMETRY OPTIMISED USING EIGENVECTOR FOLLOWING (EF).   
+     SCF FIELD WAS ACHIEVED                                   
+
+</FONT>
+</PRE>
+
+The <FONT COLOR="#0000FF">HESSIAN CALCULATED NUMERICALLY</FONT> statement indicates
+recalculation of the Hessian after every five optimization cycles. For each cycle, the
+gradient norm is given together with the heat of formation of the current structure.
+In cycle 25 the gradient norm becomes smaller than the convergence limit of 0.1 and 
+the optimization is therefore terminated with the statement <FONT COLOR="#0000FF">GEOMETRY 
+OPTIMISED USING EIGENVECTOR FOLLOWING (EF)</FONT>. One of the problems that can occur
+during transition state optimization is that the Hessian has more than one negative eigenvalue.
+The optimization is then terminated with the <FONT COLOR="#0000FF">WARNING! HESSIAN DOES 
+NOT HAVE THE REQUIRED STRUCTURE</FONT> statement and a new starting structure must be found
+in order to continue the search. Guessing a good starting structure is therefore an important
+condition for successful transition state optimizations.<BR><BR>
+
+Whether or not the optimized transition state structure is a true transition state
+must, as usual, be verified through explicit calculation of the second derivative matrix.
+The <FONT COLOR="#0000FF">FORCE</FONT> keyword is used for this purpose in <I>MOPAC</I>.
+The output files of these frequency calculations can be read with <I>MOLDEN</I> in order to
+obtain an animated picture of the vibrational modes.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 29.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

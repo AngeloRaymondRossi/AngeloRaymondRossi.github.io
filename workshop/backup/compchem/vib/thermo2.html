@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+   <TITLE>reaction energetics</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Reaction Energetics</H2></CENTER>
+<HR>
+
+
+<P>
+The <FONT COLOR="#0000FF">reaction energy</FONT> for a generalized reaction in which reactants A and B
+react in ratios given by the stochiometric constants a and b to products
+M and N such as<BR><BR>
+
+<IMG SRC="thermo2_pict1.gif"><BR><BR>
+
+is defined as:<BR><BR>
+
+<IMG SRC="thermo2_pict2.gif"><BR><BR>
+
+This equation can be evaluated using all types of energies discussed in the previous
+chapter (E<SUB>tot</SUB>, E<SUB>0</SUB>, E<SUB>298</SUB>, H<SUB>298</SUB>, G<SUB>298</SUB>).
+The conceptually most simple reactions are those in which only one bond undergoes
+reaction, a typical case being the homolytic bond dissociation reaction yielding 
+two radicals. Taking the C-H bond dissociation in methane as an example, the following results
+are obtained at the HF/6-31G(d) level of theory (the UHF(6-31G(d) level being used
+for the open shell products):<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>type of<BR>energy</TH><TH>E(CH<SUB>4</SUB>)</TH><TH>E(CH<SUB>3</SUB>)</TH><TH>E(H)</TH><TH>E<SUB>rxn</SUB><BR>[kJ/mol)</TH>
+<TR ALIGN=center><TD>E<SUB>tot</SUB></TD><TD>-40.195172</TD><TD>-39.558992</TD><TD>-0.498233</TD><TD>+362.2</TD>
+<TR ALIGN=center><TD>E<SUB>0</SUB></TD><TD>-40.147395</TD><TD>-39.528021</TD><TD>-0.498233</TD><TD>+318.1</TD>
+<TR ALIGN=center><TD>E<SUB>298</SUB></TD><TD>-40.144543</TD><TD>-39.524770</TD><TD>-0.496817</TD><TD>+322.8</TD>
+<TR ALIGN=center><TD>H<SUB>298</SUB></TD><TD>-40.143599</TD><TD>-39.523825</TD><TD>-0.495872</TD><TD>+325.3</TD>
+<TR ALIGN=center><TD>G<SUB>298</SUB></TD><TD>-40.164692</TD><TD>-39.546258</TD><TD>-0.508887</TD><TD>+287.6</TD>
+</TABLE>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="CH4.html"><IMG SRC="thermo2_pict3.gif"></A></TD>
+<TD>&nbsp;&nbsp;<IMG SRC="thermo2_pict4.gif"></TD>
+<TD>&nbsp;&nbsp;<A HREF="CH3.html"><IMG SRC="thermo2_pict5.gif"></A></TD>
+<TD><IMG SRC="thermo2_pict6.gif"></TD>
+</TABLE><BR>
+
+This bond dissociation reaction is strongly endothermic in all cases considered here.
+The most positive reaction energy (+362.2 kJ/mol) is obtained when using total energies
+at 0K describing a vibrationless system sitting on the potential energy surface. Additional
+consideration of zero point vibrational energies leads to a significant change, in the
+current case lowering the reaction energy to +318.1 kJ/mol. Correction to internal energies 
+at 298 K appears to be rather modest in comparison. The difference between E<SUB>298</SUB> and
+H<SUB>298</SUB> equates to RT (=+2.479 kJ/mol at 298.15 K) since we have two products, but
+only one reactant. Finally, accounting for differences in reaction entropies we obtain
+a free energy of reaction of +287.6 kJ/mol. <BR><BR>
+
+Comparison to experiment can be made at the stage of H<SUB>298</SUB> as the standard 
+heats of formation of all three species are known. From the
+<A HREF="http://webbook.nist.gov/chemistry/">NIST Chemistry WebBook</A> we take the following
+heats of formation: CH<SUB>4</SUB> (-74.87 kJ/mol), CH<SUB>3</SUB> (+145.69 kJ/mol),
+and H (+218.0 kJ/mol). This yields a reaction enthalpy for C-H bond homolysis in methane
+of +438.56 kJ/mol. The recommended value in a recent compilation of bond dissociation energies 
+(Yun-Ran Luo, "Handbook of Bond Dissociation Energies in Organic Compounds", CRC Press, 2003)
+is +439.3 +/-0.4 kJ/mol.<BR><BR>
+
+Comparison of this value with our theoretical results suggests that the HF/6-31G(d) level is
+quite inaccurate when it comes to predicting bond dissociation energies. The deviation of
+113 kJ/mol is mainly due
+to the neglect of electron correlation in the Hartree-Fock (HF) treatment and can only
+be remedied by using a better theoretical method. That the deficiencies of
+Hartree-Fock theory have serious consequences here is, of course, due to the fact that
+bond dissociation processes are accompanied by a large change in correlation
+energy.<BR><BR>
+
+A much better performance of the HF-level can be observed in reactions, in which the number
+of electron pairs remains constant during the reaction. These types of reactions are known
+as <FONT COLOR="#0000FF">isogyric reactions</FONT> and are often used to reliably calculate 
+thermochemical data at lower levels of theory. Taking the reaction of methane (CH<SUB>4</SUB>)
+with the hydrogen atom to yield the methyl radical (CH<SUB>3</SUB>) and molecular hydrogen 
+(H<SUB>2</SUB>) as an example, the following results are obtained at the HF/6-31G(d) level of
+theory (again using the UHF/6-31G(d) level for open shell systems):<BR><BR>
+
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>type of<BR>energy</TH><TH>E(CH<SUB>4</SUB>)</TH><TH>E(H)</TH><TH>E(CH<SUB>3</SUB>)</TH><TH>E(H<SUB>2</SUB>)</TH><TH>E<SUB>rxn</SUB><BR>[kJ/mol)</TH>
+<TR ALIGN=center><TD>E<SUB>tot</SUB></TD><TD>-40.195172</TD><TD>-0.498233</TD><TD>-39.558992</TD><TD>-1.126828</TD><TD>+19.9</TD>
+<TR ALIGN=center><TD>E<SUB>0</SUB></TD><TD>-40.147395</TD><TD>-0.498233</TD><TD>-39.528021</TD><TD>-1.116243</TD><TD>+3.6</TD>
+<TR ALIGN=center><TD>E<SUB>298</SUB></TD><TD>-40.144543</TD><TD>-0.496817</TD><TD>-39.524770</TD><TD>-1.113883</TD><TD>+7.1</TD>
+<TR ALIGN=center><TD>H<SUB>298</SUB></TD><TD>-40.143599</TD><TD>-0.495872</TD><TD>-39.523825</TD><TD>-1.112939</TD><TD>+7.1</TD>
+<TR ALIGN=center><TD>G<SUB>298</SUB></TD><TD>-40.164692</TD><TD>-0.508887</TD><TD>-39.546258</TD><TD>-1.127698</TD><TD>-9.9</TD>
+</TABLE>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="CH4.html"><IMG SRC="thermo2_pict3.gif"></A></TD>
+<TD><IMG SRC="thermo2_pict6.gif"></TD>
+<TD>&nbsp;&nbsp;<IMG SRC="thermo2_pict4.gif"></TD>
+<TD>&nbsp;&nbsp;<A HREF="CH3.html"><IMG SRC="thermo2_pict5.gif"></A></TD>
+<TD>&nbsp;&nbsp;<A HREF="H2.html"><IMG SRC="thermo2_pict7.gif"></A></TD>
+</TABLE><BR>
+
+The reaction enegies for this hydrogen transfer reaction are much smaller in
+absolute terms than for the bond dissociation reaction considered before. This 
+indicates that the C-H bond strength in methane and the H-H bond strength in 
+molecular hydrogen is rather similar.<BR><BR>
+
+In order to calculate the reaction enthalpy at 298.15K we only need the three
+heats of formation for CH<SUB>4</SUB>, CH<SUB>3</SUB>, and H as before, and have to recall
+that molecular hydrogen H<SUB>2</SUB> (in the gas phase) represents the reference 
+against which heats of formation are defined. The experimental reaction enthalpy for
+our isogyric model reaction therefore amounts to +2.56 kJ/mol.<BR><BR>
+
+The comparison of the experimentally measured and the theoretically predicted reaction enthalpy
+shows a much better agreement now, the theoretical value being too high by only
+4.5 kJ/mol. Improving on this result does not only need significantly better theoretical
+methods but also a better thermochemical model than the rigid-rotor/harmonic oscillator
+model.<BR><BR>
+
+On a more general note the predictive value of HF theory will be larger for those
+reactions, in which the products are as similar as possible to the reactants 
+(e.g. isomerization reaction). A subclass of these types of reactions are 
+<FONT COLOR="#0000FF">isodesmic reactions</FONT> in which the numbers of bonds of 
+each formal type are the same for reactants and products. Using the reaction of
+dimethyl ether with water to yield two methanol molecules as an example, we can
+see that there are 6 C-H bonds, 2 C-O bonds, and 2 H-O bonds on both sides of
+the reaction equation:<BR><BR><BR>
+
+<TABLE BORDER=0>
+<TR>
+<TD><A HREF="DME.html"><IMG SRC="thermo2_pict9d.gif"></A></TD>
+<TD>&nbsp;&nbsp;<IMG SRC="plus.gif"></TD>
+<TD>&nbsp;&nbsp;<A HREF="H2O.html"><IMG SRC="thermo2_pict9c.gif"></A></TD>
+<TD>&nbsp;&nbsp;<IMG SRC="thermo2_pict4.gif"></TD>
+<TD>&nbsp;&nbsp;<A HREF="CH3OH.html"><IMG SRC="thermo2_pict9b.gif"></A></TD>
+<TD>&nbsp;&nbsp;<IMG SRC="plus.gif"></TD>
+<TD>&nbsp;&nbsp;<A HREF="CH3OH.html"><IMG SRC="thermo2_pict9a.gif"></A></TD>
+</TABLE><BR><BR>
+
+The experimentally measured reaction enthalpy for this reaction amounts to +23.9 kJ/mol
+at 298.15 K. Calculations at the HF/6-31G(d) level of theory predict a value
+of +14.9 kJ/mol. For further examples see "Ab Initio Molecular Orbital Theory", W. J. Hehre, 
+L. Radom, P. v. R. Schleyer, J. A. Pople, Wiley&Sons, <B>1986</B>.<BR><BR>
+
+
+
+<HR>
+<PRE>
+<TT>last changes: 23.11.2006, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+

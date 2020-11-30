@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+   <TITLE>open shell</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2>Treating Open Shell Systems</H2> 
+</CENTER>
+<HR>
+
+In Hartree-Fock calculations on closed shell systems (even number of electrons,
+all electrons paired) the electrons of opposite spin (spin-up, alpha vs. spin-down, beta)
+occupy the same spatial orbitals. The restriction of using the same spatial
+orbitals is usually reflected in the acronym <FONT COLOR="#0000FF">RHF</FONT>
+(=restricted Hartree-Fock) for these types of calculations. Once the numbers of 
+alpha and beta spin electrons
+become different, however, this is not necessarily the best solution. If the 
+restriction of identical spatial orbitals is retained in this situation, the
+method is called <FONT COLOR="#0000FF">ROHF</FONT> (Restricted Open Shell Hartree-Fock). 
+If alpha and beta spin electrons are allowed to occupy different spatial orbitals the
+method is referred to as <FONT COLOR="#0000FF">UHF</FONT> (Unrestricted 
+Hartree-Fock) method. The following scheme illustrates the different methods:<BR><BR>
+
+<P ALIGN=CENTER>
+<IMG SRC="hf_pict1.gif">
+
+<P>
+While UHF calculations on open shell systems usually give lower energies and
+a better description of the unpaired electron density distribution (and thus EPR
+spectra), the UHF wavefunction is not an eigenfunction of the &lt;S<SUP>2</SUP>&gt;
+operator. In particular for spin-delocalized systems such as allylic or benzylic
+radicals, the UHF wavefunction can deviate substantially from that for a doublet state.
+The degree of deviation can be characterized through the difference between
+the expectation value of the &lt;S<SUP>2</SUP>&gt; operator (given after the
+SCF convergence note in the output file) and the value of S(S+1) for the
+current spin quantum number of the system. For a doublet state S=0.5 and
+S(S+1) = 0.750. The allyl radical will be used here to illustrate the situation
+at the UHF/STO-3G level of theory:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#UHF/STO-3G scf=(direct,tight)
+
+UHF/STO-3G structure of allyl radical
+
+0 2
+H
+C,1,r2
+C,2,r3,1,a3
+C,2,r3,1,a3,3,180.,0
+H,3,r5,2,a5,1,0.,0
+H,4,r5,2,a5,1,0.,0
+H,3,r7,2,a7,1,180.,0
+H,4,r7,2,a7,1,180.,0
+
+r2=1.08424658
+r3=1.40526604
+r5=1.08095381
+r7=1.08131649
+a3=117.99450641
+a5=121.41544408
+a7=121.21891262
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="hf3_pict1.gif"></TD>
+</TABLE><BR>
+  
+In this particular case, using the structure obtained at the UHF/STO-3G level of theory, 
+the UHF/STO-3G total energy is somewhat lower at -115.054291242au than the ROHF/STO-3G 
+total energy at -115.008930049au (= -119.1 kJ/mol). The expectation value of the &lt;S<SUP>2</SUP>&gt; 
+operator is 1.1009 at the UHF/STO-3G and 0.7500 at the ROHF/STO-3G level. This constitutes 
+a severe case of spin contamination of the UHF wavefunction.<BR><BR>
+
+<hr>
+<PRE>
+<TT>last changes: 22.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>

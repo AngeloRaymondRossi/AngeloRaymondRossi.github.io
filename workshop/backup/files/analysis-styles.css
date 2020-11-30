@@ -1,0 +1,93 @@
+
+BODY { font-family: tahoma; }
+
+
+.box1 {
+color: black;
+background-color: #192970;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+
+.box2t {
+color: black;
+background-color: #D8E0E0;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+.box2f {
+color: black;
+background-color: #D8E0E0;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+
+.box2 {
+color: black;
+background-color: #D8E0E0; 
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+
+.box3 {
+color: black;
+background-color: #D8E0E0;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+.box99 {
+color: black;
+background-color: #192970;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+
+.box4 {
+color: black;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+.box5 {
+color: black;
+background-color: #C0C0C0;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+.box6 {
+color: black;
+background-image: rnabackground.gif;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+.box9 {
+color: black;
+background-color: #B6C6D2;
+padding: 0px;
+border-width: 1pt;
+border-style: none;
+}
+
+
+.button { 
+color: black;
+background-color: #ccc;
+}
+

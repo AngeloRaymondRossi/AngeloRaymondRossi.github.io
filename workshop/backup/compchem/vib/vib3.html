@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+   <TITLE>isotope effects</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Vibrational Frequencies - Isotope Effects</H2></CENTER>
+<HR>
+
+<P>
+The vibrational frequencies computed in the harmonic vibrational analysis 
+by <I>Gaussian</I> do not only depend on the computed force constants, but 
+also on the atomic masses. Substitution of, for example, one hydrogen by 
+a deuterium atom therefore leads to dramatic changes in the calculated
+vibrational frequencies. As the Hessian is not affected by the changes in 
+the masses, the same Hessian can be used for all isotopomers. In order 
+to read the Hessian out of the checkpoint file and compute the vibrational 
+frequency spectrum for different masses, the keywords<BR><BR>
+
+<FONT COLOR="#0000FF">freq=(ReadFC,ReadIsotopes)</FONT><BR><BR>
+
+must be combined with additional information of the atomic masses of the 
+system. Using hydrogen chloride H-Cl as an example, the calculated frequency 
+for the H-Cl stretching vibration amounts to 3186.1 cm<SUP>-1</SUP> at the 
+HF/6-31G(d) level of theory and an equilibrium bond length of 126.62 pm. 
+
+The vibrational frequency  calculation for D-Cl can be executed efficiently 
+provided that the checkpoint file already contains the Hessian matrix for 
+H-Cl:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) freq=(Readfc,ReadIsotopes)
+   geom=check guess=read
+
+HF/6-31G(d) freq D-Cl
+
+0 1
+
+298.15 1.0 1.0
+34.96885
+2
+
+
+</PRE>
+</FONT>
+
+The additional input section after charge and multiplicity information
+contains a first line specifying the temperature (in K), the pressure (in atm), and a
+uniform scaling factor for all frequencies (normally 1.0).
+On subsequent lines the atomic masses are given in the input order, one mass
+per line. The atomic masses can either be entered accurately (as a real number) 
+or as an integer closest to the true mass. Specifying the mass of deuterium using an
+integer (2) <I>Gaussian</I> will take the exact mass of the deuterium isotope 
+(2.01410au) from an internally stored list of values. The vibrational frequency 
+calculated for D-Cl at the HF/6-31G(d) level of theory using the same geometrical 
+structure and Hessian as for H-Cl amounts to 2285.04 cm<SUP>-1</SUP>.<BR><BR> 
+
+<HR>
+<PRE>
+<TT>last changes: 03.02.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+

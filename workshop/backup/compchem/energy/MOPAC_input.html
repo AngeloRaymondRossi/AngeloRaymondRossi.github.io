@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+   <TITLE>MOPAC sample input</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>MOPAC Input Files</H2></CENTER>
+<HR>
+
+<P>
+Using the AM1 water optimization as an example, the following is a typical
+MOPAC input file:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+ AM1 PRECISE EF T=48H
+ test3 AM1 optimization of water
+
+  O    0.00000000  0    0.0000000  0    0.0000000  0    0    0    0
+  H    1.00000000  1    0.0000000  0    0.0000000  0    1    0    0
+  H    1.00000000  1  105.0000000  1    0.0000000  0    1    2    0
+</FONT>
+</PRE>
+
+The first line contains all keywords relevant to the current calculation:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+ AM1 PRECISE EF T=48H
+</FONT>
+</PRE>
+
+<FONT COLOR="#0000FF">AM1</FONT> defines the theoretical method used, <FONT COLOR="#0000FF">PRECISE</FONT>
+tightens up convergence criteria for all optimization processes (geometric or electronic)
+by a factor of 100 and <FONT COLOR="#0000FF">EF</FONT> calls the Eigenvector following algorithm for
+geometry optimization. <FONT COLOR="#0000FF">T=48H</FONT> sets the maximum runtime to 2 days beyond which
+MOPAC will shut down the calculation in an orderly manner. By default MOPAC performs a geometry
+optimization for the structure given in the input file. Thus there is no keyword to explicitly
+define a geometry optimization.<BR><BR>
+
+The second line of the input file is reserved for user comments (free format).<BR><BR>
+
+After one blank line the geometry of the system is given using an internal coordinate
+system, one center per line. Each line starts with the atomic symbol, followed by a bond
+distance, a bond angle and a dihedral angle. Whether these parameters are varaibles or constants
+during the geometry optimization is indicated by a trailing 0 (constant) or 1 (variable).
+At the end of each line the connectivity of the sytstem is specified through three integers.
+Using the third line as an example:<BR><BR>
+
+<PRE>
+<FONT COLOR="#0000FF">
+  H    1.00000000  1  105.0000000  1    0.0000000  0    1    2    0
+</FONT>
+</PRE>
+
+we see that a hydrogen atom is connected to atom 1 with an intial distance of 1.0 angstroms and
+forms a bond angle with atoms 1 and 2 with an initial value of 105.0 degrees. Both 
+parameters are marked as variables.<BR><BR>
+
+<HR>
+<PRE>
+<TT>last changes: 22.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

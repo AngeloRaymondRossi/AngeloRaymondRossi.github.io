@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+   <TITLE>Mulliken</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER>
+<H2> Mulliken Population Analysis </H2>
+</CENTER>
+
+<HR>
+Directly following the output of 
+
+<A HREF="orb_output.html">molecular orbital</A> 
+
+information <I>Gaussian</I>
+prints a Mulliken population analysis. A full Mulliken population analysis is
+obtained using <FONT COLOR="#0000FF">pop=full</FONT>. In this case the molecular
+orbital information is followed by the current density matrix <B>D</B> (a n*n matrix 
+with n = number of basis functions). The matrix elements D<SUB>i,j</SUB> are
+calculated as the sum of products o<SUB>k</SUB>c<SUB>i,k</SUB>c<SUB>j,k</SUB> over
+all k molecular orbitals. The occupation numbers o<SUB>k</SUB> 
+for single determinant wavefunctions are either 0 (virtual orbital), 1 (singly
+occupied orbitals), or 2 (fully occupied orbital), and the molecular orbital
+coefficient c<SUB>i,k</SUB> is that for basis function i in molecular orbital k.
+For formaldehyde (CH<SUB>2</SUB>O, C<SUB>2v</SUB> symmetry) the following results 
+are obtained at the HF/STO-3G level of theory:<BR><BR>
+ 
+<TABLE BORDER=0>
+<TR><TD>
+<PRE><TT>
+      DENSITY MATRIX.
+                           1         2         3         4         5
+   1 1   C  1S          2.07173
+   2        2S         -0.22403   0.84547
+   3        2PX         0.00000   0.00000   0.74263
+   4        2PY         0.00000   0.00000   0.00000   0.63487
+   5        2PZ         0.01681  -0.07821   0.00000   0.00000   0.55273
+   6 2   O  1S          0.01218  -0.00171   0.00000   0.00000  -0.04249
+   7        2S         -0.00751  -0.17656   0.00000   0.00000  -0.01027
+   8        2PX         0.00000   0.00000   0.82369   0.00000   0.00000
+   9        2PY         0.00000   0.00000   0.00000   0.15487   0.00000
+  10        2PZ         0.15078  -0.42873   0.00000   0.00000  -0.58493
+  11 3   H  1S         -0.10842   0.28876   0.00000   0.45096  -0.25196
+  12 4   H  1S         -0.10842   0.28876   0.00000  -0.45096  -0.25196
+                           6         7         8         9        10
+   6 2   O  1S          2.11060
+   7        2S         -0.46427   2.05057
+   8        2PX         0.00000   0.00000   0.91359
+   9        2PY         0.00000   0.00000   0.00000   1.90476
+  10        2PZ        -0.09605   0.55492   0.00000   0.00000   1.02854
+  11 3   H  1S          0.00892  -0.01948   0.00000  -0.35936   0.11723
+  12 4   H  1S          0.00892  -0.01948   0.00000   0.35936   0.11723
+                          11        12
+  11 3   H  1S          0.63094
+  12 4   H  1S         -0.24573   0.63094
+</TT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="geom1.gif"></TD>
+</TABLE><BR>
+
+As always these results are given with the system in its "Standard Orientation".
+The first step in the "Full Mulliken population analysis" involves multiplication of
+the density matrix elements D<SUB>i,j</SUB> with the corresponding overlap matrix elements
+S<SUB>i,j</SUB> (again a n*n matrix). In case a basis of normalized, non-orthogonal basis 
+functions is used, the matrix elements S<SUB>i,i</SUB> equate to unity. This implies
+that the diagonal elements of the <B>D</B>- and <B>DS</B>-matrices are identical:<BR><BR>
+
+<TT><PRE>
+    Full Mulliken population analysis:
+                           1         2         3         4         5
+   1 1   C  1S          2.07173
+   2        2S         -0.05564   0.84547
+   3        2PX         0.00000   0.00000   0.74263
+   4        2PY         0.00000   0.00000   0.00000   0.63487
+   5        2PZ         0.00000   0.00000   0.00000   0.00000   0.55273
+   6 2   O  1S          0.00000  -0.00006   0.00000   0.00000  -0.00260
+   7        2S         -0.00027  -0.06377   0.00000   0.00000  -0.00452
+   8        2PX         0.00000   0.00000   0.17189   0.00000   0.00000
+   9        2PY         0.00000   0.00000   0.00000   0.03232   0.00000
+  10        2PZ        -0.00906   0.13729   0.00000   0.00000   0.18336
+  11 3   H  1S         -0.00658   0.13982   0.00000   0.17576   0.06313
+  12 4   H  1S         -0.00658   0.13982   0.00000   0.17576   0.06313
+                           6         7         8         9        10
+   6 2   O  1S          2.11060
+   7        2S         -0.10990   2.05057
+   8        2PX         0.00000   0.00000   0.91359
+   9        2PY         0.00000   0.00000   0.00000   1.90476
+  10        2PZ         0.00000   0.00000   0.00000   0.00000   1.02854
+  11 3   H  1S          0.00004  -0.00137   0.00000  -0.01289  -0.00823
+  12 4   H  1S          0.00004  -0.00137   0.00000  -0.01289  -0.00823
+                          11        12
+  11 3   H  1S          0.63094
+  12 4   H  1S         -0.03712   0.63094
+</TT></PRE><BR>
+
+The example used here illustrates two problems that come up when the <B>DS</B>-matrix elements
+are interpreted as atomic orbital occupation numbers. The first problem consists in occupation
+numbers larger than 2.0, in clear violation of the Pauli exclusion principle. Second, negative
+occupation numbers are clearly unphysical and cannot be interpreted in a classical sense. The
+interpretation of single <B>DS</B>-matrix elements is therefore not very meaningful.<BR><BR>
+
+Summation of diagonal elements of the <B>DS</B>-matrix together with one half
+of all corresponding off-diagonal elements gives the <FONT COLOR="#0000FF">gross orbital populations</FONT> 
+for each of the contributing atomic basis functions. That the off-diagonal elements can be distributed
+equally among the contributing atomic centers is one of the central assumptions made
+in the Mulliken population analysis.<BR><BR>
+
+<TT><PRE>
+     Gross orbital populations:
+                           1
+   1 1   C  1S          1.99361
+   2        2S          1.14294
+   3        2PX         0.91452
+   4        2PY         1.01871
+   5        2PZ         0.85523
+   6 2   O  1S          1.99812
+   7        2S          1.86937
+   8        2PX         1.08548
+   9        2PY         1.91130
+  10        2PZ         1.32368
+  11 3   H  1S          0.94352
+  12 4   H  1S          0.94352
+</TT></PRE><BR>
+
+Alternatively, the diagonal and off-diagonal elements can also be summed up for each
+of the atoms:<BR><BR>
+
+<TT><PRE>
+          Condensed to atoms (all electrons):
+              1          2          3          4
+  1  C    4.736157   0.444580   0.372141   0.372141
+  2  O    0.444580   7.788268  -0.022449  -0.022449
+  3  H    0.372141  -0.022449   0.630941  -0.037118
+  4  H    0.372141  -0.022449  -0.037118   0.630941
+</TT></PRE><BR>
+
+Summing up the contributions for each atom and subtracting the nuclear charges gives 
+the atomic charges (either separately for each atom or with the hydrogen charges 
+summed up with the adjacent non-hydrogen atoms.<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<PRE><TT>
+ Total atomic charges:
+              1
+  1  C    0.074981
+  2  O   -0.187950
+  3  H    0.056484
+  4  H    0.056484
+ Sum of Mulliken charges=   0.00000
+ Atomic charges with hydrogens summed into heavy atoms:
+              1
+  1  C    0.187950
+  2  O   -0.187950
+  3  H    0.000000
+  4  H    0.000000
+ Sum of Mulliken charges=   0.00000
+</TT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="geom1.gif"></TD>
+</TABLE><BR>
+
+Known problems of the Mulliken population analysis include large changes of the computed
+atomic charges with small changes in the underlying basis sets and the overestimation of the
+covalent character of a bond. These deficiencies can nicely be demonstrated using lithium fluoride
+as an example. The following table lists the lithium charge in lithium fluoride as 
+calculated with the Mulliken population analysis and a variety of Pople basis sets.
+The Becke3LYP/6-31G(d) optimized geometry with r(Li-F)=155.139 pm has been used for this
+purpose.<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR><TH>population<TH>&nbsp;basis set<TH>&nbsp;q(Li, RHF)&nbsp;<TH>&nbsp;q(Li, B3LYP)&nbsp;
+	<TR align=center><TD>&nbsp;Mulliken<TD>STO-3G<TD>+0.227<TD>+0.078
+	<TR align=center><TD>&nbsp;<TD>3-21G<TD>+0.596<TD>+0.421
+	<TR align=center><TD>&nbsp;<TD>6-31G<TD>+0.743<TD>+0.593	
+	<TR align=center><TD>&nbsp;<TD>6-31G(d)<TD>+0.660<TD>+0.526
+	<TR align=center><TD>&nbsp;<TD>6-311G(d)<TD>+0.691<TD>+0.558	
+	<TR align=center><TD>&nbsp;<TD>6-311+G(d)<TD>+0.687<TD>+0.616	
+	<TR align=center><TD><TD>6-311+G(3df)<TD>+0.750<TD>+0.675
+	<TR align=center><TD><TD><TD><TD>
+	<TR align=center><TD>&nbsp;NPA<TD>6-311+G(3df)<TD>+0.977<TD>+0.963
+</TABLE>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>Li - F</TD>
+</TABLE><BR>
+
+While it is comforting to see that the lithium charge is predicted to be
+positive with all methods used here, the variation as a function of basis set choice
+is rather large (between 0.078 and 0.675 at the Becke3LYP level of theory).
+There are, of course, also variations due to changing the Hamiltonian (here from
+RHF to RB3LYP), but these appear to be rather constant and comparatively small. 
+It can also be seen that, even with the largest Pople basis sets used here, the
+degree of charge separation between Li and F is underestimated with the Mulliken
+population analysis. The Natural Population Analysis (NPA), in contrast, predicts a much
+more positive charge on Li.<BR><BR>
+
+A detailed overview of the effects of the basis set and the Hamiltonian on the charge distribution 
+in water can be found in: F. Martin, H. Zipse, <I>J. Comp. Chem.</I> <B>2005</B>, <I>26</I>, 97 - 105. 
+A copy of the pdf file is available <a href="zipse_2005_97.pdf">here</a>.<BR><BR>
+
+
+
+<hr>
+<PRE>
+<TT>last changes: 09.01.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+

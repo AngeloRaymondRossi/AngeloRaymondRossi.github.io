@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+   <TITLE>stnq</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Global Transition State Search - <BR> 
+The Transit-Guided Quasi-Newton (STQN) Methods</H2></CENTER>
+<HR>
+
+<P>
+In many cases it is difficult to guess a good starting point for the local
+gradient-based transition state optimizer while the simple scanning approach
+doesn't work (e.g. due to the complex reaction mechanism). For these cases <I>Gaussian</I>
+offers two variants of the transit-guided quasi-Newton (STQN) method which first
+interpolate between reactant and product structures in a non-linear way and then
+initiate a local transition state optimization from the point closest to the
+approximate transition state structure. The two variants available in <I>Gaussian</I>
+are used with the keywords:<BR><BR>
+
+<FONT COLOR="#0000FF"><PRE>opt=QST2</PRE></FONT> or <FONT COLOR="#0000FF"><PRE>opt=QST3</PRE></FONT><BR><BR>
+
+The first version <FONT COLOR="#0000FF">QST2</FONT> only requires the
+reactant and product structures as input, while the <FONT COLOR="#0000FF">QST3</FONT>
+version needs structures for the reactant, the product, and an approximate transition state
+(in that order). In both cases the reactant and product structures must be described with
+all atoms in the same order. Regardless of the actual coordinates used in the input file,
+the actual interpolation and transition state searches will be performed in redundant internal
+coordinates. Using the isomerization from HCN to CNH again as an example,
+the  <FONT COLOR="#0000FF">QST2</FONT> input file would be:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=(QST2,Z-Matrix)
+
+HCN to CNH isomerization pathway, HF/6-31G(d), QST2 method, reactant structure
+
+0 1
+N1
+C2  1  r2
+H3  2  r3  1  a3
+
+r2=1.13248
+r3=1.05913
+a3=180.0
+
+HCN to CNH isomerization pathway, HF/6-31G(d), QST2 method, product structure
+
+0 1
+N1
+C2  1  r2
+H3  2  r3  1  a3
+
+r2=1.154199
+r3=2.139352
+a3=0.0
+</PRE>
+</FONT><BR>
+
+Please observe that a full geometry specification with comment line and charge and multiplicity
+must be provided for each of the structures. 
+In this particular case the QST2 method fails due to the very unfavorable choice of redundant
+internal coordinates made by <I>Gaussian</I>. Instead of moving the hydrogen atom <B>around</B> 
+the C-N moiety, the QST2 coordinates try to move the hydrogen atom <B>through</B> the two
+central atoms. This will, of course, never lead to a meaningfull starting point for the
+transition state search. The QST3 method is more successful in this instance, the input file
+being:<BR><BR>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=(QST3,Z-Matrix)
+
+HCN to CNH isomerization pathway, HF/6-31G(d)
+QST3 method, reactant structure
+
+0 1
+N1
+C2  1  r2
+H3  2  r3  1  a3
+
+r2=1.132528
+r3=1.059009
+a3=180.0
+
+HCN to CNH isomerization pathway, HF/6-31G(d)
+QST3 method, product structure
+
+0 1
+N1
+C2  1  r2
+H3  2  r3  1  a3
+
+r2=1.154199
+r3=2.139352
+a3=0.0
+
+HCN to CNH isomerization pathway, HF/6-31G(d)
+QST3 method, ts structure
+
+0 1
+N1
+C2  1  r2
+H3  2  r3  1  a3
+
+r2=1.16868
+r3=1.14549
+a3=80.0
+</PRE>
+</FONT><BR>
+
+The third structure in the input file corresponds to what has been used as the starting
+point for the ts optimization before. The transition state is located in this case within 
+9 optimization cycles. In contrast to transition state optimizations using the local 
+methods discussed before, a full calculation of the Hessian is not required in 
+this case.
+
+<hr>
+<PRE>
+<TT>last changes: 16.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+</BODY>
+</HTML>
+<BR><BR>
+

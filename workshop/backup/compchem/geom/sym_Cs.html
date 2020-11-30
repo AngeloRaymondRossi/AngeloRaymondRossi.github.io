@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+   <TITLE>the Cs point group</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>The C<sub>s</sub> Point Group</H2></CENTER>
+<HR>
+
+<P>
+This point group contains only two symmetry operations:<BR><BR>
+
+<B>E</B>&nbsp;&nbsp;&nbsp; the identity operation<BR>
+<B>&sigma;</B>&nbsp;&nbsp; a mirror plane<BR><BR>
+
+A simple example for a C<sub>s</sub> symmetric molecule is methanol 
+(CH<sub>3</sub>OH) in its staggered conformation, here in its 
+HF/6-31G(d) optimized structure:<BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=(Z-Matrix,tight) 
+
+test1 HF/6-31G(d) opt methanol 
+
+0 1
+H1
+C2  1  r2
+O3  2  r3  1  a3
+H4  3  r4  2  a4  1  180.0
+H5  2  r5  3  a5  1  d5
+H6  2  r5  3  a5  1  -d5
+
+r2=1.08105957
+r3=1.39956997
+r4=0.94629421
+r5=1.08744287
+a3=107.170012
+a4=109.447010
+a5=112.035787
+d5=118.773010
+
+</FONT></PRE>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="methanol.gif">
+</TABLE><BR>
+
+In this case the symmetry of the system is reflected in the Z-Matrix
+only through the use of identical variable names for hydrogen atoms
+H5 and H6 and through constraining atoms 1 - 4 to the symmetry plane.
+This reduces the number of independent structural variables 
+from 12 (for an asymmetric, non-linear molecule containing six 
+centers) to 8 and thus accelerates geometry optimizations.<BR><BR>
+
+Molecular orbitals as well as harmonic vibrations (if calculated) 
+are labeled according to their symmetry properties as belonging to
+one of the two irreducible representations (<FONT COLOR="#0000FF">A'</FONT> 
+and <FONT COLOR="#0000FF">A''</FONT>) of the C<sub>s</sub>
+point group. Those properties belonging to irreducible representation
+<FONT COLOR="#0000FF">A'</FONT> are symmetric to both the identity 
+operation <B>E</B> as well as reflection through the mirror plane. 
+Those properties belonging to irreducible representation 
+<FONT COLOR="#0000FF">A''</FONT> are symmetric with respect to 
+the identity operation <B>E</B> but antisymmetric with respect to
+reflection through the mirror plane. 
+
+<HR>
+<PRE>
+<TT>last changes: 16.10.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

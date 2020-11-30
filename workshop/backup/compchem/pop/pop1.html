@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+   <TITLE>population</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER>
+<H2> Population Analysis - where really are these electrons?</H2>
+</CENTER>
+
+<P>
+<HR>The methods used for analyzing the electron density of molecular systems
+can be divided up in three groups:<BR><BR>
+
+<UL>
+<LI>Methods based on the wave function (<A HREF="mull1.html">Mulliken Population Analysis</A>,
+	<A HREF="npa1.html">Natural Population Analysis</A>)
+<LI>Methods based on fitting the molecular electrostatic potential (such as the <A HREF="chelpg.html">CHELPG</A> 
+and Merz-Singh-Kollman <A HREF="mk.html">(MK)</A> scheme)
+<LI>Methods based on the electron density (such as <A HREF="aim1.html">AIM</A>)
+</UL>
+
+Due to the fundamental problem of deciding where atoms in a molecule actually start and where they end
+there is, however, no exact atomic charge. Nevertheless, the calculation of atomic charges is still quite
+helpful, be it for the use as an effective parameter in force field calculations or for the comparison
+of the chemical properties of two closely related systems.<BR><BR>
+
+<B>Formal vs. partial charges</B><BR>
+In particular when comparing two related systems it is important 
+to keep in mind that the <FONT COLOR="#0000FF">formal charges</FONT> used frequently in molecular Lewis 
+structures have nothing to do with actual <FONT COLOR="#0000FF">atomic charges</FONT> derived by one of the
+three approaches mentioned above. The ammonium cation (NH<SUB>4</SUB><SUP>+</SUP>) can be used to illustrate this point.<BR><BR>
+
+This latter system carries a positive formal charge on the nitrogen atom in order to indicate
+that the number of valence electrons formally located at the nitrogen center (4) is one less than the
+number of valence electrons in the nitrogen atom itself (5). Optimization of the ammonium cation at 
+the Becke3LYP/6-31G(d) level of theory yields, as expected, a tetrahedral structure. The charge distribution 
+can be calculated at the same level of theory using four different methods and the following charges 
+for the central nitrogen atom are obtained:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR ALIGN=center><TH>Method</TH><TH>q(N)</TH>
+	<TR ALIGN=center><TD>Mulliken</TD><TD>-0.844</TD>  
+	<TR ALIGN=center><TD>NPA</TD><TD>-0.977</TD>
+	<TR ALIGN=center><TD>CHELPG</TD><TD>-0.737</TD>
+	<TR ALIGN=center><TD>MK</TD><TD>-0.790</TD>
+</TABLE><BR></TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="nh4.html"><IMG SRC="nh4.gif"></A></TD>
+
+</TABLE>
+
+Even though the four methods chosen here predict somewhat different amounts of negative charge on
+the nitrogen atom, they all agree that the nitrogen atom is a center of negative charge
+(the overall positive charge of the ammonium cation being distributed over the four adjacent hydrogen
+atoms).<BR><BR>
+
+Comparison of the above results with those obtained for (neutral) ammonia at the same level of theory
+shows that protonation of the nitrogen atom does indeed lead to a reduction of the negative partial charge
+of the nitrogen atom. The amount of the reduction is, however, much smaller than that suggested by 
+the conversion of a formally neutral center to a positive one.<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR ALIGN=center><TH>Method</TH><TH>q(N)</TH>
+	<TR ALIGN=center><TD>Mulliken</TD><TD>-0.888</TD>  
+	<TR ALIGN=center><TD>NPA</TD><TD>-1.109</TD>
+	<TR ALIGN=center><TD>CHELPG</TD><TD>-1.017</TD>	
+	<TR ALIGN=center><TD>MK</TD><TD>-1.024</TD>
+</TABLE><BR></TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="nh3b.html"><IMG SRC="nh3b.gif"></A></TD>
+
+</TABLE>
+
+The above results are by no means exceptions but reflect the normal situation in molecules containing 
+electronegative elements such as nitrogen, oxygen, or halogens. These latter elements are only very 
+rarely positively charged, even if the formal Lewis structures would suggest the opposite.<BR><BR>
+
+<B>Specification of the density</B><BR>
+When analysing the results from Hartree-Fock or DFT calculations, the density analyzed by one of the three methods
+mentioned above is by default the one described by the self-consistent orbitals optimized at that level. For electronic
+structure methods involving some sort of explicit electron correlation treatment such as MPn, QCI or CC, this is not the only
+choice. In the latter case one could either use the electron density as described by the Hartree-Fock orbitals or
+the density for the current method. While the former is selected with <FONT COLOR="#0000FF">density=SCF</FONT>, the latter
+is chosen with <FONT COLOR="#0000FF">density=current</FONT>. Using the example of ammonia in its Becke3LYP/6-31G(d) structure
+as above, the following results are obtained:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR ALIGN=center><TH>Method</TH><TH>density=</TH><TH>q(N,Mull.)</TH><TH>q(N,NPA)</TH><TH>q(N,CHELPG)</TH>
+	<TR ALIGN=center><TD>HF</TD><TD>SCF</TD><TD>-0.9852</TD><TD>-1.1147</TD><TD>-1.0634</TD>
+	<TR ALIGN=center><TD>HF</TD><TD>current</TD><TD>-0.9852</TD><TD>-1.1147</TD><TD>-1.0634</TD>
+	<TR ALIGN=center><TD>MP2(FC)</TD><TD>SCF</TD><TD>-0.9852</TD><TD>-1.1147</TD><TD>-1.0634</TD>
+	<TR ALIGN=center><TD>MP2(FC)</TD><TD>current</TD><TD>-0.9475</TD><TD>-1.1156</TD><TD>-1.0607</TD>
+</TABLE><BR></TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+
+<TD><IMG SRC="nh3b.gif"></TD>
+
+</TABLE>
+
+In this particular example the differences between Hartree-Fock density and MP2(FC) density are apparently
+small enough to yield rather similar results for the nitrogen partial charge with all three population analysis methods.<BR><BR>
+ 
+ 
+<B>Open shell systems</B><BR>
+In open shell systems the alpha- and beta-spin orbitals are not identical and population analyses can thus
+be performed separately for both densities. While accumulation of alpha- and beta-spin densities over atoms
+(following one of the established schemes) still yields atomic charges, the difference between alpha- and
+beta-spin densities corresponds to the unpaired spin density (SD) at a given center x:<BR><BR>
+
+SD<SUB>x</SUB> = q(alpha)<SUB>x</SUB> - q(beta)<SUB>x</SUB><BR><BR>
+
+In the case of the Mulliken population analysis, the atomic spin density values are automatically computed
+for open shell systems and printed to the output file. For doublet systems the sum of all atomic spin 
+density values should equate exactly to 1.0. The spin densities should, of course, be highest at the
+formal radical center of a given species. For the NPA scheme the atomic alpha- and beta-spin densities 
+are combined with half of the nuclear charge to yield the corresponding "Natural Charge" of alpha- and
+beta-type:<BR><BR>
+
+NPA(alpha)<SUB>x</SUB> = q(nuc)<SUB>x</SUB>/2 - q(alpha)<SUB>x</SUB><BR><BR>
+NPA(beta)<SUB>x</SUB> = q(nuc)<SUB>x</SUB>/2 - q(beta)<SUB>x</SUB><BR><BR>
+
+The unpaired spin densities SD<SUB>x</SUB> can be obtained from these values according to:<BR><BR>
+
+SD<SUB>x</SUB> = NPA(beta)<SUB>x</SUB> - NPA(alpha)<SUB>x</SUB><BR><BR>
+
+
+<HR>
+<PRE>
+<TT>last changes: 09.01.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+

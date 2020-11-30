@@ -1,0 +1,238 @@
+<HTML>
+<HEAD>
+   <TITLE>BSSE</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2>The Basis Set Superposition Error (BSSE)</H2> 
+</CENTER>
+<HR>
+Interaction energies between two atoms or molecules <B>A</B> and <B>B</B> are typically calculated 
+as the energy difference between the product complex <B>AB</B> and its components <B>A</B> and <B>B</B>:<BR><BR>
+
+E<SUB>int</SUB> = E(AB,r<SUB>c</SUB>) - E(A,r<SUB>e</SUB>) - E(B,r<SUB>e</SUB>) 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)<BR><BR>
+
+The label r<SUB>c</SUB> is used here to indicate the geometry of the product complex <B>AB</B>,
+while r<SUB>e</SUB> indicates the geometry of the separate reactants. The interaction
+energies calculated according to equation (1) are often too large and lead
+to severe complications for systems bound through dispersion interactions or hydrogen bonds. 
+The helium dimer is a particularly interesting example of the former situation. Using a selection
+of different single-reference methods and basis sets of variable size the following results
+are obtained:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR><TH>&nbsp;method&nbsp;<TH>&nbsp;BF(He)<TH>&nbsp;r<SUB>c</SUB>&nbsp;<BR>&nbsp;[pm]&nbsp;<TH>&nbsp;E<SUB>int</SUB>&nbsp;<BR>&nbsp;[kJ/mol]&nbsp;
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>RHF/6-31G</B></FONT><TD>2<TD>323.0<TD>-0.0035
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>RHF/cc-pVDZ</B></FONT><TD>5<TD>321.1<TD>-0.0038
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>RHF/cc-pVTZ</B></FONT><TD>14<TD>366.2<TD>-0.0023
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>RHF/cc-pVQZ</B></FONT><TD>30<TD>388.7<TD>-0.0011
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>RHF/cc-pV5Z</B></FONT><TD>55<TD>413.1<TD>-0.0005
+	<TR align=center><TD><TD><TD><TD>
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>MP2/6-31G</B></FONT><TD>2<TD>321.0<TD>-0.0042
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>MP2/cc-pVDZ</B></FONT><TD>5<TD>309.4<TD>-0.0159
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>MP2/cc-pVTZ</B></FONT><TD>14<TD>331.8<TD>-0.0211
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>MP2/cc-pVQZ</B></FONT><TD>30<TD>328.8<TD>-0.0271
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>MP2/cc-pV5Z</B></FONT><TD>55<TD>323.0<TD>-0.0317
+	<TR align=center><TD><TD><TD><TD>
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/6-31G</B></FONT><TD>2<TD>320.6<TD>-0.0042
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/cc-pVDZ</B></FONT><TD>5<TD>308.6<TD>-0.0165
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/cc-pVTZ</B></FONT><TD>14<TD>330.9<TD>-0.0226
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/cc-pVQZ</B></FONT><TD>30<TD>326.4<TD>-0.0309
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/cc-pV5Z</B></FONT><TD>55<TD>319.3<TD>-0.0381
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD/cc-pV6Z</B></FONT><TD>91<TD>312.9<TD>-0.0468
+	<TR align=center><TD><TD><TD><TD>
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD(T)/cc-pVTZ</B></FONT><TD>14<TD>329.9<TD>-0.0237
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD(T)/cc-pVQZ</B></FONT><TD>30<TD>324.2<TD>-0.0336
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD(T)/cc-pV5Z</B></FONT><TD>55<TD>316.2<TD>-0.0425
+	<TR align=center><TD><FONT COLOR="#0000FF"><B>QCISD(T)/cc-pV6Z</B></FONT><TD>91<TD>309.5<TD>-0.0532
+
+</TABLE><BR></TD>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD>He - - - - - - He</TD>
+</TABLE><BR>
+  
+These results have to be compared to the best experimental/theoretical estimates
+of r<SUB>c</SUB> = 297 pm and E<SUB>int</SUB> = -0.091 kJ/mol.
+At the RHF/6-31G(d) level a weakly bound minimum can be identified at interactomic distances
+larger than 300 pm. It is remarkable to see how the interaction energy becomes smaller and
+the He-He distance larger as the size of the basis set is increased. The underlying reason for 
+the worsening of the results with increasing basis set size is that the intrinsically bad
+description of the dispersion interaction is compensated for by using a small basis set. Small
+basis sets stabilize the complex more than the separate components due to the <FONT COLOR="#0000FF">
+basis set superposition error (BSSE)</FONT>. The latter is due to the fact that the wavefunction
+of the monomer is expanded in much less basis functions than the wavefunction of the complex. In
+the latter each of the helium atoms has a larger number of basis functions available than in the
+monomer, leading to a more flexible description of the wavefunction and ultimately a lower energy.
+<BR><BR>
+
+One obvious solution to the basis set superposition error is the use of extremely large basis sets.
+This is, however, hardly feasible for most of the chemically interesting systems. The second
+approach termed the <FONT COLOR="#0000FF">Counterpoise Method (CP)</FONT> is an approximate
+method for estimating the size of the BSSE. While the description of the product complex is
+unchanged in the CP method, the separate components are provided with a basis set of identical
+size as is available to the dimer. The CP corrected interaction energy can in the simple most case
+then be computed as:<BR><BR>
+
+E<SUB>int</SUB> = E(AB,r<SUB>c</SUB>)<SUP>AB</SUP> - E(A,r<SUB>e</SUB>)<SUP>AB</SUP> - E(B,r<SUB>e</SUB>)<SUP>AB</SUP> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)<BR><BR>
+
+
+The superscripts AB indicate here that the complex as well as the separate components
+are calculated in the same absolute basis. In the helium example discussed before, this
+implies that the energies of single helium atoms are calculated in the basis of the dimer 
+complex. In practice this can be achieved by using the structure of the optimized complex
+and resetting some of the nuclear charges of the overall systems with the 
+<FONT COLOR="#0000FF">Massage</FONT> keyword:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#RHF/6-31G scf=tight Massage
+
+energy of helium in the basis set of the helium dimer
+
+0 1
+He1
+He2  1  r2
+
+r2=3.230
+
+1 Nuc 0.0
+
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="bsse1_pict1.gif"></TD>
+</TABLE><BR>
+
+In this particular example the RHF/6-31G structure of the helium dimer with an 
+internuclear distance of 323 pm is used. The <FONT COLOR="#0000FF">Massage</FONT> keyword 
+requires additional input as to which atom will be manipulated. Here we reset the 
+nuclear charge of atom 1 to 0.0. On setting up the calculation <I>Gaussian</I> first 
+includes all atoms and all basis functions, then assigns nuclear charges and electrons. 
+The effect of <FONT COLOR="#0000FF">Massage</FONT> sets in after the basis functions 
+have been assigned. Resetting the nuclear charge of one of the helium atoms to 0.0 leaves 
+behind the basis functions positioned at this center in the previous step. These latter 
+functions are usually referred to as <FONT COLOR="#0000FF">ghost orbitals</FONT>.
+The energy of helium is significantly lower when computed in the full basis of the 
+complex at -2.85516439247 au as compared to the basis of a single helium atom at
+-2.85516042615 au, leading to an energy stabilization of each of the separate 
+helium atoms by 0.00104 kJ/mol. Calculation of the interaction energy with these
+CP corrected monomer energies according to equation (2) gives a reduced 
+interaction energy of only -0.0017 kJ/mol. Please also note that methods based
+on density functional theory are badly suited for the description of weakly bound 
+systems such as the helium dimer. One further technical note: in some versions of 
+<I>Gaussian</I> the <FONT COLOR="#0000FF">Massage</FONT> keyword only works properly 
+when used in combination with the INDO guess.<BR><BR>
+
+The effects of increasing the basis set size are somewhat different when correlated methods
+are being used. This is due to the fact that the correlation energy is usually larger in the
+complex as compared to the monomers and that an incomplete recovery of the correlation
+energy therefore weakens the complex. This effect thus counters the BSSE effect and
+the final outcome of increasing the basis set size is not as obvious as in Hartree-Fock 
+theory.<BR><BR>
+
+
+<B>larger systems</B><BR>
+For larger systems such as the hydrogen bonded complex between water and hydrogen fluoride,
+the additional question arises as to where to position the ghost orbitals. This becomes problematic 
+once the structures of the monomers change substantially on dimer formation. In
+this situation there is no unique way of placing the ghost orbitals. Formal dissection of the complex
+formation process in two separate steps offers a solution to the problem:<BR><BR>
+
+(a) deformation of the components <B>A</B> and <B>B</B> from their equilibrium structures to
+ those assumed in the complex (r<SUB>e</SUB> to r<SUB>c</SUB>).<BR><BR>
+
+(b) formation of complex <B>AB</B> from the deformed components.<BR><BR>
+
+The CP correction as defined in equation (2) covers both steps even though there
+is no reason to assume that step (a) would require such a treatment. A modified formula
+for calculation of a CP correction would therefore be:<BR><BR>
+
+E<SUB>int,cp</SUB> = E(AB,r<SUB>c</SUB>)<SUP>AB</SUP> - E(A,r<SUB>c</SUB>)<SUP>AB</SUP> - E(B,r<SUB>c</SUB>)<SUP>AB</SUP> + E<SUB>def</SUB>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)<BR><BR>
+	with E<SUB>def</SUB> = [E(A,r<SUB>c</SUB>) - E(A,r<SUB>e</SUB>)] + [E(B,r<SUB>c</SUB>) - E(B,r<SUB>e</SUB>)]<BR><BR>
+	
+The deformation energy E<SUB>def</SUB> is that described by step (a) above and is performed in the monomer
+basis only, while all other energy terms in formula (3) are calculated in the full basis of the dimer. The 
+following input file provides the structure for the H-F/H<SUB>2</SUB>O system as optimized at the 
+HF/6-31G(d) level of theory:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/6-31G(d) opt=Z-Matrix 
+
+HF/6-31G(d) opt H2O/HF complex
+
+0 1
+X1
+H2  1  1.
+F3  2  r3  1  90.
+O4  2  r4  1  a4  3  180.
+H5  4  r5  2  a5  1  d5
+H6  4  r5  2  a5  1  -d5
+
+r3=0.92150424
+r4=1.80289277
+r5=0.94849694 
+a4=97.1802224
+a5=115.11027415
+d5=117.81295527
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="bsse1_pict2.gif"></TD>
+</TABLE><BR>
+
+The following results are obtained for this system:<BR><BR>
+
+<TABLE BORDER=2 FRAME=box>
+	<TR><TH>&nbsp;method&nbsp;<TH>&nbsp;r(2-4)&nbsp;<BR>[pm]<TH>&nbsp;E<SUB>int&nbsp;</SUB><BR>&nbsp;[kJ/mol]&nbsp;<TH>&nbsp;E<SUB>def&nbsp;</SUB><BR>&nbsp;[kJ/mol]&nbsp;<TH>&nbsp;E<SUB>int,cp&nbsp;</SUB><BR>&nbsp;[kJ/mol]&nbsp;
+	<TR align=center><TD>&nbsp;HF/STO-3G&nbsp;<TD>167.4<TD>-31.4<TD>+0.21<TD>+0.2
+	<TR align=center><TD>&nbsp;HF/3-21G&nbsp;<TD>161.5<TD>-70.7<TD>+1.42<TD>-52.0
+	<TR align=center><TD>&nbsp;HF/6-31G(d)&nbsp;<TD>180.3<TD>-38.8<TD>+0.4<TD>-34.6
+	<TR align=center><TD>&nbsp;HF/6-31G(d,p)&nbsp;<TD>181.1<TD>-37.9<TD>+0.4<TD>-33.4
+	<TR align=center><TD>&nbsp;HF/6-31+G(d,p)&nbsp;<TD>180.2<TD>-36.3<TD>+0.5<TD>-33.0
+</TABLE><BR><BR>
+
+At the Hartree-Fock level it can clearly be seen that the counterpoise correction 
+becomes smaller with increasing basis set size. The system chosen here is still
+on the small side and the deformation energy E<SUB>def</SUB> as well as the absolute
+magnitude of the counterpoise correction are rather small provided that a medium to
+large basis set is used. It can also be clearly seen that the use of minimal basis sets
+such as STO-3G or 3-21G does not lead to meaningful predictions for two reasons:<BR><BR>
+
+(1) the CP correction as calculated by equation (3) is so large that it is similar
+in magnitude to the interaction energy itself; combination of the two does not lead
+to a reliable prediction of the complexation energy.<BR><BR>
+
+(2) the structure of the complex is rather different from that calculated with larger 
+basis sets, usually leading to complexes, which are somewhat too compact. This implicates
+that even a single point strategy based on these structures is doomed to fail!<BR><BR>
+
+
+<hr>
+<PRE>
+<TT>last changes: 21.12.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>

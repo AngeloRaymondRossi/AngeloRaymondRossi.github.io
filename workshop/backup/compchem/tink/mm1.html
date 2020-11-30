@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+   <TITLE>Force Field Methods</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="#FFFFFF">
+
+<CENTER>
+<H2>Force Field Methods</H2> 
+</CENTER>
+<HR>
+In <FONT COLOR="#0000FF">force field</FONT> or <FONT COLOR="#0000FF">molecular mechanics (MM)</FONT>
+methods the molecules are treated as mechanically connected systems of atoms. In contrast to quantum
+mechanical methods, electrons are not treated explicitly but together with the nuclei as effective atoms.
+The energy expressions used in MM methods are chosen such that the system is well described at typical 
+bonding distances only. The description of reactions or transformations in which
+bond breaking and making occurs is therefore not possible with most approaches.
+A given force field usually contains a number of different interaction terms describing
+different types of strain possible in a molecular system. The following is a list of components
+that are typically considered:<BR><BR>
+
+<IMG SRC="mm1_pict1.gif"><BR><BR>
+
+The overall (strain) energy of the system is then given as the sum of all these terms
+over all occurences in the system:<BR><BR>
+
+E<SUB>MM</SUB> = V<SUB>str</SUB> + V<SUB>bend</SUB> + V<SUB>tor</SUB> + V<SUB>oop</SUB> + V<SUB>cross</SUB> + V<SUB>vdW</SUB> + V<SUB>ES</SUB><BR><BR>
+
+Van der Waals and electrostatic parameters are usually not calculated for atoms that are
+at a distance of one or two bonds in a given molecule. The closest interacting centers for 
+these types of interactions are separated by at least three bonds and relative to each other
+in 1-4 position. These types of interactions are therefore often referred to as 1,4-interactions.<BR><BR>
+
+While the smallest interacting unit in <FONT COLOR="#0000FF">all atom (AA)</FONT> force fields 
+are the single atoms of the system, groups of atoms are used as interacting units in 
+<FONT COLOR="#0000FF">united atom (UA)</FONT> force fields. In particular for the modeling of 
+large systems (such as proteins or polymers) it is quite sufficient to treat, for example, CH<SUB>3</SUB> - 
+groups as one effective interaction center that is slightly larger than a single carbon atom. 
+Even in all atom force fields, however, different parameters are used to describe centers of
+different bonding characteristics. Typically there will be different parameters for
+sp<SUP>3</SUP>-, sp<SUP>2</SUP>-, and sp-type carbon atoms and additional ones for
+carbon atoms in carbonyl groups or aromatic systems.<BR><BR>
+
+Typical energy expressions for some of the enery terms are as follows:<BR><BR>
+
+<IMG SRC="mm1_pict2.gif"><BR><BR>
+
+Most force fields use a simple quadratic (Hook's law) energy expression with only one term.
+In order to evaluate this energy expression for a given structure, the reference bond
+distance (for an unstrained bond) and a force constant describing the ease of deformation
+are needed. These expressions are used for example by the AMBER or CHARMM force fields.
+Somewhat more elaborate bond stretching functions containing cubic and quartic terms are 
+used by the MM3 hydrocarbon force field.<BR><BR>
+
+A similar functional form is used for the angle bending deformation:<BR><BR>
+
+<IMG SRC="mm1_pict3.gif"><BR><BR>
+
+Again an unstrained reference bond angle is assumed, whose deformation is possible with
+force constant k<SUB>ijk</SUB>.<BR>
+The functions describing the torsional potential energies are different from the previous
+terms as they must be periodic with respect to rotation by 360 degrees:<BR><BR>
+
+<IMG SRC="mm1_pict4.gif"><BR>
+
+The use of all three potential parameters V<SUB>1</SUB>, V<SUB>2</SUB>, and V<SUB>3</SUB>
+is not necessary in all cases.<BR><BR>
+
+There are several possibilities for the description of van der Waals interactions between 
+non-bonded atoms, the Lennard-Jones 6-12 potential being the most commonly used:<BR>
+
+<IMG SRC="mm1_pict5.gif"><BR><BR>
+
+Here the interaction between two non-bonded atoms are described as slightly attractive
+at longer distances, but strongly repulsive at closer distances. Two potential parameters 
+are needed for each non-bonded interaction type.<BR><BR>
+
+The energy expression for the electrostatic interactions usually follows a simple Coulomb
+law, which is always attractive for partial charges of opposite sign and always repulsive
+for partial charges of equal sign:<BR><BR>
+
+<IMG SRC="mm1_pict6.gif"><BR><BR>
+
+The parameters needed for evaluation of this expression are the partial charges q for
+the interacting centers i and j as well as an effective dielectric constant. As calculation
+of non-bonded interactions becomes quite time consuming for extended systems,
+most programs use a cutoff value of between 9 and 16 Angstroms, beyond which the
+interactions are tailed off to zero over an additional short distance.<BR><BR>
+
+In evaluating, deriving and comparing force field parameters for any of these
+potential energy functions it is important to remember, that all of these parameters
+are only valid within a given force field, that is, a set of other parameters and
+potential energy functions. A single force field parameter has not to be meaningful by itself!
+And there are many different parameters and functions that yield the same final
+result (strain energy)!<BR><BR>
+
+<hr>
+<PRE>
+<TT>last changes: 11.11.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>

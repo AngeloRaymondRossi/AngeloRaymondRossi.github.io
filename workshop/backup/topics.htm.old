@@ -1,0 +1,154 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Angelo Raymond Rossi: Computational Chemistry Workshop - Topics To Be Covered</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all" />
+<script type="text/javascript">
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+<!--
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader("w3csheet.css");
+//-->
+</script>
+
+<body>
+<center>
+<div id="LayerLogo" style="position:absolute; left:45px; right:50x; top:25px; width:900px; z-index:1">
+<img src="http://homepages.uconn.edu/rossi/images/uconn-wordmark-single-blue.png" width="341" height="74" alt="University of Connecticut">
+<h3>
+Workshops on Computational Chemistry<br><br>
+Topics to Be Covered<br><br>
+Electronic Structure - Week I<br>
+Molecular Dynamics - Week II<br>
+</h3>
+</div>
+</center>
+
+<div id="LayerLogo" style="position:absolute; left:45px; right:50px; top:325px; width:900px; z-index:1" align="center">
+<center>
+<hr width="100%" size="2">
+<center>
+</div>
+
+
+<div id="LayerMain" style="position:absolute; left:45px; right:50px; top:350px; width:900px; z-index:4" class="maindiv" align="left">
+
+<font size="+2"></font><p align="left"><font size="+2"><b><u>Tentative List of Informal Discussions and Lecture Topics</u></b></font></p>
+
+The motivation for both lecture topics and hands-on exercises is <b><i>operational</i></b>, i.e., 
+the use of concepts in performing calculations and the emphasis of the <b><i>intersection</i></b> of theory, experiment, and calculation.
+<br>
+<br>
+<b><u>Overview of Computational Chemistry Applications</u></b>
+<ul>
+<!--
+<li><a href="http://homepages.uconn.edu/rossi/chem5326/files/cc_for_inorganic_chemistsp_4up.pdf">Lecture</a>
+-->
+</ul>
+<b><u>Electronic Structure Calculations</u></b>
+<ul> 
+<li>Symmetry Concepts and Group Theory
+<li>Hartree-Fock and Density Functional Methods
+<li>Reaction Pathways and Transition States
+<li>Spectroscopy of Organic and Transition Metal Compounds
+<!--
+<a href="http://homepages.uconn.edu/rossi/chem5326/files/symmetry_group_theoryp_4up.pdf">Lecture</a> 
+-->
+</ul>
+<b><u>Molecular Dynamics Simulations</u></b>
+<ul>
+<li>Statistical Mechanics
+<li>Introduction to Molecular Dynamics
+<li>The Force Field
+<li>Running a Molecular Dynamics Simulation
+<li>Analysis of Results 
+</ul>
+<font size="+2"></font><p align="left"><font size="+2"><b><u>Tentative List of Hands-on Exercises - Electronic Structure</u></b></font></p>
+<p>
+The following list of exercises is tentative, incomplete, and subject to change.
+Input files for each exercise are found in the tutoral directory.
+</p>
+Symmetry and Group Theory Applied to Computational Chemistry Applications
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/symmetry_exercise_combine.pdf">Symmetry Applied to Transition Metal Carbonyls</a>
+</ul>
+Potential Energy Surfaces and Reaction Pathways
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/pes_ts_mep_exercises.pdf" target="_new">Potential Energy Surfaces and Reaction Pathways</a>
+</ul>
+Electronic and Vibrational Spectroscopic Calculations
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/acrolein_exercise.pdf" target="_new">Infrared and UV Spectrocopy of Acrolein</a>
+</ul>
+More Complicated Calculations on the Excited States of Molecules                            
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/azulene_naphthalene_exercise.pdf" target="_new">Why is azulene blue and naphthalene colorless?</a>
+</ul>
+Oxidation-Reduction Reaction of Transition Metal Complexes
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/redox_potential_exercise.pdf" target="_new">Oxidation-Reduction of Ferrocene and Related Complexes</a>
+</ul>
+UV Spectroscopy of Transition Metal Complexes
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/files/aquaV_2014_combine.pdf" target="_new">UV-Visible Spectra of Aqua-Vanadium Complexes</a>
+</ul>
+
+<font size="+2"></font><p align="left"><font size="+2"><b><u>Tentative List of Hands-on Exercises - Molecular Dynamics Simulations</u></b></font></p>
+<p>
+The following list of exercises is tentative, incomplete, and subject to change.
+Configuration scripts for minimization, heat, equilibration, production and analysis are found in the tutoral directory.
+</p>
+<p>
+CHARMM: Molecular Dynamics Simulation of Nucleic Acids
+</p>
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/rna_dna_tutorial.html" target="_new">CHARMM: Generation of RNA, DNA, and MD Simulation</a>
+</ul>
+<p>
+GROMACS and CHARMM: Simulation of a Protein-Ligand Complex
+</p>
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/charmm-gromacs-small-organic-molecules.html" target="_new">GROMACS Tutorial For Protein-Ligand Complex</a>
+<li><a href="http://www.charmmtutorial.org/index.php/CHARMM_Tutorial" target="_new">CHARMM Tutorial: Apply To Protein-Ligand Complex</a>
+</ul>
+<p>
+NAMD: Simulation of Solvated Deca-Alanine 
+</p>
+<ul>
+<li><a href="http://homepages.uconn.edu/rossi/workshop/namd-deca-alanine-tutorial.html" target="_new">NAMD Simulation of Deca-Alanine</a>
+</ul>
+<br>
+<br>
+<div align="center">
+<b>
+<p class="footer">
+  Department of Chemistry<br>
+  The University of Connecticut<br>
+  55 North Eagleville Road, Unit 3060<br>
+  Storrs, CT 06269-3060<br>
+  PHONE: 646-996-4145<br>
+<!--  FAX: 973-972-7412<br> -->
+  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
+  </p>
+</b>
+</div>
+
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>

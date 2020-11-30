@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+   <TITLE>NPA</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER>
+<H2> Natural Population Analysis </H2>
+</CENTER>
+
+<HR>
+Link 607 of <I>Gaussian</I> contains version 3.1 of the NBO program by F. Weinhold and coworkers.
+Using formaldehyde (CH<SUB>2</SUB>O, C<SUB>2v</SUB> symmetry) at the HF/STO-3G level as an example,
+the calculation of NPA charges only involves calculation of the natural atomic orbitals and
+summation over all NAOs of a given atom to obtain the Natural Charges for each of the atoms.
+The corresponding input file is:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<FONT COLOR="#0000FF">
+<PRE>
+#P HF/STO-3G scf=tight pop=npa
+
+HF/STO-3G//HF/STO-3G sp formaldehyde
+
+0 1
+C1
+O2  1  r2
+H3  1  r3  2  a3
+H4  1  r3  2  a3  3  180.0
+
+r2=1.21672286
+r3=1.10137241
+a3=122.73666566
+</PRE>
+</FONT>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="geom1.gif"></TD>
+</TABLE><BR>
+
+
+The following output is obtaind using this input:<BR><BR>
+
+<PRE><TT>
+ ******************************Gaussian NBO Version 3.1******************************
+             N A T U R A L   A T O M I C   O R B I T A L   A N D
+          N A T U R A L   B O N D   O R B I T A L   A N A L Y S I S
+ ******************************Gaussian NBO Version 3.1******************************
+       /RESON  / : Allow strongly delocalized NBO set
+
+ Analyzing the SCF density
+
+ Job title: test21f HF/STO-3G opt formaldehyde scf=conventional
+
+ Storage needed:       510 in NPA (   2000000 available)
+
+
+ NATURAL POPULATIONS:  Natural atomic orbital occupancies
+ 
+  NAO Atom No lang   Type(AO)    Occupancy      Energy
+ ---------------------------------------------------------
+   1    C  1  s      Cor( 1s)     2.00000     -11.05947
+   2    C  1  s      Val( 2s)     1.08461      -0.26145
+   3    C  1  px     Val( 2p)     0.90165      -0.04494
+   4    C  1  py     Val( 2p)     0.99304       0.07032
+   5    C  1  pz     Val( 2p)     0.85379       0.14739
+
+   6    O  2  s      Cor( 1s)     1.99999     -20.15602
+   7    O  2  s      Val( 2s)     1.79982      -1.09031
+   8    O  2  px     Val( 2p)     1.09835      -0.11626
+   9    O  2  py     Val( 2p)     1.91857      -0.38126
+  10    O  2  pz     Val( 2p)     1.37055      -0.15404
+
+  11    H  3  s      Val( 1s)     0.98982       0.02250
+
+  12    H  4  s      Val( 1s)     0.98982       0.02250
+</TT></PRE>
+
+<TT><PRE>
+ Summary of Natural Population Analysis:
+
+                                       Natural Population
+               Natural   -----------------------------------------------
+    Atom No    Charge        Core      Valence    Rydberg      Total
+ -----------------------------------------------------------------------
+      C  1    0.16692      2.00000     3.83308    0.00000     5.83308
+      O  2   -0.18728      1.99999     6.18729    0.00000     8.18728
+      H  3    0.01018      0.00000     0.98982    0.00000     0.98982
+      H  4    0.01018      0.00000     0.98982    0.00000     0.98982
+ =======================================================================
+   * Total *  0.00000      3.99999    12.00001    0.00000    16.00000
+
+                                 Natural Population
+ --------------------------------------------------------
+   Core                       3.99999 ( 99.9997% of   4)
+   Valence                   12.00001 (100.0001% of  12)
+   Natural Minimal Basis     16.00000 (100.0000% of  16)
+   Natural Rydberg Basis      0.00000 (  0.0000% of  16)
+ --------------------------------------------------------
+
+    Atom No         Natural Electron Configuration
+ ----------------------------------------------------------------------------
+      C  1      [core]2s( 1.08)2p( 2.75)
+      O  2      [core]2s( 1.80)2p( 4.39)
+      H  3            1s( 0.99)
+      H  4            1s( 0.99)
+</TT></PRE><BR>
+
+A full online-manual for the NBO program explaining some of the underlying concepts
+and all additional keywords can be found 
+<A HREF="http://www.ccl.net/cca/software/MS-WIN95-NT/mopac6/nbo.htm">here.</A><BR><BR>
+
+The Weinhold group also offers updated versions of the NBO program. The corresponding
+<A HREF="http://www.chem.wisc.edu/~nbo5/">web page</A>
+also contains substantial additional information on the concept of NBO and NPA.<BR><BR>
+
+A detailed overview of the performance of the NPA method in describing the charge distribution 
+in water can be found in: 
+F. Martin, H. Zipse, <I>J. Comp. Chem.</I> <B>2005</B>, <I>26</I>, 97 - 105. 
+A copy of the pdf file is available <a href="zipse_2005_97.pdf">here</a>.<BR><BR>
+
+
+<hr>
+<PRE>
+<TT>last changes: 09.01.2005, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+

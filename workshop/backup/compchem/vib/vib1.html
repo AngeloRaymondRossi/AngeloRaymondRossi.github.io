@@ -1,0 +1,244 @@
+<HTML>
+<HEAD>
+   <TITLE>vibrational frequencies</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Vibrational Frequencies - Technical Considerations</H2></CENTER>
+<HR>
+
+<P>
+<B>Selecting a Structure</B><BR>
+One of the first conditions that must be satisfied in order to perform an accurate
+calculation of vibrational frequencies is that the underlying molecular structure 
+represents a stationary point, that is, all first derivatives of the energy with 
+respect to nuclear coordinates must be essentially zero. Using the vibrational 
+frequency spectrum for the dihydrogen molecule (H-H) as an example, one can show 
+that <FONT COLOR="#0000FF">small deviations from the equilibrium structure</FONT> 
+can quickly lead to large errors 
+in the calculated vibrational frequencies. The experimentally measured fundamental
+vibrational mode is located at 4160 cm<SUP>-1</SUP>. Expanding the vibrational frequencies
+in a series containing harmonic and anharmonic terms, the corresponding (experimental) harmonic 
+frequency is 4401 cm<SUP>-1</SUP>. The following values are obtained at the HF/6-31G 
+level of theory using structures optimized to different accuracy:<BR><BR>
+
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>E<BR>(Hartree)</TH><TH>r(H-H)<BR>(pm)</TH><TH>rms gradient<BR>(Hartree/Bohr)</TH><TH>frequencies<BR>(cm<SUP>-1</SUP>)</TH>
+<TR ALIGN=center><TD>-1.12680935484</TD><TD>73.500</TD><TD>3.86*10<SUP>-3</SUP></TD><TD>-0.0001, -0.0001, 0.0001, 381.6219, 381.6219, <B><FONT COLOR="#0000FF">4570.76</FONT></B></TD>
+<TR ALIGN=center><TD>-1.12682477931</TD><TD>73.200</TD><TD>1.16*10<SUP>-3</SUP></TD><TD>-0.0002, -0.0001, -0.0001, 244.4793, 244.4793, <B><FONT COLOR="#0000FF">4615.51</FONT></B></TD>
+<TR ALIGN=center><TD>-1.12682703185</TD><TD>73.100</TD><TD>8.06*10<SUP>-4</SUP></TD><TD>-0.0001, 0.0001, 0.0002, 174.9713, 174.9713, <B><FONT COLOR="#0000FF">4630.52</FONT></B></TD>
+<TR ALIGN=center><TD>-1.12682761115</TD><TD>73.050</TD><TD>4.20*10<SUP>-4</SUP></TD><TD>-0.0001, -0.0001, 0.0000, 126.2380, 126.2380, <B><FONT COLOR="#0000FF">4638.04</FONT></B></TD>
+<TR ALIGN=center><TD>-1.12682782422</TD><TD>73.000</TD><TD>3.13*10<SUP>-5</SUP></TD><TD>-0.0001, 0.0000, 0.0001, 34.4845, 34.4845, <B><FONT COLOR="#0000FF">4645.57</FONT></B></TD>
+<TR ALIGN=center><TD>-1.12682782541</TD><TD>72.996</TD><TD>1.86*10<SUP>-7</SUP></TD><TD>-0.0002, 0.0000, 0.0001, 2.6607, 2.6607, <B><FONT COLOR="#0000FF">4646.2</FONT></B></TD>
+</TABLE>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="vib_pict3.gif"></TD>
+</TABLE><BR>
+
+All six structures summarized in the table above have rather similar total energies, the 
+energy difference between the most favorable structure (last entry) and the least
+favorable structure (first entry) being less than 1 kJ/mol. The structural differences 
+for these two structures amount to less than 1% (only 0.5 pm) in the H-H bond distance, 
+giving rise to a residual gradient for the least favorable structure of 3.86*10<SUP>-3</SUP>au. 
+Compared to these differences in structure, energy and gradient, the changes in the
+calculated vibrational frequencies are much more pronounced. For a linear molecule
+with two atoms we expect only one real vibrational mode in addition to five near-zero
+modes describing translational and rotational motion. This latter expectation is not 
+fullfilled for the first five entries in the table as in particular
+the two rotational modes are far from zero. The H-H stretching mode also suffers from
+the residual gradient, showing variations of almost 80 cm<SUP>-1</SUP>. That the
+predicted harmonic frequency for the H-H streching mode appears to converge
+to a value further away from the experimentally measured one with decreasing residual
+gradient is primarily due to deficiencies of both the Hartree-Fock model as well as 
+the small basis set (see below), but not a consequence of insufficient geometry optimization.
+<BR><BR>
+
+
+Similar results are obtained with other theoretical methods whose second derivatives cannot
+be calculated analytically and thus require a numerical algorithm. This is the case for the 
+semiempirical AM1 method:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>E<BR>(Hartree)</TH><TH>r(H-H)<BR>(pm)</TH><TH>rms gradient<BR>(Hartree/Bohr)</TH><TH>frequencies<BR>(cm<SUP>-1</SUP>)</TH>
+<TR ALIGN=center><TD>-0.0081876</TD><TD>66.60</TD><TD>7.34*10<SUP>-3</SUP></TD><TD>-550.9, -550.9, -0.0001, 0.0001, 0.0001, <FONT COLOR="#0000FF"><B>4428.7</FONT></B></TD>
+<TR ALIGN=center><TD>-0.0082603</TD><TD>67.60</TD><TD>4.01*10<SUP>-4</SUP></TD><TD>-119.9, -119.9, -0.0001, 0.0001, 0.0001, <FONT COLOR="#0000FF"><B>4346.4</FONT></B></TD>
+<TR ALIGN=center><TD>-0.0082606</TD><TD>67.65</TD><TD>6.08*10<SUP>-5</SUP></TD><TD>-20.8, -20.8, -0.0002, -0.0001, 0.0001, <FONT COLOR="#0000FF"><B>4342.3</FONT></B></TD>
+<TR ALIGN=center><TD>-0.0082606</TD><TD>67.66</TD><TD>1.01*10<SUP>-6</SUP></TD><TD>-0.0001, 0.000, 0.0001, 44.907, 44.907, <FONT COLOR="#0000FF"><B>4341.5</FONT></B></TD>
+</TABLE>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><IMG SRC="vib_pict3.gif"></TD>
+</TABLE><BR>
+
+
+We observe that the AM1 value converges to 4342 cm<SUP>-1</SUP> with increasing accuracy of 
+the geometry optimization. Again we note a large variation in predicted vibrational frequencies
+with an increasing residual gradient. In contrast to the HF results discussed before the
+five translational and rotational modes cannot be converged to very small values now.
+This is a consequence of additional problems of numerical vibrational frequency calculations
+(see below).<BR><BR>
+
+<B>Selecting an Algorithm</B><BR>
+Calculation of the force constant matrix (Hessian) can be performed with two different algorithms:<BR><BR>
+
+1) Using an analytical algorithm. The keyword for this option in <I>Gaussian</I> is<BR><BR>
+
+<FONT COLOR="#0000FF">freq=Analytic</FONT><BR><BR>
+
+and it is the default for those theoretical methods, for which analytical second derivatives
+are available. The latter include Hartree-Fock theory (HF), all density functional methods (DFT),
+as well as MP2. Analytical calculation of the force constants is significantly faster and
+also more accurate than the alternative approach:<BR><BR>
+
+2) Using a numerical method. The keyword for this option in <I>Gaussian</I> is<BR><BR>
+
+<FONT COLOR="#0000FF">freq=Numerical</FONT><BR><BR>
+
+and it is the default for methods for which analytical second derivatives are not
+available in <I>Gaussian</I> such as all semiempirical methods. For this option, 
+the algorithm involves double displacements of all centers
+in all three cartesian coordinates. The step size used in this procedure can be
+specified with<BR><BR>
+
+<FONT COLOR="#0000FF">freq=(Numerical,Step=N)</FONT><BR><BR>
+
+N being the size of the step in units of 0.0001 Angstroms. The default value for N is 100 in
+semiempirical calclations. Smaller values require a somewhat tighter convergence criterion 
+for the energy calculations as the unperturbed and perturbed structures are structurally and
+energetically rather similar. This can be specified with<BR><BR>
+
+<FONT COLOR="#0000FF">scf=(Conver=n)</FONT><BR><BR>
+
+which sets the convergence criterion in energy calculations to 10<SUP>-n</SUP> Hartree on two 
+successive SCF iterations. The default for semiempirical calculations such as AM1 is n=6, but
+values of n=7 or 8 are more appropriate once the step size in numerical second derivative calculations
+is less than N=50. Using these options, the vibrational frequency calculation for H<SUB>2</SUB> (AM1 level, 
+H-H distance = 67.659 pm) can be
+modified as follows (the principal stretching vibration is again shown in bold):<BR><BR>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>keywords</TH><TH>frequencies<BR>(cm<SUP>-1</SUP>)</TH>
+<TR ALIGN=center><TD>freq=(numerical,step=100) scf=(conver=6)</TD><TD>-0.0001, -0.0001, 0.0001, 45.2207, 45.2207, <FONT COLOR="#0000FF"><B>4341.5252</B></FONT></TD>
+<TR ALIGN=center><TD>freq=(numerical,step=50) scf=(conver=6)</TD><TD>-0.0001, 0.0001, 0.0001, 22.3738, 22.3738, <FONT COLOR="#0000FF"><B>4341.2912</B></FONT></TD>
+<TR ALIGN=center><TD>freq=(numerical,step=10) scf=(conver=7)</TD><TD>-0.0001, -0.0001, -0.0001, 1.6958, 1.6958, <FONT COLOR="#0000FF"><B>4341.2165</B></FONT></TD>
+</TABLE><BR><BR>
+
+The last entry in this table marks the limits of numerical accuracy that can be achieved with this approach.<BR><BR>
+
+
+<B>Differentiating Ground and Transiton States</B><BR>
+Pushing the limits of vibrational frequency calculations is sometimes necessary in order to achieve unequivocal
+characterization of minima and transition states on the potential energy surface. While minima are expected to 
+show 6 very low frequencies in their vibrational frequency spectrum (3 for translational and 3 for rotational 
+motions in a non-linear system) one large negative and 6 very small frequencies are expected for a transition state. 
+The vibrational spectra calculated for methanol (CH<SUB>3</SUB>OH) will be used as an example. For this system 
+one would expect 3*6 - 6 = 12 true vibrational modes. The lowest seven vibrational modes are shown in the 
+following tables, first for the staggered and then for the eclipsed conformer (HF/6-31G(d) results):<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>E<BR>(Hartree)</TH><TH>rms gradient<BR>(Hartree/Bohr)</TH><TH>frequencies<BR>(cm<SUP>-1</SUP>)</TH>
+<TR ALIGN=center><TD>-115.035417222</TD><TD>2.4*10<SUP>-4</SUP></TD><TD>-36.6840, -0.0018, -0.0016, -0.0015, 15.6735, 28.1408, <FONT COLOR="#0000FF"><B>343.6693</B></FONT></TD>
+<TR ALIGN=center><TD>-115.035418323</TD><TD>2.2*10<SUP>-6</SUP></TD><TD>-2.8167, -0.0017, -0.0014, -0.0006, 0.8876, 1.5931, <FONT COLOR="#0000FF"><B>348.1832</B></FONT></TD>
+</TABLE><BR>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="vib1_pict1.html"><IMG SRC="vib1_pict1.gif"></A></TD>
+</TABLE><BR>
+
+This first conformer shows one larger imaginary frequency (-37 cm<SUP>-1</SUP>), then three close-to-zero values, two small positive vibrations
+of 16 and 28 cm<SUP>-1</SUP> and finally one larger vibrational mode at 344 cm<SUP>-1</SUP>. Is this a transition state or a local minimum?
+Even though we are clearly not having one large imaginary frequency in combination with sixe close-to-zero values as expected
+for a transition state, the six lowest vibrational frequencies are not all that close to zero. The second entry in the table above
+shows that a clear case can be made for a local minimum after reoptimization to a higher convergence criterion.<BR><BR>
+
+Geometry optimization of the eclipsed conformer of methanol using loose convergence criteria leads to a first structure
+whose vibrational frequency spectrum contains a number of imaginary vibrational frequencies (first entry
+in the following table):<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>E<BR>(Hartree)</TH><TH>rms gradient<BR>(Hartree/Bohr)</TH><TH>frequencies<BR>(cm<SUP>-1</SUP>)</TH>
+<TR ALIGN=center><TD>-115.033224934</TD><TD>9.8*10<SUP>-4</SUP></TD><TD><FONT COLOR="#0000FF"><B>-346.8098</B></FONT>, -53.2629, -42.5572, -0.0020, -0.0011, -0.0011, 94.9730</TD>
+<TR ALIGN=center><TD>-115.033252143</TD><TD>2.7*10<SUP>-6</SUP></TD><TD><FONT COLOR="#0000FF"><B>-351.2930</B></FONT>, -2.1700, -2.0037, -1.4803, -0.0009, 0.0009, 0.0011</TD>
+</TABLE><BR><BR>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><A HREF="vib1_pict2.html"><IMG SRC="vib1_pict2.gif"></A></TD>
+</TABLE><BR>
+
+Reoptimization of the same structure with tighter convergence criteria leads to a much clearer result and we can recognize
+that the lowest true vibrational mode of the staggered conformer at 348 cm<SUP>-1</SUP> turns into an imaginary mode
+of 351 cm<SUP>-1</SUP> in the eclipsed structure. Both modes describe rotational motion around the central C-O bond. 
+<BR><BR>  
+
+In contrast to the analytical algorithm, failed numerical frequency calculations can be restarted with<BR><BR>
+
+<FONT COLOR="#0000FF">freq=(Numerical,Restart)</FONT><BR><BR>
+
+<B>Scaling Vibrational Frequencies</B><BR>
+A final point concerns the accuracy obtained in vibrational frequency calculations as a function of
+the theoretical method used. In many cases, the experimentally measured values will differ significantly
+from those calculated theoretically. One source of discrepancy is that experimental values are often
+measured <FONT COLOR="#0000FF">in solution</FONT> while calculated values refer to the 
+<FONT COLOR="#0000FF">gas phase</FONT>. A second source of error is the
+assumption of the <FONT COLOR="#0000FF">harmonic approximation</FONT>. There is, however, also a 
+method-dependent difference between
+calculated and experimentally measured harmonic vibrational frequencies in the gas phase. For more
+economical methods such as HF or AM1, the deviations typically range around 10%. In order to account
+for this <FONT COLOR="#0000FF">systematic deviation</FONT>, all vibrational frequencies can be scaled 
+(=multiplied with the
+same value) down to fit the experimental harmonic frequencies. Radom et al. have published a list
+of recommended scale factors for frequently used theoretical methods in <I>J. Phys. Chem.</I> <B>1996</B>, 
+<I>100</I>, 16502. A small selection is:<BR><BR>
+
+<TABLE BORDER=2 FRAME=box>
+<TR ALIGN=center><TH>method<TH>scale<BR>factor<TH>rms<BR>deviation (cm<SUP>-1</SUP>)
+<TR ALIGN=center><TD>AM1<TD>0.9532<TD>126 
+<TR ALIGN=center><TD>PM3<TD>0.9761<TD>159 
+<TR ALIGN=center><TD>HF/6-31G(d)<TD>0.8953<TD>50 
+<TR ALIGN=center><TD>MP2(FC)/6-31G(d)<TD>0.9427<TD>61
+<TR ALIGN=center><TD>QCISD(FC)/6-31G(d)<TD>0.9537<TD>37
+<TR ALIGN=center><TD>BLYP/6-31G(d)<TD>0.9945<TD>45
+<TR ALIGN=center><TD>B3LYP/6-31G(d)<TD>0.9614<TD>34
+</TABLE><BR>
+
+It is clear from these results that semiempirical methods such as AM1 and PM3 will, even after
+scaling, not be particularly reliable in predicting vibrational spectra. Rather good results can
+be obtained either from highly correlated, expensive methods such as QCISD, or from hybrid
+density functional calculations such as B3LYP.<BR><BR>
+
+
+<B>Further Reading</B><BR>
+A detailed discussion of further aspects of vibrational frequency calculations in <I>Gaussian</I>
+has been published by Joseph W. Ochterski (<I>Gaussian Inc.</I>) and can be found on the
+<I>Gaussian</I> home page: <A HREF=http://www.gaussian.com/g_whitepap/vib.htm>Vibrational Analysis in Gaussian</A>.			
+<BR>
+
+
+<HR>
+<PRE>
+<TT>last changes: 11.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+

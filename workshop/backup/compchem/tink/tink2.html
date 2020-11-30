@@ -1,0 +1,174 @@
+<HTML>
+<HEAD>
+   <TITLE>peptide construction</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Construction and Optimzation of Peptides</CENTER>
+<HR>
+
+<P>
+Building up a peptide is achieved using the <FONT COLOR="#000FF">protein</FONT> subprogram in either an 
+interactive mode (when the program will prompt you for input) or by putting the parameters into an input 
+file and calling the program together with the input file through a shell script. A list of amino acids
+and their abbreviations can be found <A HREF="as.html">here</A>. The input file (termed here
+<I>testz1.dat</I>) for building up the dialanine tripeptide with N-terminal acetyl and C-terminal N-Me 
+amide capping groups is as follows:<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+<FONT COLOR="#000FF">
+testz1<BR>
+ACE-(ala)2-NME<BR>
+ACE<BR>
+ala<BR>
+ala<BR>
+NME<BR>
+<BR>
+n<BR>
+</FONT>
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="alaalatrip2.gif">
+</TABLE><BR>
+
+The first of these lines specifies the output file (here: <I>testz1</I>), the second line a title in 
+free format (here: ACE-(ala)2-NME), the third line the N-terminal residue, here taken to be a capping 
+acetyl group (ACE), the fourth and fifth lines specify the two alanine residues without any additional 
+parameters, and the sixth line the C-terminal N-methyl amide capping group (NME). One empty line terminates 
+the definition of the amino acid sequence. After specifying a non-cyclic peptide (n) the definition of the 
+peptide is finished. The input file described above can be executed simply from the command
+line:<BR><BR>
+
+<FONT COLOR="#000FF">protein < testz1.dat</FONT><BR><BR>
+
+The above example assumes a matching parameter file (<I>testz1.key</I>) to exist containing additional information
+such as the force field type and parameters to use. In case a matching keyword file does not (yet) exist,
+the <FONT COLOR="#000FF">protein</FONT> subprogram prompts the user for the corresponding information.
+In case we want to use the amber99 parameters for the AMBER force field, the <I>testz1.key</I> file
+is quite simple:<BR><BR>
+
+<FONT COLOR="#0000FF"><PRE>
+parameters   /usr/local/tinker/params/amber99
+</PRE></FONT>
+
+This file is also needed in order to read the newly generated <I>testz1.xyz</I> file into 
+<FONT COLOR="#0000FF">FFE</FONT>.<BR><BR>
+
+The example chosen above generates a peptide structure in which all phi angles are set to -135.0 degrees,
+all psi angles to +135.0 degrees, and all omega angles to 180.0 degrees. This generates an approximately
+linear peptide chain found as substructures in beta sheets. The definition of these angles is shown below 
+for the ala-ala dipeptide, carrying an acetyl protecting group at the N-terminal end, and capping the 
+C-terminal end as N-methyl amide:<BR><BR>
+
+<IMG SRC="phipsi5.gif"><BR><BR>
+
+The value of omega (the dihedral angle describing rotation around the peptide bond) is often very
+close to 180.0 degrees (a trans-peptide bond). In some selected cases, however, a cis-peptide bond 
+(with values for omega around 0.0 degrees) can also be found in protein structures. To which of the 
+two amino acids participating in a peptide bond the omega angle is attributed is a matter of personal 
+choice. In the <FONT COLOR="#000FF">Tinker</FONT> input file the omega angle given for amino acid i 
+defines the peptide bond between amino acid
+i and i+1. The values of phi and psi depend on the particular folding motive of the protein and the 
+following typical cases are often observed: (a) a right-handed helical turn (alpha helix) with 
+phi = -55.0 and psi = -45.0 degrees; (b) beta sheet structures are formed by extended chains with 
+phi = -135.0 and psi = +135.0 degrees (approximate values).<BR><BR>
+
+The angle information can be included in the <FONT COLOR="#000FF">protein</FONT>
+input file on the same line as the residue itself.
+The following example shows the construction of the end-capped alanine decapeptide in a conformation with
+phi and psi angles equal to -60.0 degrees, generating a rough starting conformation for a partial
+alpha helix. Due to the presence of the two capping groups, omega angles can be defined for both the
+leading and the tailing alanine residue:<BR><BR>
+
+<PRE><FONT COLOR="#000FF">
+testz1
+testz1 ACE-(ala)10-NME, alpha helix input
+ACE
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+ala  -60.0  -60.0  180.0
+NME
+
+n
+</FONT></PRE>
+<BR>
+
+The xyz-coordinate files generated with <FONT COLOR="#000FF">protein</FONT> can be minimzed with a number of 
+different optimization routines. Optimization of the peptide structure to a loose convergence criterion 
+of around 0.01 kcal/mol/angstrom can be achieved with the <FONT COLOR="#000FF">minimize</FONT> program, 
+which is also known to work well with larger protein structures. As input the program requires the principal 
+name of the system (here: testz1) and the convergence criterion:<BR><BR>
+
+<FONT COLOR="#000FF">
+minimize testz1 0.01
+</FONT><BR><BR> 
+
+The output consists of a new xyz-coordinate file as well as some information concerning the convergence
+of the optimization process. In order to direct the latter into a log file, the construction of the
+peptide and its optimization with minimize can be combined in one shell script (e.g. <I>testz1.run</I>):
+<BR><BR>
+
+<FONT COLOR="#000FF">
+protein < testz1.dat<BR>
+minimize testz1 0.01<BR>
+</FONT><BR>
+
+This short script can be executed (after making it executable with "chmod u+x testz1.run") with
+the following command:<BR><BR>
+
+<FONT COLOR="#000FF">
+./testz1.run > testz1.log 
+</FONT><BR><BR>
+
+The alanine decapeptide system can also be used to illustrate the performance of the various optimizers 
+such as <FONT COLOR="#000FF">minimize</FONT>, <FONT COLOR="#000FF">newton</FONT>, and 
+<FONT COLOR="#000FF">optimize</FONT> contained in <FONT COLOR="#000FF">Tinker</FONT>. The table below 
+shows the overall CPU times, cycle numbers, and final energy of the optimized structure for various 
+optimizers for convergence criteria of 0.01 and 0.001 kcal/mol/angstrom, respectively:<BR><BR>
+
+<TABLE BORDER=2 FRAME=2>
+<TR><TH>optimizer<TH>time<SUP>a,c</SUP><BR>(sec)<TH>cycles<SUP>a</SUP><TH>final energy<SUP>a</SUP><BR>(kcal/mol)
+<TH> <TH>time<SUP>b,c</SUP><BR>(sec)<TH>cycles<SUP>b</SUP><TH>final energy<SUP>b</SUP><BR>(kcal/mol)
+<TR align=center><TD>minimize<TD>13.79<TD>1099<TD>-18.9569<TD> <TD>15.52<TD>1255<TD>-18.9574
+<TR align=center><TD>newton<TD>4.62<TD>31<TD>-18.6278<TD> <TD>5.18<TD>32<TD>-18.6278
+<TR align=center><TD>optimize<TD>34.38<TD>1499<TD>-10.6792<TD> <TD>35.03<TD>1521<TD>-10.6792
+</TABLE>
+<FONT size=-1>
+<SUP>a</SUP>convergence criterion of 0.01 kcal/mol/angstroms; <SUP>b</SUP>convergence criterion of<BR>
+0.001 kcal/mol/angstroms; <SUP>c</SUP>all times have been obtained using the UNIX time<BR>
+command<BR><BR>
+</FONT>
+
+We can see, that for small systems such as the one chosen here, the <FONT COLOR="#000FF">newton</FONT> 
+optimizer is much more efficient, the difference to the <FONT COLOR="#000FF">minimize</FONT> optimizer 
+being increasingly large with increasing convergence criteria. It can also be seen that the <FONT COLOR="#000FF">newton</FONT>
+optimizer performs a small number of expensive steps, while the <FONT COLOR="#000FF">minimize</FONT> 
+optimizer uses a very larger
+number of cheap steps. While these two optimizers converge onto essentially the same final structure, 
+this is not the case with the <FONT COLOR="#000FF">optimize</FONT> optimizer. The latter is not only 
+the slowest optimizer, but also converges onto a much less favorable structure. These findings are,
+however, only relevant for small systems such as the alanine decapeptide chosen here.<BR><BR>
+
+
+<HR>
+<PRE>
+<TT>last changes: 03.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
+

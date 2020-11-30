@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+   <TITLE>following the intrinsic reaction coordinate</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF">
+<BODY>
+
+<CENTER><H2>Following the Intrinsic Reaction Coordinate</H2></CENTER>
+<HR>
+
+<P>
+In order to verify the nature of a transition state that has been optimized with one of the local
+methods described before, the Hessian needs to display the required number of negative eigenvalues.
+Aside from this <FONT COLOR="#0000FF">local</FONT> criterion, it is also necessary to identify the
+minima connected through the transition state. This latter part is usually performed through
+calculation of some kind of reaction coordinate. One particular choice is the
+<FONT COLOR="#0000FF">intrinsic reaction coordinate (IRC)</FONT>, defined as the minimum 
+energy reaction pathway (MERP) in mass-weighted cartesian coordinates between the transition 
+state of a reaction and its reactants and 
+products. It can be thought of as the path that the molecule takes moving down the product
+and reactant valleys with zero kinetic energy. The Gonzalez-Schlegel method for following the
+<FONT COLOR="#0000FF">IRC</FONT> can be used in <I>Gaussian</I> using the
+<FONT COLOR="#0000FF">irc</FONT>
+keyword.<BR><BR>
+
+<TABLE BORDER=0>
+<TR><TD>
+The "recipe" for following the IRC involves walking down the IRC<BR>
+in a number of steps with fixed step size <B>n</B>, each of them constructed<BR> 
+in the following way:<BR><BR>
+
+(1) Starting from point P<SUB>1</SUB> on the path (shown in blue) construct<BR>
+auxiliary point P' located a distance of <B>n</B>/2 away from P<SUB>1</SUB> along<BR> 
+tangent <B>a</B> (shown in green). The construction of P' does not involve<BR>
+any energy or gradient calculations.<BR><BR>
+
+(2) On a (hyper)sphere of radius <B>n</B>/2 centered at P' search for the<BR>
+point of lowest energy P<SUB>2</SUB>. This latter point is the new point on the<BR>
+IRC path. This constrained search requires several energy and<BR> 
+gradient calculations and obeys the convergence criteria set with<BR>
+iop(1/7=x).<BR><BR>
+
+(3)This sequence is repeated until the geometry convergence criteria<BR> 
+are fulfilled in direction along the pathway.<BR><BR>
+
+<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TD><IMG SRC="irc4.gif">
+</TABLE>
+
+The size of the IRC steps <B>n</B> is given in mass-weighted cartesian coordinates and can be set with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=(stepsize=n)</FONT><BR><BR>
+
+in units of 0.01 amu<SUP>-0.5</SUP>Bohr, the default setting being n=10. If the step size is chosen too
+large, the constrained optimizations on the hypersphere will be difficult to converge, while a very small
+step size leads to a large number of IRC steps. The default step size is appropriate for many cases. 
+A smaller step size such as n=3 is needed for systems with strongly curved IRC paths. For very flat 
+potential energy surfaces the step size must be chosen such that the first steps away from the transition
+state reach a point at which the gradient has become large enough for the IRC to continue.<BR><BR>
+
+The structure of the transition state can either be given directly in the
+input file or (more often) be read from the checkpoint file of the previous transition state
+optimization using the <BR><BR>
+
+<FONT COLOR="#0000FF">geom=check</FONT><BR><BR>
+
+keyword. In order to follow the <FONT COLOR="#0000FF">IRC</FONT> down from the transition
+state to the products, the second derivative matrix (Hessian) needs also to be known at the
+starting point. This information can either be retrieved from the checkpoint file (in case
+it has been calculated before) with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=(rcfc)</FONT><BR><BR>
+
+or it can be calculated at the beginning of the  <FONT COLOR="#0000FF">IRC</FONT> path with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=(calcfc)</FONT><BR><BR>
+
+The number of steps per job can be determined with<BR><BR>
+
+<FONT COLOR="#0000FF">irc=(maxpoints=N)</FONT><BR><BR>
+
+with N being a positive integer. The default in this case is N=10, much larger values being impractical
+due to large file sizes and long runtimes. For each step on the <FONT COLOR="#0000FF">IRC</FONT> path, the
+algorithm performs a constrained optimization on a hypersphere, the radius of which is set to half the step size. 
+The convergence criteria for these steps as well as those for
+final convergence of the  <FONT COLOR="#0000FF">IRC</FONT> itself can be set in the usual way with<BR><BR>
+
+<FONT COLOR="#0000FF">iop(1/7=n)</FONT><BR><BR>
+
+A meaningful choice for n is 300 (as in normal geometry optimization calculations), smaller values being 
+useful for flat potential energy surfaces.
+A tighter convergence criterion is also needed if small step sizes are used. Please observe that a tight
+convergence criterion can be specified either through <FONT COLOR="#0000FF">iop(1/7=10)</FONT> or through
+<FONT COLOR="#0000FF">irc=(tight)</FONT>. The latter option is, however, not properly operating in some
+versions of <I>Gaussian</I>. Similarly, if left unspecified, the default geometry convergence criterion
+for IRC calculations in some versions of <I>Gaussian</I> is set to <FONT COLOR="#0000FF">iop(1/7=3000)</FONT>.
+As this is rarely useful, it is important to always specify a convergence criterion explicitly in IRC 
+calculations.<BR><BR>
+
+The direction of the  <FONT COLOR="#0000FF">IRC</FONT> path can be chosen with either<BR><BR>
+
+<FONT COLOR="#0000FF">irc=forward</FONT> or <FONT COLOR="#0000FF">irc=reverse</FONT><BR><BR>
+
+the forward direction corresponding to the direction of the transition vector with the largest
+component being positive. In practice it is often required to follow the  <FONT COLOR="#0000FF">IRC</FONT> in
+both directions anyway and two separate calculations are used, one in the forward and one in the reverse
+direction.  <FONT COLOR="#0000FF">IRC</FONT> calculations that have exhausted their maximum number of
+steps can be restarted with <BR><BR>
+
+<FONT COLOR="#0000FF">irc=(restart,maxpoints=n)</FONT><BR><BR>
+
+with a larger number of <FONT COLOR="#0000FF">maxpoints</FONT> as before.<BR><BR>
+
+How these options can be put to work and what kind of errors are typically encountered will 
+be demonstrated for the Huisgen reaction (dipolar cycloaddition reaction) of acetylene with 
+hydrazoic acid as a <A HREF="irc5.html">worked example</A>.<BR><BR>
+
+
+<HR>
+<PRE>
+<TT>last changes: 08.11.2004, HZ
+questions & comments to: <A HREF="mailto:zipse@cup.uni-muenchen.de">zipse@cup.uni-muenchen.de</A>
+</TT>
+</PRE> 
+
+
+</BODY>
+</HTML>
+<BR><BR>
+
