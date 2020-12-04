@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Home Page for Professor Angelo R. Rossi</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="v4sheet.css" type="text/css">
+<script type="text/javascript">
+<!--
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader('w3csheet.css');
+//-->
+</script>
+
+<script src="../jmol/Jmol.js"></script>
+
+</head>
+
+<body>
+<div id="LayerLogo" style="position:absolute; left:10px; right:0px; top:10px; width:560px; z-index:1">
+<img src="http://www.york.cuny.edu/~rossi/images/main_logo.gif" width="256" height="137" alt="York College Logo">
+</div>
+<div id="LayerLogo" style="position:absolute; left:300px; right:0px; top:25px; width:560px; z-index:1">
+<center>
+<h1>
+<font color="red">
+Angelo R. Rossi<br>
+Professor of Chemistry
+</font>
+</h1>
+</center>
+</div>
+<div id="LayerLogo" style="position:absolute; left:10px; right:0px; top:119px; width:825px; z-index:1">
+<hr width="100%" size="3">
+</div>
+
+<div id="LayerSidebar" style="position:absolute; left:36px; top:156px; width:180px; z-index:3" class="navDiv"> 
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi"><center>Home</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi/teaching_fall_2008/index_fall_2008.htm"><center>Teaching</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi/research/index.htm"><center>Research</center></a></p>
+<p class="navSubs"><a href="http://www.york.cuny.edu/~rossi/research/cyclodextrins.htm"><center><font color="red"><b>Cyclodextrins</b></font></center></a></p>
+<p class="navSubs"><a href="http://www.york.cuny.edu/~rossi/research/eaton_peptide.htm"><center><font color="red"><b>Protein Folding</b></font></center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi/feedback.htm"><center>Feedback</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi/comp_chem_links.htm"><center>Computational Chemistry Links</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/~rossi/hpc.htm"><center>High Performance Computing</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/" target="_new"><center>York College</center></a></p>
+<p class="navButts"><a href="http://www.york.cuny.edu/fda/index.htm"><center>York College/FDA Program</center></a></p>
+<p class="navButts"><a href="http://portal.cuny.edu/portal/site/cuny/index.jsp?front_door=true" target="_new"><center>City University of New York</center></a></p>
+<p>&nbsp;</p>
+</div>
+
+<!--
+<img src="http://www.york.cuny.edu/~rossi/images/fig4.gif" width="444" height="165" alt="A Cyclodextrin"><br><br>
+<img src="http://www.york.cuny.edu/~rossi/images/fig5.gif" width="381" height="174" alt="A Cyclodextrin"><br><br>
+<img src="http://www.york.cuny.edu/~rossi/images/figfig.gif" width="312" height="398" alt="A Cyclodextrin">
+-->
+
+<div id="LayerMain" style="position:absolute; left:250px; top:156px; z-index:4" class="maindiv"> 
+<table width="70%" cellpadding="10" cellspacing="0">
+<tr>
+<td>
+<center>
+    <script>
+      jmolInitialize("../jmol"); // REQUIRED
+        jmolHtml("<font size=12><b>Examples of Cyclodextrins<b></font>")
+	jmolBr();
+	jmolBr();
+	jmolBr();
+      jmolApplet(300, "load ../jmol/grn1_cd.pdb");
+	jmolBr();
+        jmolHtml("<b>Heptakis(2,3-di-O-methyl-6-O-sulfopropyl)-beta-cyclodextrin (Green)</b>")
+	jmolBr();
+    </script>
+</center>
+</td>
+</tr>
+<tr>
+<td>
+<center>
+    <script>
+      jmolApplet(300, "load ../jmol/grn2_cd.pdb");
+	jmolBr();
+        jmolHtml("<b>Hexakis(2,3-di-O-methyl-6-O-sulfopropyl)-alpha-cyclodextrin (Green)</b>")
+	jmolBr();
+    </script>
+</center>
+</td>
+</tr>
+<td>
+<center>
+    <script>
+      jmolApplet(300, "load ../jmol/vigh2_cd.pdb");
+	jmolBr();
+        jmolHtml("<b>Heptakis-(2,3-dimethyl-6-sulfato)-beta-cyclodextrin (Vigh)</b>")
+	jmolBr();
+    </script>
+</center>
+</td>
+<tr>
+<td>
+<center>
+<form> <!-- form tags must enclose button/checkbox/radio/menu controls -->
+      <script>
+	jmolBr();
+        jmolSetAppletColor("skyblue"); // if you don't want black
+
+	// 200x200 + file from another directory
+        jmolApplet(250, "load ../jmol/beta_cd.pdb");
+	jmolBr();
+        jmolHtml("<b>An unsubstituted cyclodextrin</b>")
+	jmolBr();
+	jmolBr();
+	// a radio group
+	jmolHtml("atoms ");
+	jmolRadioGroup([
+          ["spacefill off",  "off"],
+	  ["spacefill 20%",  "20%", "checked"],
+	  ["spacefill 100%", "100%"]
+	]);
+	jmolBr();
+	jmolBr();
+	// a button
+	jmolButton("reset", "Reset to original orientation");
+	jmolBr();
+	jmolBr();
+	// a checkbox
+	jmolCheckbox("spin on", "spin off", "spin");
+	jmolBr();
+	jmolBr();
+	// a link
+	jmolLink("move 360 0 0 0 0 0 0 0 2", "Rotate once about the x axis");
+	jmolBr();
+	jmolBr();
+	// a menu
+	jmolMenu([
+	"background white",
+	["background skyblue", null, "selected"],
+	"background yellow",
+	"background salmon",
+	"background palegreen",
+	"background black"
+	]);
+      </script>
+    </form>
+</center>
+</td>
+</tr>
+</table>
+
+<table width="70%" cellpadding="10" cellspacing="0">
+</table>
+
+<table width="70%" cellpadding="0" cellspacing="0">
+<tr>
+<td bgcolor="#CCF6F6">
+<div align="center">
+<p class="footer">Department of Chemistry, Room 3F01<br>
+  York College - CUNY<br>
+  94-50 Guy R. Brewer Blvd.<br>
+  Jamaica, NY 11451, USA<br>
+  PHONE: 718-262-2592<br>
+  FAX: 718-262-2652<br>
+  e-mail: <a href="mailto:rossi@york.cuny.edu">rossi@york.cuny.edu</a><br>
+</p>
+</div>
+</td>
+</tr>
+</table>
+
+
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossi/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="Author" content="David Marcey">
+<!-- Template for building web pages with Jmol
+	by Angel Herráez; version 2007.04.24 (based on v.0.7a)
+	
+	Available from  http://biomodel.uah.es/Jmol/  and  http://wiki.jmol.org/
+
+	Use according to Creative Commons "Attribution-ShareAlike" License, 
+	http://creativecommons.org/licenses/by-sa/3.0/
+-->
+<title>Connexin Channel Structure and Function</title>
+<style type="text/css">
+/* These are important, don't change: */
+html, body { height:100%; overflow:hidden; margin:0; padding:0; }
+.JmolPanels { position:absolute; overflow:hidden; }
+.textPanels {
+	position:absolute;
+	overflow:auto;
+	left: -28px;
+	top: 33px;
+}
+/* Don't add margin nor padding to textPane; if needed, use an inner div with desired style (like 'contents' below) */
+
+/* These are aesthetic, can be customized: */
+.content { padding:0.5em 1ex; }
+.textPanels, .JmolPanels { background-color:#ffffff; }  /* later, same applied to applet */
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif}
+.style7 {font-size: large}
+.style8 {font-family: Arial, Helvetica, sans-serif; font-size: large; }
+.style44 {color: #00FA9A}
+.style45 {color: #FF1493}
+.style50 {color: #FFB6C1}
+.style51 {color: #DDA0DD}
+.style52 {color: #8B008B}
+.style54 {color: #FFCC00}
+.style55 {color: #191970}
+.style56 {color: #4B0082}
+.style59 {color: #40e0d0}
+.style60 {color: #40E0D0}
+.style61 {color: #EE82EE}
+.style62 {color: #008B8B}
+.style63 {color: #9400D3}
+.style72 {color: #87CEFA}
+.style73 {font-size: 22px}
+.style75 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+.style76 {
+	font-size: 20px
+}
+.style77 {color: #7B68EE}
+.style78 {color: #FF69B4}
+.style79 {color:  #4169E1}
+.style80 {color: #FF8C00}
+.style81 {color: #8A2BE2}
+</style>
+<script type="text/javascript">
+//  	USER'S SETTINGS: 
+	var side = "left"	// sets the side of the page that the model appears on, you can set this to "left" or "right"
+	var w = 60			// you can set this to any integer, meaning percent of window width assigned to Jmol
+	var JmolPath = "../jmol-12.2.15/"	// adjust according to your location of the Jmol applet files
+							// (Jmol.js, JmolApplet0.jar and the others) 
+							// If you place them in the same directory as this file, use "./"
+//      --------------
+
+document.writeln('<script src="' + JmolPath + 'Jmol.js" type="text/javascript"><' + '/script>')
+var cssTx = '<style type="text/css">'
+	cssTx += '#JmolPane { left:' + ( (side=="left") ? "0px" : ((100-w)+"%") ) + '; width:' + w + '%; top:0px; height:100%; } '	
+	cssTx += '#mainPane { left:' + ( (side=="left") ? (w+"%") : "0px" ) + '; width:' + (100-w) + '%; top:0px; height:100%;} '
+	cssTx += '</style>'
+document.writeln(cssTx)
+</script>
+
+  <SCRIPT LANGUAGE="JavaScript">
+function subwindow() {NewWindow = window.open("k_state.html", "NewWindow", "scrollbars = yes, status = no, toolbar = no, location = no, left = 200, top = 200, width = 700, height = 700");}
+</SCRIPT>
+
+</head>
+
+<body link="#0000FF">
+<div id="JmolPane" class="JmolPanels">
+<script type="text/javascript">
+	jmolInitialize(JmolPath)
+	jmolSetAppletColor("#ffffff")	//same as page; you could choose another if you prefer
+	jmolApplet("100%", 'background [xffffff]; load ./cx26.pdb; set antialiasdisplay true; set frank off; set echo bottom center; echo cx26; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { 497 863 -88 160.86} /* zoom, translation */  100.0 2.33 0.39  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 10.247081 102.77939 0.0; select all; color cpk; select k; spacefill 200; select protein; wireframe 75; spacefill 125; delay 1;   moveto /* time, axisAngle */ 4 { -195 -108 -975 121.55} /* zoom, translation */  100.0 2.33 0.39  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 7.8215537 -68.79585 0.0;delay 2; moveto /* time, axisAngle */ 4 { 497 863 -88 160.86} /* zoom, translation */  100.0 2.33 0.39  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 10.247081 102.77939 0.0; ')		// DO NOT change 100% 
+		// of course, you should change the script to load your model or run your script
+</script>
+</div>
+<div id="mainPane" class="textPanels">
+	<div class="content">
+
+    <table width="92%" border="0" align="center" cellpadding="10" bgcolor="#FFFFFF">
+      <tr> 
+        <td height="3387" bgcolor="#ffffff" class="style8"> 
+          <table width="100%" border="1" align="center" cellpadding="10">
+            <tr> 
+              <td height=""> <h1 align="center"><font size="5" face="Arial, Helvetica, sans-serif"><a name="top" id="top"></a></font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">Connexin Channel Structure and Function</font><font color="#000000"><br />
+                  <font size="2" face="Arial, Helvetica, sans-serif">Angelo R. Rossi<br />
+                  &copy; 2012</font></font></h1>
+                <p align="center"><a href="#intro"><font size="4" face="Arial, Helvetica, sans-serif">I. 
+                  Introduction</font></font></a><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><br>
+                  <br />
+                  <a href="#ii" target="_self">II. Ion Conductance and Selectivity 
+                  in a <br>
+                  Prokaryotic K<sup>+</sup> Channel</a></font><font color="#000000"><font size="4" face="Arial, Helvetica, sans-serif"><br>
+                  <br />
+                  </font></font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><a href="#iii">III. 
+                  Voltage Gating in a <br>
+                  Eukaryotic K<sup>+</sup> Channel</a><br>
+                  <br />
+                  <a href="#refs">IV. References</a></font></font><font size="4" face="Arial, Helvetica, sans-serif"><strong><font color="#0000FF" size="3"><b><br />
+                  </b></font> <font size="2"><br />
+                  </font> </strong></font><font size="2" face="Arial, Helvetica, sans-serif"><strong>Directions</strong></font></p>
+                <p align="left"><font size="2" face="Arial, Helvetica, sans-serif">If 
+                  prompted, allow your browser to view blocked content.</font></p>
+                <p align="left"><font size="2" face="Arial, Helvetica, sans-serif"> 
+                  This exhibit displays molecules in the left part of the screen, 
+                  and text that addresses structure-function relationships of 
+                  the molecules in the right part (below). Use the scrollbar to 
+                  the right to scroll through the text of this exhibit.<br />
+                  </font><font size="2" face="Arial, Helvetica, sans-serif"><br />
+                  To evoke renderings of the molecule that illustrate particular 
+                  points, click the radio buttons: 
+                  <script language="JavaScript" type="text/javascript">
+	jmolRadio( "select all", "", false );
+</script>
+                  </font></p>
+                <p align="left"><font size="2" face="Arial, Helvetica, sans-serif">To 
+                  reset the molecule, use the reset buttons: 
+                  <script language="JavaScript" type="text/javascript">
+	jmolButton("", "reset" );
+</script>
+                  </font></p>
+                <p></td>
+            </tr>
+          </table>
+          <font size="4" face="Arial, Helvetica, sans-serif"><a name="intro" id="intro"></a></font> 
+          <hr /> <hr />
+          <font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><b>I. 
+          Introduction</b></font>
+<p align="justify"><font size="4" face="Arial, Helvetica, sans-serif">The 
+            diffusion of ions across cell membranes through protein channels is 
+            essential to many biological processes. Membrane-embedded potassium 
+            channels transiently open in response to particular stimuli, thereby 
+            furnishing a specialized tunnel through which K<sup>+</sup> ions flow 
+            down a concentration gradient. In the case of eukaryotic nerve cells, 
+            for example, potassium channels play a central role in restoring a 
+            negative membrane potential after sodium ions have entered the cell 
+            through transiently opened sodium channels and depolarized the membrane. 
+            Since K<sup>+</sup> concentrations at rest are higher inside the cell 
+            than out, K<sup>+</sup> ions leave the cell when potassium channels 
+            open in response to the sodium influx-induced depolarization. Nerve 
+            cell potassium channels thus shape the action potential through a 
+            voltage sensitive gating mechanism. </font></p>
+          <p align="justify"><font size="4" face="Arial, Helvetica, sans-serif">Voltage 
+            gated potassium channels are members of a large protein family found 
+            in all of life's kingdoms. They show significant sequence and structural 
+            homology, especially in the pore domain, which provides the structural 
+            conduit for ion conductance. Several features of voltage gated potassium 
+            channels are especially remarkable. First, the channels are able to 
+            discriminate between ions, providing high flux rates for K<sup>+</sup> 
+            in their open state, while essentially remaining impermeant to Na<sup>+</sup>, 
+            even though the latter is a smaller ion. Second, although the discrimination 
+            just mentioned would seem to indicate solid, specific interactions 
+            with K<sup>+</sup> that might be expected to slow conductance, the 
+            channel throughput rate of these ions approaches that limited by diffusion. 
+            Third, these channels respond to membrane electrical potential changes 
+            by conformational alterations that either open or close the channel. 
+            The structural bases for these various functions have been determined 
+            for a variety of potassium channels, and are the subject of this tutorial.</font></p>
+          <hr noshade="noshade" width="90%" /> <p align="center"><a href="#top" target="_self"><font size="4" face="Arial, Helvetica, sans-serif">Return 
+            to Beginning </font></a> <font size="4" face="Arial, Helvetica, sans-serif"><a href="#intro" target="_self"><a name="ii" id="ii"></a></a></font></p>
+          <hr />
+          <font size="4" face="Arial, Helvetica, sans-serif"><strong>II.<font color="#000000"> 
+          Ion Conductance and Selectivity in a Prokaryotic K<sup>+</sup>Channel</font></strong></font> 
+          <p><font size="4" face="Arial, Helvetica, sans-serif">To the left is 
+            the membrane spanning region of the K<sup>+</sup> channel from <em>Streptomyces 
+            lividans</em>, KcsA (Doyle, et al., 1998). The channel has been crystalized 
+            in its open state, with <font color="purple">K<sup>+</sup></font> 
+            <font color="purple">ions</font> in its pore.</font></p>
+          <p><span class="style7"> <span class="style3"> <font size="4" face="Arial, Helvetica, sans-serif"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load ./cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 497 863 -88 160.86} /* zoom, translation */  100.0 2.33 0.39  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 10.247081 102.77939 0.0; select all; color cpk; select k; spacefill 200; select protein; wireframe 75; spacefill 125; delay 1; select hetero; spacefill off; select protein; spacefill 175; delay .1; spacefill 150; delay .1; spacefill 125; delay .1;spacefill 100; delay .1;spacefill 75; delay .1; spacefill 50;  wireframe 50; trace 50; delay .1; spacefill 25; wireframe 25; delay .1; spacefill off; wireframe off; delay .1; color chain; trace 75; delay .1; trace 100; delay .1; moveto /* time, axisAngle */ 4.0 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; delay 1; move 0 360 0 0 0 0 0 0 6; ', "", false );
+            </script>
+            </font></span></span><span class="style75"><font size="4" face="Arial, Helvetica, sans-serif"> 
+            Like all members of the K<sup>+</sup> channel family, the KcsA protein 
+            is a homotetramer. The structure is oriented with its extracellular 
+            region facing up, its intracellular region at bottom. In this view, 
+            the structure has been likened to an inverted teepee.</font></span></p>
+          <p><font face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"><font size="4" face="Arial, Helvetica, sans-serif"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; select all; color cpk; select k; spacefill 200; select protein; color chain; trace 100; delay 1; select :b, :c, :d; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off; delay 1; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select k; spacefill off; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; delay 1; moveto /* time, axisAngle */ 2.0 { -16 696 -718 151.48} /* zoom, translation */  86.96 2.08 -4.08  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 64.79351 -69.46653 0.0; delay 1; select ~selectivity and :a; wireframe 100; color amino; moveto /* time, axisAngle */ 4.0 { 164 604 -780 145.25} /* zoom, translation */  201.14 -10.54 37.17  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 149.76266 -239.61848 0.0;', "", false );
+            </script>
+            </font></span></span><span class="style76"><font color="#000000" size="4">Each 
+            of the four monomers comprises a <font color="darkgoldenrod">selectivity</font> 
+            <font color="darkgoldenrod">filter</font>, an <font color="#0000FF">inner 
+            helix</font>, an <font color="green">outer helix</font>, a <font color="#FF00FF">pore 
+            helix</font>, and a <font color="#FF0000">turret loop</font>. The 
+            </font><font color="#000000" size="4"><font color="darkgoldenrod">selectivity</font> 
+            <font color="darkgoldenrod">filter</font></font><font size="4"> contains 
+            the highly conserved potassium channel signature sequence (for KcsA, 
+            <font color="darkgoldenrod">T<font color="green">V</font><font color="#666666">G</font><font color="#000099">Y</font><font color="#666666">G</font></font>). 
+            Mutations of these residues impair </font><font face="Arial, Helvetica, sans-serif"><span class="style76"><font color="#000000" size="4"> 
+            ion discrimination (see below)</font></span></font>.</span></font></p>
+          <p><span class="style76"><font face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"><font size="4" face="Arial, Helvetica, sans-serif"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; select all; color cpk; select k; spacefill 200; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select k; spacefill off; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select :a; trace 100; delay 1; select :b, :c, :d; trace 10; delay .1; trace 20; delay .1; trace 30; delay .1; trace 40; delay .1; trace 50; delay .1; trace 60; delay .1; trace 70; delay .1; trace 80; delay .1; trace 90; delay .1; trace 100; move 0 360 0 0 0 0 0 0 6;delay 1; move 90 0 0 0 0 0 0 0 6;', "", false );
+            </script>
+            </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">The 
+            assembly of monomers into the tetramer thus provides a central channel 
+            through which </font><font color="purple" size="4" face="Arial, Helvetica, sans-serif">K<sup>+</sup> 
+            ions</font><font size="4" face="Arial, Helvetica, sans-serif"> can 
+            flow, with its narrowest diameter at the junction of the <span class="style76"><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="darkgoldenrod">selectivity</font> 
+            <font color="darkgoldenrod">filter</font></font><font color="darkgoldenrod">s</font></span>.</font><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            </span></span></span></font></span></span></font></span></p>
+          <p class="style76"><span class="style76"><font size="4" face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"> 
+            </span></span></font></span><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1R3J; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { -932 250 264 92.55} /* zoom, translation */  100.0 0.1 0.1  /* center, rotationRadius */ {-0.00799942 -0.007499695 -0.3239994} 41.75839 /* navigation center, translation, depth */ {0.0 0.0 0.0} 0.050716575 -0.33739972 0.0; select all; color cpk; select k; spacefill off; select hetero; spacefill off; wireframe off; select dum; spacefill 200; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; color cpk; select ~pore; trace off; select atomno=236; label extracellular; set fontsize 20; color label black; set labeloffset 50 0; select atomno=3056; label intracellular; set fontsize 20; color label black; set labeloffset 0 -30; delay 2; select hydrophobic; color gray; select charged; color magenta; delay 2; select 26,45,62,87,113,114; wireframe 100; color cyan; ', "", false );
+            </script>
+            </span></span></span>KcsA has been modeled in the planes of a hypothetical 
+            membrane. Of note are the rings of <font color="#00DFDF">aromatic 
+            amino acid</font> sidechains on the membrane-facing surfaces, provided 
+            by both the inner and outer helices of each monomer. The structural 
+            elements of the transmembrane region contain mostly <font color="#666666">hydrophobic 
+            residues</font>, which, except for the selectivity filter (see below), 
+            create a non-polar cavity through which K<sup>+</sup> ions move. Regions 
+            with <font color="#FF00FF">charged amino acids</font> are primarily 
+            in the extracellular and intracellular domains. </font></p>
+          <p class="style76"><span class="style76"><font size="4" face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { 246 642 -727 128.05} /* zoom, translation */  86.96 2.13 -4.03  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 15.946567 -69.97547 0.0; select all; color cpk; select k; spacefill off; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; delay 1; select protein; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay 1; moveto /* time, axisAngle */ 1.0 { 203 621 -757 128.49} /* zoom, translation */  86.96 2.18 -3.98  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 20.077312 -76.73805 0.0; draw ID "draw1" diameter 20 ARROW {83.973976 25.826971 49.84555} {66.57358 26.984482 4.9940796} color purple; select atomno=935; label extracellular; set fontsize 20; color label black; select atomno=698; label intracellular; set fontsize 20; color label black; set labeloffset 5 -10; delay 1; select 115-119; spacefill; delay .5; spacefill off; delay .5; spacefill on; delay .5; spacefill off; delay .5; spacefill on; delay .5;spacefill off; delay .5; spacefill on; delay .5;spacefill off; delay .5; spacefill on; delay 1; select 100-104; isosurface cavity 2; color isosurface red; delay .5; isosurface off; delay .5; isosurface on; delay .5; isosurface off; delay .5; isosurface on; delay .5;isosurface off; delay .5; isosurface on; delay .5;isosurface off; delay .5; isosurface on; delay 1; select ~selectivity;   spacefill; delay .5; spacefill off; delay .5; spacefill on; delay .5; spacefill off; delay .5; spacefill on; delay .5;spacefill off; delay .5; spacefill on; delay .5;spacefill off; delay .5; spacefill on; delay 1; delay 1; select all; label off; moveto /* time, axisAngle */ 4.0 { -212 -104 -972 118.56} /* zoom, translation */  86.96 2.13 -4.03  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 2.102979 -65.723946 0.0; delay 1; moveto /* time, axisAngle */ 6.0 { 501 862 -73 161.99} /* zoom, translation */  86.96 2.13 -4.03  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.377855 84.06993 0.0; delay 1; moveto /* time, axisAngle */ 4.0 { 246 642 -727 128.05} /* zoom, translation */  86.96 2.13 -4.03  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 15.946567 -69.97547 0.0; select atomno=935; label extracellular; set fontsize 20; color label black; select atomno=698; label intracellular; set fontsize 20; color label black; set labeloffset 5 -10; select all; spacefill off; isosurface off; ', "", false );
+            </script>
+            </span></span></font></span><font size="4" face="Arial, Helvetica, sans-serif">We 
+            can now turn to the features of the KcsA channel that provide a pathway 
+            for rapid and selective <font color="purple">K<sup>+</sup></font></span> 
+            conductance. In the following, flow is visualized as outward, from 
+            cytosol (down) to extracellular space (up). Flow begins at the <font color="#0000FF">intracellular 
+            entryway</font>, continues into a cavity of variable width (<font color="#FF0000">10 
+            Angstroms at its widest</font>), and proceeds through the <font color="darkgoldenrod">selectivity 
+            filter</font>, exiting the membrane at the extracellular entryway. 
+            </font></p>
+          <ul class="style76">
+            <li> <span class="style76"><font face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"><font size="4" face="Arial, Helvetica, sans-serif"> 
+              <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { 342 -701 626 169.47} /* zoom, translation */  86.96 2.23 -3.93  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 72.91767 -58.415108 0.0; select all; color cpk; select k; spacefill off; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; draw ID "draw1" diameter 20 ARROW {85.26904 25.969177 52.76334} {63.142426 26.597107 -2.674755} color purple; delay 1.5; isosurface color absolute  -1 1 colorscheme rwb "1bl8_mep.jvxl"; move 360 0 0 0 0 0 0 0 12 ', "", false );
+            </script>
+              </font><font size="4">Both entryways harbor <font color="#FF0000">negative 
+              electrostatic surfaces</font> that serve to concentrate positively 
+              charged cations.</font></span></span></font></span></li>
+            <li><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+              <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { 203 621 -757 128.49} /* zoom, translation */  86.96 2.18 -3.98  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 20.077312 -76.73805 0.0; select all; color cpk; select k; spacefill off; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; delay 1; select protein; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay 1; moveto /* time, axisAngle */ 1.0 { 203 621 -757 128.49} /* zoom, translation */  86.96 2.18 -3.98  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 20.077312 -76.73805 0.0; draw ID "draw1" diameter 20 ARROW {83.973976 25.826971 49.84555} {66.57358 26.984482 4.9940796} color purple; select atomno=935; label extracellular; set fontsize 20; color label black; select atomno=698; label intracellular; set fontsize 20; color label black; set labeloffset 5 -10; delay 1; select 100-104; isosurface cavity 2; color isosurface red; delay 1; select ~pore; trace 50; delay .5;  select ~pore; trace 60; delay .5;  select ~pore; trace 70; delay .5; select ~pore; trace 80; delay .5; select ~pore; trace 90; delay .5; select ~pore; trace 100; delay 1; select protein and not ~pore; trace 30; delay .5; select protein and not ~pore; trace 20; delay .5; select protein and not ~pore; trace 10; delay .5; select protein and not ~pore; trace off; delay 1; select ~pore; color group; delay 1; select all; label off; select ~selectivity; trace 10; delay .5; trace 20; delay .5; trace 30; delay .5; trace 40; delay .5;trace 50; delay .5; trace 60; delay .5; trace 70; delay .5; trace 80; delay .5; trace 90; delay .5; trace 100; delay 1; moveto /* time, axisAngle */ 2.0 { -76 676 -733 157.76} /* zoom, translation */  86.96 2.33 -3.83  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 70.82438 -70.195206 0.0; delay .5; select atomno=284; label +; set fontsize 40; color label blue; select atomno=367; label -; set fontsize 40; set labeloffset 0 -1; color label red; draw ID "draw2" diameter 10 ARROW {46.495636 26.57257 19.193539} {65.53033 30.064407 26.42292} color purple; ', "", false );
+            </script>
+              </span></span></span>The spacious <font color="#FF0000">10 </font><font color="#FF0000" size="4" face="Arial, Helvetica, sans-serif"> 
+              &Aring;</font><font color="#FF0000"> diameter cavity</font> allows 
+              for the accommodation of water molecules that hydrate K<sup>+</sup> 
+              ions, stabilizing them in the hydrophobic cavity. The <font color="#FF00FF">pore 
+              helices</font> are oriented such that their <font color="#FF0000">negative 
+              (carboxy) ends</font> of their alpha helix <font color="#0000FF">di</font><font color="#00CC00">po</font><font color="#FF0000">les</font> 
+              point to the cavity, thus further stabilizing positive ions in the 
+              cavity at the center of the membrane, prior to their entry into 
+              the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><font color="darkgoldenrod">selectivity</font> 
+              <font color="darkgoldenrod">filter</font></span></font><font size="4" face="Arial, Helvetica, sans-serif">.</font></li>
+            <li> <font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+              <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1K4C; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ .1 { -436 -642 -630 133.67} /* zoom, translation */  201.14 -1.77 -34.65  /* center, rotationRadius */ {155.32999 155.32999 -21.915499} 85.901184 /* navigation center, translation, depth */ {0.0 0.0 0.0} -64.675644 -47.225597 0.0; model all; select :c; trace 100; color cpk; select atomno=4025 and model =1; spacefill 1.33; color cpk; select atomno=4481, atomno=4483; spacefill; color cpk; delay 2;  move 0 360 0 0 0 0 0 0 6; ', "", false );
+            </script>
+              </span></span></span>An eight-fold hydrated <font color="purple">K<sup>+</sup></font> 
+              ion in the cavity has been visualized in a crystal structure of 
+              a closed conformation of KcsA (only the <font color="#FF0000">oxygens</font> 
+              of the water molecules are shown).</font></li>
+            <li><span class="style76"><font size="4" face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"> 
+              <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; select all; color cpk; select k; spacefill off; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; select :a, :c; trace 100; delay 1; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off; delay 1; select atomno=2826, atomno=2825; spacefill 1.33; select ~selectivity and :b, ~selectivity and :d; wireframe 50; spacefill 100; moveto /* time, axisAngle */ 1.0 { 605 379 -701 96.75} /* zoom, translation */  86.96 2.18 -3.98  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} -58.347233 -74.053986 0.0; #################delay 1################; moveto /* time, axisAngle */ 4.0 { 618 384 -686 99.17} /* zoom, translation */  201.14 -2.88 29.35  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} -181.15416 -175.32138 0.0; #########delay 1########; moveto /* time, axisAngle */ 1.0 { 804 578 -142 167.5} /* zoom, translation */  201.14 -1.72 5.84  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} -194.44994 199.24677 0.0; delay 1; select :a, :c; trace 10; delay 1; trace 20; delay .1; trace 30; delay .1; trace 40; delay .1; trace 50; delay .1; trace 60; delay .1; trace 70; delay .1; trace 80; delay .1; trace 90; delay .1; trace 100; delay 1; select ~selectivity; wireframe 50; spacefill 100; delay 1; select protein and not ~selectivity; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off; delay 1; select ~selectivity and backbone; color cpk; delay 2; select atomno=2826, atomno=2825; spacefill off; select atomno=2825; spacefill 1.33; select atomno=2825; label K; set fontsize 20; color label black; set labeloffset 0 0; delay .5; spacefill off; delay .5; spacefill 1.33; delay .5; spacefill off; delay .5; spacefill 1.33; delay .5; spacefill off; delay .5; spacefill 1.33; delay .5; spacefill off; delay .5; spacefill 1.33; delay 2; select all; label off; select atomno=2826, atomno=2825; spacefill off; select atomno=2825; spacefill .95; color pink; label Na; set fontsize 20; color label black; set labeloffset 0 0; delay .5; spacefill off; delay .5; spacefill .95; delay .5; spacefill off; delay .5; spacefill .95; delay .5; spacefill off; delay .5; spacefill .95; delay .5; spacefill off; delay .5; spacefill .95; delay .5; spacefill off; select all; label off; delay 2; select atomno=2826, atomno=2825; spacefill 1.33; color cpk; ; select atomno=2825; label K; set fontsize 20; color label black; set labeloffset 0 0; delay 3; select all; label off; moveto /* time, axisAngle */ 5 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; delay 1; select protein and not ~selectivity;  trace 10; delay 1; trace 20; delay .1; trace 30; delay .1; trace 40; delay .1; trace 50; delay .1; trace 60; delay .1; trace 70; delay .1; trace 80; delay .1; trace 90; delay .1; trace 100; ', "", false );
+            </script>
+              </span></span></font></span><font size="4" face="Arial, Helvetica, sans-serif">The 
+              </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><font color="darkgoldenrod">selectivity</font> 
+              <font color="darkgoldenrod">filter</font></span></font> <font size="4" face="Arial, Helvetica, sans-serif">residues 
+              electrostatically interact with <font color="purple">K<sup>+</sup> 
+              ions</font> through their main chain <font color="#FF0000">carbonyl 
+              oxygens</font>; their sidechains point away from the filter pore. 
+              The diameter of <font color="#FF91A4">Na<sup>+ </sup>ions <font color="#000000">is 
+              too small for this interaction. The ion discrimination of potassium 
+              channels thus relies on the appropriate size of monovalent cations 
+              for rapid conductance.</font></font></font></li>
+            <li><span class="style76"><font face="Arial, Helvetica, sans-serif"><span class="style7"><span class="style3"><font size="4" face="Arial, Helvetica, sans-serif"> 
+              <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; select all; color cpk; select k; spacefill off; define ~outer 23-51; define ~inner 86-119; define ~pore 62-74; define ~selectivity 75-79; define ~turret 52-59; select protein; color white; select ~outer; color green; select ~inner; color blue; select ~pore; color magenta; select ~selectivity; color gold; select ~turret; color red; select protein; trace 100; select :a, :c; trace 100; delay 1; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off; delay 1; select atomno=2826, atomno=2825; spacefill 1.33; delay 1; moveto /* time, axisAngle */ 5.0 { 332 566 -755 116.73} /* zoom, translation */  231.32 1.83 31.35  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} -55.571793 -304.559 0.0; delay 1; set measure on; measure 2826 2825; set measurement angstroms; color measurement gray; delay 2; draw ID "draw1" diameter 20 ARROW {83.973976 25.826971 49.84555} {66.57358 26.984482 4.9940796} color purple; ', "", false );
+            </script>
+              Within the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><font color="darkgoldenrod">selectivity</font> 
+              <font color="darkgoldenrod">filter</font></span></font><font size="4" face="Arial, Helvetica, sans-serif">, 
+              the concentration of <font color="purple">K<sup>+</sup> ions</font> 
+              is high (~4M). At this concentration, electrostatic replulsion occurs, 
+              driving speedy migration through the filter.</font></span></span></font></span></li>
+          </ul>
+          <hr noshade="noshade" width="90%" />
+          <p align="center"><font size="2" face="Arial, Helvetica, sans-serif"><span class="style8"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolButton('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 1BL8; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; moveto /* time, axisAngle */ 0.1 { 497 863 -88 160.86} /* zoom, translation */  100.0 2.33 0.39  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 10.247081 102.77939 0.0; select all; color cpk; select k; spacefill 200; select protein; wireframe 75; spacefill 125; delay 1; select hetero; spacefill off; select protein; spacefill 175; delay .1; spacefill 150; delay .1; spacefill 125; delay .1;spacefill 100; delay .1;spacefill 75; delay .1; spacefill 50;  wireframe 50; trace 50; delay .1; spacefill 25; wireframe 25; delay .1; spacefill off; wireframe off; delay .1; color chain; trace 75; delay .1; trace 100; delay .1; moveto /* time, axisAngle */ 4.0 { 259 610 -749 124.69} /* zoom, translation */  86.96 2.03 -4.13  /* center, rotationRadius */ {70.0965 26.6035 24.678001} 37.209076 /* navigation center, translation, depth */ {0.0 0.0 0.0} 8.862503 -97.96629 0.0; delay 1; move 0 360 0 0 0 0 0 0 6;', "reset" );
+            </script>
+            </span>&nbsp; </font></p>
+          <p align="center"><font face="Arial, Helvetica, sans-serif" size="4"><a href="#top" target="_self">Return 
+            to Beginning </a><a name="iii"></a></font> </p>
+          <hr />
+          <font size="4" face="Arial, Helvetica, sans-serif"><strong>III. Voltage 
+          Gating in a Eukaryotic K<sup>+</sup> Channel</strong></font> 
+          <p><font face="Arial, Helvetica, sans-serif" size="4"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .1 { 771 458 -442 105.48} /* zoom, translation */  115.0 0.44 -26.89  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -77.858925 27.479069 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; delay 2; select ~channel; color red; select 1-23:c; color red; select ~t1; color blue; select :a; color green;   ', "", false );
+            </script>
+            </span></span></span>A mammalian voltage dependent K<sup>+ </sup>channel 
+            of the <em>Shaker</em> family is displayed at left. The <font color="#FF0000">voltage 
+            sensor and pore domains</font>, the <font color="#0000FF">T1 domain</font>, 
+            and an associated, regulatory <font color="green">oxido-reductase 
+            &szlig; subunit</font> are indicated.</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .1 { 771 458 -442 105.48} /* zoom, translation */  115.0 0.44 -26.89  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -77.858925 27.479069 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; delay 2; select ~channel; color red; select 1-23:c; color red; select ~t1; color blue; select :a; color green; moveto /* time, axisAngle */ 1.0 { 771 458 -442 105.48} /* zoom, translation */  132.25 -0.76 -22.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -94.86491 25.69623 0.0; select ~t1, :a; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off; delay 1; moveto /* time, axisAngle */ 4.0 { 727 493 -478 108.81} /* zoom, translation */  231.31 -1.01 -0.88  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -177.9701 94.33587 0.0; delay 2; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; move 0 360 0 0 0 0 0 0 10; ', "", false );
+            </script>
+            </span></span></span>Focusing on the transmembrane domains, it can 
+            be seen that <em>Shaker</em> is a homotetramer, as is KcsA (above). 
+            As above, the structure is oriented with the extracellular face on 
+            top and intracellular face at bottom.</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .1 { 771 458 -442 105.48} /* zoom, translation */  132.25 -0.76 -22.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -94.86491 25.69623 0.0; moveto /* time, axisAngle */ .2 { 771 458 -442 105.48} /* zoom, translation */  132.25 -0.76 -22.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -94.86491 25.69623 0.0; delay .1; moveto /* time, axisAngle */ .2{ 727 493 -478 108.81} /* zoom, translation */  231.31 -1.01 -0.88  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -177.9701 94.33587 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; select ~t1, :a; trace off; select 1-23:c; trace off; delay 2; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; delay 2; select ~channel and model=2, ~channel and model=3, ~channel and model=3, ~channel and model=4; trace 90; delay .1; trace 80; delay .1; trace 70; delay .1; trace 60; delay .1; trace 50; delay .1; trace 40; delay .1; trace 30; delay .1; trace 20; delay .1; trace 10; delay .1; trace off;  moveto /* time, axisAngle */ 2.0 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; delay 1; select ~s1, ~s2, ~s3, ~s4; color orange; select ~s4s5; color gray; select ~s5, ~s6, ~pore, ~selectivity; color red; ', "", false );
+            </script>
+            </span></span></span>Each monomer comprises <font color="darkgoldenrod">voltage 
+            sensor</font> and <font color="#FF0000">pore</font> domains, connected 
+            by a <font color="#666666">linker helix</font>.</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .2 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; select ~channel and model=2, ~channel and model=3, ~channel and model=3, ~channel and model=4; trace off; select ~t1, :a; trace off; select 1-23:c; trace off; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; select ~s1, ~s2, ~s3, ~s4; color orange; select ~s4s5; color gray; select ~s5, ~s6, ~pore, ~selectivity; color red; delay 1; select ~s5; color green; select ~s6; color blue; select ~pore; color magenta; select ~selectivity; color gold; move 0 -30 0 0 0 0 0 0 4; delay 2; move 0 30 0 0 0 0 0 0 4; delay 2; select ~s1; color greenblue; select ~s2; color cyan; select ~s3; color lime; select ~s4; color violet; delay 2; move 0 -30 0 0 0 0 0 0 4; delay 2; move 0 30 0 0 0 0 0 0 4; ', "", false );
+            </script>
+            </span></span></span> Like its prokaryotic counterpart, the <font color="#FF0000">pore 
+            domain</font><font face="Arial, Helvetica, sans-serif"> contains an 
+            </font></font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#0000FF">inner 
+            helix (S6)</font>, an <font color="green">outer helix</font> <font color="green">(S5)</font>, 
+            a <font color="#FF00FF">pore helix</font>, a <font color="#FF0000">turret 
+            loop<font color="#000000">, and a <font color="darkgoldenrod">selectivity 
+            filter</font>. The</font> <font color="darkgoldenrod">voltage sensor</font> 
+            <font color="#000000">c</font></font></span>ontains 4 helices: , <font color="#009933">S1</font>,<font color="#00DFDF"> 
+            S2</font>, <font color="lime">S3</font>, and <font color="#CC0099">S4</font>. 
+            The <font color="#666666">S4-S5</font> </font><font size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">linker 
+            helix </font></font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">joins 
+            the two domains by connecting<font color="#CC0099"> S4</font> and 
+            <font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="green">S5</font></font>. 
+            </font></p>
+          <p><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">In 
+            order to visualize the mechanics of voltage gating, we need to consider 
+            the dispositions of several key helices of the structure, treated 
+            in the next two steps.</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .2 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; select ~channel and model=2, ~channel and model=3, ~channel and model=3, ~channel and model=4; trace off; select ~t1, :a; trace off; select 1-23:c; trace off; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; select ~s1, ~s2, ~s3, ~s4; color orange; select ~s4s5; color gray; select ~s5, ~s6, ~pore, ~selectivity; color red; select ~s5; color green; select ~s6; color blue; select ~pore; color magenta; select ~selectivity; color gold;  select ~s1; color greenblue; select ~s2; color cyan; select ~s3; color lime; select ~s4; color violet; delay 1; select ~args; wireframe 75; spacefill 150; color blue; move 0 -30 0 0 0 0 0 0 4; delay 2; move 0 30 0 0 0 0 0 0 4; ', "", false );
+            </script>
+            </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">Helix 
+            </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#CC0099">S4</font> 
+            of the voltage sensor contains <font color="#0000FF">4 essential arginine 
+            residues</font> (gating charge residues) that change position in order 
+            to open or close the channel. In the structure shown, the channel 
+            is open with the <font color="#0000FF">gating charge arg's</font> 
+            positioned near the top (extracellular) side of the molecule. In vivo, 
+            this channel state would occur in response to Na<sup>+</sup> influx 
+            depolarizing the membrane at the start of an action potential. As 
+            the membrane potential is restored to a negative state by the outward 
+            flow of potassium ions through the open channel, the positively charged 
+            <font color="#0000FF">gating arg's</font> would be be drawn closer 
+            to the intracellular side of the membrane (down in the view at left), 
+            thus closing the channel by driving a conformational change of the 
+            protein (see next step).</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .2 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; select ~channel and model=2, ~channel and model=3, ~channel and model=3, ~channel and model=4; trace off; select ~t1, :a; trace off; select 1-23:c; trace off; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; select ~s1, ~s2, ~s3, ~s4; color orange; select ~s4s5; color gray; select ~s5, ~s6, ~pore, ~selectivity; color red; select ~s5; color green; select ~s6; color blue; select ~pore; color magenta; select ~selectivity; color gold;  select ~s1; color greenblue; select ~s2; color cyan; select ~s3; color lime; select ~s4; color violet; delay 1; select ~args; wireframe 75; spacefill 150; color blue; select ~s4s5 and model=1; wireframe 75; spacefill 150; delay 2; select 407-421:b and model=1; wireframe 75; spacefill 150; moveto /* time, axisAngle */ 5.0 { -22 778 -628 174.91} /* zoom, translation */  231.31 -20.25 -0.73  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} 136.94366 157.20364 0.0; delay 3; moveto /* time, axisAngle */ 5 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; ', "", false );
+            </script>
+            The </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">S4-S5</font> 
+            </font><font size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">linker 
+            helix</font></font> <font size="4" face="Arial, Helvetica, sans-serif">interacts 
+            with the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#0000FF">inner 
+            helix (S6) </font></font><font size="4" face="Arial, Helvetica, sans-serif">of 
+            the pore domain, the latter curving and running parallel to the horizontal 
+            plane of the membrane (not shown) and serving as a platform-like &quot;receptor&quot; 
+            for the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">S4-S5</font> 
+            </font><font size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">linker 
+            helix</font></font> <font size="4" face="Arial, Helvetica, sans-serif">above 
+            it. Thus, changes in the disposition of the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#CC0099">S4</font></font> 
+            <font size="4" face="Arial, Helvetica, sans-serif">helix driven by 
+            shifts of the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">positively 
+            charged <font color="#0000FF">gating arg's <font color="#000000">change 
+            the disposition of the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">S4-S5</font> 
+            </font><font size="4" face="Arial, Helvetica, sans-serif"><font color="#666666">linker 
+            helix</font></font> <font color="#000000">and this in turn affects 
+            the disposition of the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#0000FF">S6</font></font> 
+            <font color="#000000">helix, opening or closing the channel depending 
+            on the position of the </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#0000FF">gating 
+            arg's <font color="#000000"></font></font></font><font color="#000000">.</font></font></font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif">Now the ability 
+            of the positively charged </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif"><font color="#0000FF">gating 
+            arg's</font></font><font size="4" face="Arial, Helvetica, sans-serif"> 
+            to regulate channel opening and closing in response to membrane potential 
+            can be visualized (see <A HREF="#" onClick="subwindow();"> Figure 
+            1</A>). In a resting cell, the membrane potential is negative (inside 
+            of cell is negative relative to outside). The <font color="#0000FF">positively 
+            charged gating charge residues</font> lie closer to the intracellular 
+            side of the channel, and the channel is closed. As </font><font color="#000000" size="4" face="Arial, Helvetica, sans-serif">Na<sup>+</sup></font><font size="4" face="Arial, Helvetica, sans-serif"> 
+            enters the cell at the begining of an action potential, the membrane 
+            is depolarized, the gating charge residues shift toward the extracellular 
+            side of the channel, and the channel opens, allowing K<sup>+</sup> 
+            to flow out of the cell. As the resting membrane potential is thus 
+            restored, the gating charge residues shift back toward the intracellular 
+            side of the channel, and the channel closes.</font></p>
+          <p><font size="4" face="Arial, Helvetica, sans-serif"><span class="style76"><span class="style7"><span class="style3"> 
+            <script language="JavaScript" type="text/javascript">
+	jmolRadio('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .2 { 727 493 -478 108.81} /* zoom, translation */  231.31 9.56 0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -167.41107 96.05043 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; select ~channel and model=2, ~channel and model=3, ~channel and model=4; trace off; select ~t1, :a; trace off; select 1-23:c; trace off; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; select ~s1, ~s2, ~s3, ~s4; color orange; select ~s4s5; color gray; select ~s5, ~s6, ~pore, ~selectivity; color red; delay 2; select ~channel and model=2, ~channel and model=3, ~channel and model=4; trace 10; delay .1; trace 20; delay .1; trace 30; delay .1; trace 40; delay .1; trace 50; delay .1; trace 60; delay .1; trace 70; delay .1; trace 80; delay .1; trace 90; delay .1; trace 100; delay 2; select k; spacefill 1.33; color cpk; moveto /* time, axisAngle */ 5 { 886 463 -5 179.87} /* zoom, translation */  201.14 -0.96 -0.83  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -117.136795 19.667986 0.0; delay 1; select model=1; color red; select model=2; color blue; select model=3; color yellow; select model=4; color cyan; select k; spacefill 1.33; color cpk; delay 2; select ~s4; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay 1; select ~s4s5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay 1; select ~s6; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay .5; trace off; delay .5; trace 100; delay 1;', "", false );
+            </script>
+            </span></span></span>In the tetrameric channel, the voltage sensor 
+            domains can be seen at the four corners of the square-shaped structure 
+            formed by the assembly of the pore domains. As already discussed, 
+            the voltage sensor domains connect to the pore domains through the 
+            S4-S5 linker helix. The blinking helices reflect the order of the 
+            &quot;chain reaction&quot; of the conformational alterations of S4, 
+            S4-S5, and S6 in response to gating charge arginine shifts. As mentioned, 
+            the structure at left is in the open state with <font color="purple">K<sup>+</sup> 
+            ions</font> in the channel pore. </font></p>
+          
+          <hr noshade="noshade" width="90%" /> <p align="center" class="style76"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <script language="JavaScript" type="text/javascript">
+	jmolButton('background [xffffff]; load cx26.pdb; set frank off; set echo bottom center; echo PDB ID: 2A79; color echo black; select all; spin off; wireframe off; spacefill off; trace off; set ambient 40; set specpower 40; slab off; ribbons off; cartoons off; label off; monitor off; set ribbonborder on; ##### boilerplate #####; center atomno=4869; moveto /* time, axisAngle */ .1 { 771 458 -442 105.48} /* zoom, translation */  115.0 0.44 -26.89  /* center, rotationRadius */ {113.604996 113.604996 -79.822} 119.60453 /* navigation center, translation, depth */ {0.0 0.0 0.0} -77.858925 27.479069 0.0; select all; wireframe off; spacefill off; model all; define ~channel :b and not 25-131, 24-52:c, :d; define t1 25-131:b; define ~mod1 ~channel and :b/1, model=1 and :c, model=1 and :d; define ~t1 32-131:b; define ~s6 385-421:b; define ~s5 325-350:b; define ~selectivity 373-379:b; define ~pore 362-372:b; define ~s4s5 312-324:b; define ~s4 288-311:b; define ~s3 :d; define ~s2 24-52:c; define ~s1 219-243:b; define ~args 294:b/1, 297:b/1, 300:b/1, 303:b/1; select protein; trace 100; delay 2; select ~channel; color red; select 1-23:c; color red; select ~t1; color blue; select :a; color green; ', "reset" );
+              </script>
+            </font></p>
+          <p align="center" class="style76"><font face="Arial, Helvetica, sans-serif"><a href="#top" target="_self">Return 
+            to Beginning </a></font> <font face="Arial, Helvetica, sans-serif"><a name="refs" id="refs"></a></font></p>
+          <div align="left"> 
+            <hr />
+            <h1 class="style76"> <font size="4" face="Arial, Helvetica, sans-serif">IV. 
+              References</font></h1>
+            <P> <font size="4" face="Arial, Helvetica, sans-serif">Doyle DA, Morais 
+              Cabral J, Pfuetzner RA, Kuo A, Gulbis JM, Cohen SL, Chait BT, MacKinnon 
+              R.. The structure of the potassium channel: molecular basis of K+ 
+              conduction and selectivity. Science 280(5360):69-77. (1998).</font>
+            <P><font size="4" face="Arial, Helvetica, sans-serif">Long SB, Campbell 
+              EB, Mackinnon R.. Crystal structure of a mammalian voltage-dependent 
+              Shaker family K+ channel. Science 309(5736):897-903. (2005).</font>
+            <P><font size="4" face="Arial, Helvetica, sans-serif">Zhou Y, Morais-Cabral 
+              JH, Kaufman A, MacKinnon R.. Chemistry of ion coordination and hydration 
+              revealed by a K+ channel-Fab complex at 2.0 A resolution. Nature 
+              414(6859):43-8. (2001).</font>
+            <P><font size="4" face="Arial, Helvetica, sans-serif">Zhou Y, MacKinnon 
+              R.. The occupancy of ions in the K+ selectivity filter: charge balance 
+              and coupling of ion binding to a protein conformational change underlie 
+              high conduction rates. J Mol Biol. 333(5):965-75. (2003).</font>
+            <hr noshade="noshade" width="90%" />
+            <p align="center" class="style76"><font face="Arial, Helvetica, sans-serif"><a href="#top" target="_self">Return 
+              to Beginning</a></font> </p>
+            <hr />
+            <hr />
+          </div></td>
+      </tr>
+      <tr> 
+        <td height="42" class="style76">&nbsp;</td>
+      </tr>
+    </table>
+
+      <hr /> <p class="style76"><span class="style1">Acknowledgement: The format of this web page is modified from a template provided by Dr. Angel Herraez, Bioquimica y Biologia Molecular, Universidad de Alcala, 
+E-28871, Alcala de Henares (Madrid), Spain.</span><br>
+
+	</div> 
+	<span class="style76">
+	<!--content-->
+    </span></div> 
+<span class="style76">
+<!--mainPane-->
+</span>
+</body>
+</html>

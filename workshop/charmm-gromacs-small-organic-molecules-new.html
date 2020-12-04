@@ -104,9 +104,9 @@ jz4.pdb
 <h2>The Ligand</h2>
 <ul>
       </li>
-      <li>Convert the jz4.pdb file to a jz4.mol2 file using <a href="http://openbabel.org/wiki/Babel">Open Babel</a>.</li>
+      <li>Convert the jz4.pdb file to a jz4.mol2 using <a href="http://openbabel.org/wiki/Babel">Babel</a>.</li>
       <p>
-      <font color="#008000"><b>obabel -i pdb jz4.pdb -o mol2 jz4.mol2</b></font>
+      <font color="#008000"><b>babel -i pdb jz4.pdb -o mol2 jz4.mol2</b></font>
       </p>
       <li>
       <p>
@@ -123,19 +123,17 @@ jz4.pdb
     <p>
     <font color="#008000"><b>cgenff_charmm2gmx_py2.py jz4 jz4.mol2 jz4.str charmm36-mar2019.ff</b></font>
     </p>
-    <p>
     yields four files:
+    <pre>
+    jz4.itp - GROMACS topology file
+    jz4.prm - GROMACS parameter file
+    jz4_ini.pdb - PDB file for the initial coordinates of the jz4 ligand
+    jz4.top 
+    </pre>
+    Three of the files, jz4.itp, jz4.prm, and jz4_ini.pdb  are required GROMACS files for the ligand component of the protein-ligand complex.
+    The file, jz4.top, is a GROMACS prototype topology file which indicates where to place specific files for the protein and jz4 ligand.  It is not used in this simulation,
+   and should not be confused with the required topol.top file, the system topolgy file.
     </p>
-<ul>
-<li>jz4.itp - GROMACS topology file
-<li>jz4.prm - GROMACS parameter file
-<li>jz4_ini.pdb - PDB file for the initial coordinates of the jz4 ligand
-<li>jz4.top - GROMACS prototype topology file which indicates where to place specific files for the protein and jz4 ligand.  It is not used in this simulation,
-and should not be confused with the required topol.top file, the system topolgy file.
-</ul>
-<p>
-Three of the files, jz4.itp, jz4.prm, and jz4_ini.pdb  are required GROMACS files for the ligand component of the protein-ligand complex.
-</p>
 </li>
 </ul>
 
@@ -298,22 +296,30 @@ indicated:
 #endif
 
 ; Include water topology
-# &quot;charmm36-mar2019/tip3p.itp&quot;
+#include &quot;charmm36-mar2019/tip3p.itp&quot;
 </pre>
 </b></font>
 
 <p>
-Location matters! The line for posre_jz4.itp must be inserted in the topology as indicated. The parameters within jz4.itp define a 
-<code>[ moleculetype ]</code> directive for our ligand. The moleculetype ends
-with the inclusion of the water topology (tip3p.itp). Placing the call to posre_jz4.itp anywhere else will attempt to apply the position
-restraint parameters to the wrong moleculetype.
+Location matters! The line for posre_jz4.itp must be inserted in the topology <i>after</i> jz4.itp as indicated above. 
 </p>
+
+<p>
+The parameters within jz4.itp define a <code>[ moleculetype ]</code> directive for the ligand which end with the next <code>{moleculetype]</code> directive supplied by the 
+inclusion of the water topology file, tip3p.itp. 
+</p>
+
+<p>
+Placing the position of posre_jz4.itp anywhere else in the topology file will apply the position restraint parameters to the wrong moleculetype.
+</p>
+
 <p>
 If a bit more control during equilibration is desired, i.e.
 restraining the protein and ligand independently, 
 the inclusion of the ligand position restraint file in a
 different #ifdef block could be included in the following manner:
 </p>
+
 <font color="#008000"><b>
 <pre>
 ; Include Position restraint file
@@ -334,16 +340,12 @@ different #ifdef block could be included in the following manner:
 </pre>
 </b></font>
 <p>
-In the latter case, in order to restrain <b>both</b> the protein and
-the ligand simultaneously, the command
-<b>define = -DPOSRES -DPOSRES_LIG</b> would have to be specificed in the .mdp file. 
+In order to restrain <i>both</i> the protein and the ligand simultaneously, the command
+<b>define = -DPOSRES -DPOSRES_LIG</b> would have to be specificed in the nvt.mdp file. 
 </p>
 <p>
-There are manny ways to specify the system.
-These examples are meant only to
-illustrate the flexibility GROMACS provides. For a standard
-equilibration procedure, restraining the protein and ligand
-simultaneously is probably sufficient. Your own needs may vary.</p>
+There are many ways to specify the system under consideration, and these examples are meant only to illustrate the flexibility GROMACS provides. 
+For a standard equilibration procedure, restraining the protein and ligand simultaneously is probably sufficient. Your own needs may vary.
 </p>
 
 <h2>Thermostats</h2>
@@ -584,13 +586,13 @@ Is hydrogen bonding important?
 <p>
 The use of energygrps in the md.mdp file will allow an examination of the various components of the nonbonded potential between JZ4 and the protein. 
 </p>
-<p>
-<font color="#008000"><b>gmx energy -f md.edr -o vdw.xvg</b></font>,  and then choose the appropriate value for protein ... JZ4 non-bonded interactions.
-</p>
+<font color="#008000"><b>
+<pre>
+gmx energy -f md.edr -o vdw.xvg
 
-<p>
-<font color="#008000"><b>gmx energy -f md.edr -o es.xvg</b></font>, and then choose the appropriate value for protein ... JZ4 coulomb interactions.
-</p>
+gmx energy -f md.edr -o  es.xvg
+</pre>
+</b></font>
 
 <p>
 Do electrostatic interactions or van der Waals (hydrophobic) interactions dominate the association between these two species?

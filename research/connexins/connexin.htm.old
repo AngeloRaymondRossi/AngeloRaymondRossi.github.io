@@ -1,0 +1,121 @@
+<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Angelo Raymond Rossi: Research Interests</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="v4sheet.css" type="text/css">
+<script type="text/javascript">
+<!--
+function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
+}
+MM_reloadPage(true);
+
+function P7_StyleLoader(tS) { //v1.1 by PVII
+ var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
+ if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
+ if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
+ var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
+ bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
+ document.write(tDoc);break;}}}}
+}
+P7_StyleLoader('w3csheet.css');
+//-->
+</script>
+</head>
+
+<body>
+<div id="LayerLogo" style="position:absolute; left:475px; right:0px; top:15px; width:600px; z-index:1">
+<img src="http://sirius2.umdnj.edu/~rossiar/hpcworkshop/hpc_files/logo_color.gif" alt="University of Medicine and Dentistry of New Jersey">
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:0px; right:0px; top:100px; width:1200px; z-index:1">
+<center>
+<h1>
+<font size="6" color="#CC0033">
+Angelo Raymond Rossi<p>Division of High Performance and Research Computing<br>Department of Physiology and Pharmacology
+</font>
+</h1>
+</center>
+</div>
+
+<div id="LayerLogo" style="position:absolute; left:40px; right:0px; top:250px; width:1000px; z-index:1">
+<center>
+<hr width="100%" size="2">
+<center>
+</div>
+
+<div id="LayerSidebar" style="position:absolute; left:35px; top:300px; width:180px; z-index:3" class="navDiv"> 
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/"><center>Home</center></a></p>
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/teaching/index.htm"><center>Teaching Experience</center></a></p>
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/research/index.htm"><center>Research Interests</center></a></p>
+<p class="navSubs"><a href="http://sirius2.umdnj.edu/~rossiar/research/sgc.htm" target="_new"><center><small><b><font color="#CC0033"><u>Soluble Guanylyl Cyclase</u></b></font></small></center></a></p>
+<p class="navSubs"><a href="http://sirius2.umdnj.edu/~rossiar/research/connexin.htm" target="_new"><center><small><b><font color="#CC0033"><u>Connexins</u></b></font></small></center></a></p>
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/comp_chem_links.htm"><center>Computational Chemistry Links</center></a></p>
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/hpc.htm"><center>High Performance<br>Computing Links</center></a></p>
+<p class="navButts"><a href="http://sirius2.umdnj.edu/~rossiar/hpcworkshop/index.html"><center>Hands-On Workshop<br>High Performance Computing</center></a></p>
+<p>&nbsp;</p>
+</div>
+
+<div id="LayerMain" style="position:absolute; left:250px; top:300px; z-index:4" class="maindiv">
+
+<table width="100%" cellpadding="10" cellspacing="0">
+<tr>
+<td width="100%" valign="top" bgcolor="#CCF6F6">
+<h1><font size="5">Connexin Channel Structure and Function</font></h1>
+
+The co-operation between cells is a fundamental and widespread feature in tissues and organs.  Signalling between cells by means of <b>gap junctions</b> ensures the ability of a cell to
+maintain internal equilibrium.  <b>Gap junctions</b> are clusters of inter-cellular channels that directly couple groups of attached cells providing a pathway for small molecules and ions to co-ordinate
+and synchronize metabolic activities of the constituent cells.
+<br><br>
+The constituent proteins of gap junctions are called <b>connexins</b> and are important in understanding how they function and influence inter-cellular communications.
+For example, gap junctions provided by Connexin proteins are responsible for the synchronized contractions of heart muscle by the propagation of potentials.
+<br><Br>
+Professor Andrew Harris, Department of Pharmacology and Physiology at UMDNJ,  a renowned expert in the field of <b>connexins</b>, and I are performing simulations to reach a deeper understanding of the
+at a molecular level of <b>connexin</b> transmembrane proteins.
+<br><br>
+An example of one simulation involves placing a molecule in the aqueous phase and observe what happens as it follows a path through the Connexin pore.
+Starting with molecules very near the pore opening, Molecular Dynamics (MD) simulations are used to explore their pathway through the connexin channel, to determine the energetic barrier
+of entering the pore and to obtain the energetics of permeation.
+<br> <br>
+A simulation model after removing the water molecules for connexin (Cx26) based on the crystal structure is shown below:
+<center>
+<br>
+<img src="http://sirius2.umdnj.edu/~rossiar/images/connexin.png" width="400" height="202" alt="Cx26 Connexin Simulation Model">
+<br>
+</center>
+It is known which molecules block the pore, or do not block. Those which permeate each type of channel include cyclodextrins (CDs), ABG-sugars, PA-sugars, dyes, some second messengers. For blockers, it would be important
+to determine side of the pore which is causing the block.
+<br> <br>
+MD results for other permeants can be tested/confirmed experimentally. Sites of interaction proposed from MD studies can be tested experimentally using mutants. Pulling permeants through the pore might identify barriers or
+might give artifactual results if time scale is not appropriate.
+</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td bgcolor="#CCF6F6">
+<div align="center">
+<p class="footer">Division of High Performance and Research Computing<br>
+  Department of Physiology and Pharmacology<br><br>
+  University of Medicine & Dentistry of New Jersey<br>
+  185 South Orange Avenue NJMS/C630<br>
+  Newark, New Jersey 07103<br>
+  PHONE: 646-996-4145<br>
+<!--   FAX: 973-972-7412<br> -->
+  e-mail: <a href="mailto:rossiar@umdnj.edu">rossiar@umdnj.edu</a><br>
+  </p>
+</div>
+</td>
+</tr>
+</table>
+
+
+</div>
+<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
+<a href="feedback.htm"><img src="/home/rossi/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+</body>
+</html>
