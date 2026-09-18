@@ -1,101 +1,57 @@
-<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-<title>Angelo Raymond Rossi: Computational Chemistry Workshops - Topics and Exercises</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Construction, preparation, simulation, and analysis of nucleic-acid duplexes using CHARMM-based workflows.">
+  <title>RNA and DNA molecular dynamics | Angelo Raymond Rossi</title>
+  <link rel="stylesheet" href="../modern.css">
 </head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
-
-<link rel="stylesheet" href="v4sheet.css" type="text/css" media="all"/>
-
-<script type="text/javascript">
-function MM_reloadPage(init) {  //Updated by PVII. Reloads the window if Nav4 resized
-  if (init==true) with (navigator) {if ((appName=="Newscape")&&(parseInt(appVersion)==4)) {
-    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
-  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) history.go(0);
-}
-MM_reloadPage(true);
-
-function P7_StyleLoader(tS) { //v1.1 by PVII
- var tH='',tDoc='',tA='<LIN'+'K REL="stylesheet" HREF=',tB=' TYPE="text/css">';
- if(document.getElementsByTagName){var bb=document.getElementsByTagName("LINK");
- if(bb) {for(var k=0;k<bb.length;k++){if(bb[k].rel.toLowerCase()=="stylesheet"){
- var h=bb[k].href,x=h.lastIndexOf("/");if(x>0){tH=h.substring(0,x+1);}
- bb[k].disabled=true;tDoc=tA+'"'+ tH + tS + '"' +tB;
- document.write(tDoc);break;}}}}
-}
-P7_StyleLoader("w3csheet.css");
-</script>
-
 <body>
-
-<div id="LayerLogo" style="position:absolute; left:50px; right:0px; top:55px; width:300px; z-index:1">
-<img src="http://rossi.chemistry.uconn.edu/images/angelo_rossi_fix.png" width="255" height="169" alt="Angelo Raymond Rossi">
-</div>
-
-<!--
-<div id="LayerLogo" style="position:absolute; left:450px; right:0px; top:15px; width:600px; z-index:1">
-<img src="http://rossi.chemistry.uconn.edu/images/Logo-Center-1Line-281.gif" width="375" height="133" alt="University of Connecticut">
-</div>
--->
-
-<div id="LayerLogo" style="position:absolute; left:550px; right:0px; top:45px; width:600px; z-index:1">
-<img src="http://rossi.chemistry.uconn.edu/images/college-of-liberal-arts-and-sciences-wordmark-stacked-blue.jpg" width="262" height="103" alt="University of Alaska Fairbanks">
-</div>
-
-<div id="LayerLogo" style="position:absolute; left:375px; right:0px; top:160px; width:600px; z-index:1">
-<center>
-<font color="blue">
-<h1>
-Department of Chemistry<br>
-Computational Chemistry Workshop<br><br>
-CHARMM: MD Simulation of RNA and DNA
-</h1>
-</font>
-</center>
-</div>
-
-<div id="LayerSidebar" style="position:absolute; left:35px; top:325px; width:180px; z-index:3" class="navDiv">
-<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b>Home</b></center></a></p>
-<!-- <p class="navButts"><a href="http://rossi.chemistry.uconn.edu/teaching.htm"><center><b>Teaching Experience</b></center></a></p> -->
-<!-- <p class="navButts"><a href="http://rossi.chemistry.uconn.edu/chem5326/index.html"><b><center>Computational Chemistry and Experiment</center></b></a></p> -->
-<!-- <p class="navButts"><a href="http://rossi.chemistry.uconn.edu/research/index.html"><center><b>Research Interests</b></center></a></p> -->
-<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/workshop"><center><b>Computational Chemistry Workshop</b></center></a></p>
-<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/workshop-overview.htm"><center><small><b><font color="blue"><u>Overview</u></b></font></small></center></a></p>
-<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/workshop-registration.htm"><center><small><b><font color="blue"><u>Registration</u></b></font></small></center></a></p>
-<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/topics.htm"><center><small><b><font color="blue"><u>Topics and Exercises</u></b></font></small></center></a></p>
-<p class="navSubs"><a href="http://rossi.chemistry.uconn.edu/workshop/resources.htm"><center><small><b><font color="blue"><u>Resources</u></b></font></small></center></a></p>
-<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/comp_chem_links.htm"><center><b>Computational Chemistry Links</b></center></a></p>
-<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/hpc.htm"><center><b>High Performance<br>Computing Links</b></center></a></p>
-<p class="navButts"><a href="http://rossi.chemistry.uconn.edu/"><center><b> </b></center></a></p>
-</div>
-
-<!--
-<div id="LayerLogo" style="position:absolute; left:250px; top:325px; width:800px; z-index:1" align="center">
-<center><hr width="100%" size="1"></center>
-</div>
-
-<div id="LayerMain" style="position:absolute; left:250px; top:350px; width:800px; z-index:4" class="maindiv" align="left">
--->
-
-<div id="LayerLogo" style="position:absolute; left:250px; top:300px; width:800px; z-index:1" align="center">
-<center>
-<!-- <hr width="100%" size="1"> -->
-<hr shade="" align="center" size="3" width="800" color="#0000FF">
-</center>
-</div>
-
-<div id="LayerMain" style="position:absolute; left:250px; top:300px; width:800px; z-index:4" class="maindiv" align="left">
-
-<br>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="identity" href="../index.html" aria-label="Angelo Raymond Rossi home">
+        <span class="identity-name">Angelo Raymond Rossi</span>
+        <span class="identity-role">Computational Chemist</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../research/index.html">Research</a></li>
+          <li><a class="active" href="index.html">Workshop</a></li>
+          <li><a href="../comp_chem_links.htm">Chemistry Resources</a></li>
+          <li><a href="../hpc.htm">HPC Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <nav class="subnav" aria-label="Workshop navigation">
+    <div class="container"><ul class="subnav-list">
+      <li><a href="index.html">Workshop home</a></li>
+      <li><a href="workshop-overview.htm">Overview</a></li>
+      <li><a href="topics.htm">Topics and exercises</a></li>
+      <li><a href="resources.htm">Resources</a></li>
+    </ul></div>
+  </nav>
+  <main id="main-content">
+    <section class="page-hero"><div class="container">
+      <p class="eyebrow">Workshop tutorial</p>
+      <h1>RNA and DNA molecular dynamics</h1>
+      <p class="lead">Construction, preparation, simulation, and analysis of nucleic-acid duplexes using CHARMM-based workflows.</p>
+    </div></section>
+    <section class="section"><article class="container tutorial" id="top">
+      <div class="tutorial-nav"><a href="index.html">Workshop home</a> · <a href="topics.htm">Topics and exercises</a> · <a href="resources.htm">Resources</a></div>
 <br>
 
-<table border="0" cellpadding="10">
+<br>
+
+
+<table>
 <tbody>
 <tr>
 <td colspan="1" rowspan="1" width="70%">
-<div align="justify">
+<div>
 <h1>Objective and Overview</h1>
 <p>
 This tutorial provides an overview of the CHARMM commands required to build and simulate either a DNA or RNA duplex
@@ -107,39 +63,45 @@ In addition, an input file provides the appropriate CHARMM commands for converti
 Note, all remaining steps, including solvation, minimization, and simulation, are the same for both DNA and RNA. 
 </p>
 
-An image of a duplex is shown on the right</p>
+An image of a duplex is shown on the right
 </div>
 </td>
-<td colspan="1" rowspan="1" align="center" valign="center" width="30%"> <img src="files/rr_gen.png" name="rr_gen" alt="rr_gen.gif">
+<td colspan="1" rowspan="1" width="30%"> <img src="files/rr_gen.png" name="rr_gen" alt="rr_gen.gif">
 </td>
 </tr>
 </tbody>
 </table>
 
+
 <h1>Generation of RNA and DNA Duplexes</h1>
+
 
 <h2>Initial Input Coordinates from a PDB File Downloaded from the Protein Data Bank</h2>
 
+
 <p>
-A nucleic acid duplex (PDB Identifer: <a href="http://www.rcsb.org/pdb/explore/explore.do?structureId=1rrr">1RRR</a>)
+A nucleic acid duplex (PDB identifier: <a href="https://www.rcsb.org/structure/1RRR">1RRR</a>)
 is initially downloaded from the Protein Data Bank. 
 </p>
+
 
 <p>
 The following calculations, which convert the PDB coordinates to a format acceptable to CHARMM, should be performed 
 in the <b>convpdb2crd</b> subdirectory.  Topology and parameter files used for the calculations are the additive all-atom 
-<a href="http://mackerell.umaryland.edu/charmm_ff.shtml">CHARMM Force Field Files</a> which are located in the tutorial directory.
+<a href="https://mackerell.umaryland.edu/charmm_ff.shtml">CHARMM force-field files</a> which are located in the tutorial directory.
 </p>
+
 
 <p>
 The conversion of atom names and coordinates for a file downloaded from the Protein Data Bank (PDB format)
 to a CHARMM coordinate file (CRD format) is accomplished by the following steps:
+</p>
 <pre>
 Step 1: The starting PDB file is rr_1.pdb (RNA).
 
 Step 2: Use the following command to delete the hydrogens. 
   
-        awk '{if ($3!~/H/) print}' rr_1.pdb > rr_1_noh.pdb
+        awk '{if ($3!~/H/) print}' rr_1.pdb &gt; rr_1_noh.pdb
 
         Hydrogens will be added when generating RNA using CHARMM.
 
@@ -169,43 +131,52 @@ Step 5: Use the modified rr_1_noh.pdb.crd file from Step 4 in the helix_rna_gen.
 
 </pre>
 A similar procedure can be used for DNA with a different initial structure, helix.pdb (DNA)
-</p>
+
+
 
 <h1>Building RNA or DNA</h1>
+
 <h2>RNA</h2>
+
 <p>
 Once the initial CRD file is created for the RNA structure, it is then used in the CHARMM script file, <b>helix_rna_gen.inp</b>,
 from which a PSF file and new CRD file are obtained.  
 </p>
 
+
 <h2>DNA</h2>
+
 <p>
 For the CHARMM force field, the RNA form of nucleic acids is the default.
 </p>
+
 
 <p>
 Thus, for the building a DNA duplex structure, the CHARMM commands are almost the same as for the RNA duplex, but there is an additional step 
 of removing the 2'OH moieties, as shown in the CHARMM script, <b>helix_dna_gen.inp</b>.  
 </p>
 
+
 <h2>Using the PDB File Directly in CHARMM</h2>
+
 <p>
 Small changes to the CHARMM scripts allow the use of a PDB file as input for the coordinates:
 </p>
 
-<table border="0" cellpadding="10">
+
+<table>
 <tbody><tr><td>
 <p>
 <b>CHARMM CRD Input Coordinates</b> 
-<pre>
+</p><pre>
 open unit 20 read form name rr_1_noh.pdb.crd 
 read <font color="red"><b>coor card</b></font> unit 20
 </pre>
-</p>
+
 </td><td>
 <p>
 <b>PDB Input Coordinates</b>
-<pre>
+</p><pre>
 rename segid a select segid rna1 end
 rename segid b select segid rna2 end
 open unit 20 read form name rr_1.pdb
@@ -213,13 +184,14 @@ read <font color="red"><b>coor pdb</b></font> unit 20 <font color="red"><b>resid
 rename segid rna1 a select segid a end
 rename segid rna2 b select segid b end
 </pre>
-</p>
+
 </td>
 </tr>
 </tbody>
 </table>
 
-<table border="0" cellpadding="10">
+
+<table>
 <tbody>
 <tr>
 <td colspan="1" rowspan="1">
@@ -234,14 +206,17 @@ changes them back so the segments have the same names in the later CHARMM script
 </tbody>
 </table>
 
+
 <h1>MD Simulation</h1>
 
+
 <h2>Solvation and Neutralization</h2>
-<table border="0" cellpadding="10">
+
+<table>
 <tbody>
 <tr>
 <td colspan="1" rowspan="1" width="70%">
-<div align="justify">
+<div>
 <p>
 Once the RNA (or DNA) duplex is constructed, it is then solvated by overlaying an equilibrated water box, followed by deletion of
 all water molecules that are in too close-contact with RNA.
@@ -263,17 +238,19 @@ charmm &lt; helix_dna_solvate.inp  &gt; helix_dna_solvate.log
 
 charmm &lt; helix_dna_neutralize.inp  &gt; helix_dna_neutralize.log
 
-</div>
+</pre></div>
 </td>
-<td colspan="1" rowspan="1" align="center" valign="center" width="30%">
+<td colspan="1" rowspan="1" width="30%">
 <a><img src="files/helix-dna.png" name="solvated rna" alt="helix-dna.png" height="341" width="350"></a>
 </td>
 </tr>
 </tbody>
 </table>
 
+
 <h2>Heating, Equilibration, and Production</h2>
-<table border="0" cellpadding="10">
+
+<table>
 <p>
 The remainder of the CHARMM scripts involve equilibration of the system around the RNA followed by the production MD simulation.
 During equilbration, the coordinates of the DNA/RNA are harmonically constrained and a 
@@ -304,22 +281,19 @@ charmm &lt; rms.inp &gt; rms.log
 
 charmm &lt; bp_interactions.inp &gt; bp_interactions.log
 </pre>
-</div>
-</td>
-</tr>
-</tbody>
+
+
+
+
 </table>
 
-<p class="footer" align="center">
-  Department of Chemistry<br>
-  The University of Connecticut<br>
-  55 North Eagleville Road, Unit 3060<br>
-  Storrs, CT 06269-3060<br>
-  PHONE: 646-996-4145<br>
-  e-mail: <a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><br>
-  </p>
-</div>
-<!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
-<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+
+    </article></section>
+  </main>
+  <section class="contact-section"><div class="container contact-inner">
+    <div><p class="section-kicker light">Contact</p><h2>Scientific discussion and collaboration</h2><p>Department of Chemistry · University of Connecticut</p></div>
+    <address><a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><a href="tel:+16469964145">646-996-4145</a></address>
+  </div></section>
+  <footer class="site-footer"><div class="container footer-inner"><p>© Angelo Raymond Rossi</p><p>Computational chemistry · Molecular dynamics · High-performance computing</p></div></footer>
 </body>
 </html>
