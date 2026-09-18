@@ -1,13 +1,49 @@
-<!docTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-<title>NAMD: Molecular Dynamics Simulation of Deca-Alanine</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical molecular-dynamics workflow covering preparation, minimization, solvation, equilibration, production, and analysis.">
+  <title>NAMD simulation of deca-alanine | Angelo Raymond Rossi</title>
+  <link rel="stylesheet" href="../modern.css">
 </head>
-
 <body>
-
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="identity" href="../index.html" aria-label="Angelo Raymond Rossi home">
+        <span class="identity-name">Angelo Raymond Rossi</span>
+        <span class="identity-role">Computational Chemist</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../research/index.html">Research</a></li>
+          <li><a class="active" href="index.html">Workshop</a></li>
+          <li><a href="../comp_chem_links.htm">Chemistry Resources</a></li>
+          <li><a href="../hpc.htm">HPC Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <nav class="subnav" aria-label="Workshop navigation">
+    <div class="container"><ul class="subnav-list">
+      <li><a href="index.html">Workshop home</a></li>
+      <li><a href="workshop-overview.htm">Overview</a></li>
+      <li><a href="topics.htm">Topics and exercises</a></li>
+      <li><a href="resources.htm">Resources</a></li>
+    </ul></div>
+  </nav>
+  <main id="main-content">
+    <section class="page-hero"><div class="container">
+      <p class="eyebrow">Workshop tutorial</p>
+      <h1>NAMD simulation of deca-alanine</h1>
+      <p class="lead">A practical molecular-dynamics workflow covering preparation, minimization, solvation, equilibration, production, and analysis.</p>
+    </div></section>
+    <section class="section"><article class="container tutorial" id="top">
+      <div class="tutorial-nav"><a href="index.html">Workshop home</a> · <a href="topics.htm">Topics and exercises</a> · <a href="resources.htm">Resources</a></div>
 <center><h1>NAMD: Molecular Dynamics Simulation of Deca-Alanine</h1></center>
+
 <p>
 This tutorial provides an introduction to NAMD, and some of its basic capabilities, including the steps of a molecular dynamics simulation, including 
 preparation, minimization, equilibration, production, and finally, analysis of a system.   
@@ -15,34 +51,44 @@ Also, various options and output of the NAMD simulation program are described.
 In addition, typical simulation techniques are introduced, and the analysis of properties for molecular systems is also illustrated.
 </p>
 
+
 <h1>Stages in a Typical MD Simulation</h1>
+
 <p>
 A typical Molecular Dynamics simulation using NAMD includes the following stages:
 </p>
+
 <center>
 <p>
-<h4>
-System Preparation &#8594; Energy Minimization &#8594; Heating + Equilibration &#8594; Production Dynamics &#8594; Analysis
+</p><h4>
+System Preparation → Energy Minimization → Heating + Equilibration → Production Dynamics → Analysis
 </h4>
-</p>
+
 </center>
+
 
 <h1>System Preparation</h1>
 
+
 <h2>Building the Initial Structure</h2>
+
 <p>
 To build the initial structure, one needs the following:
+</p>
 <ul>
 <li>The <b>psfgen</b> program which is available with any <b>NAMD</b> or <b>VMD</b> distribution.</li>
 <li>The <b>CHARMM</b> topology and parameter files, such as top_all36_prot.rtf and par_all36_prot.prm for deca-alanine.</li>
 <li>A PDB file, available from the Protein Data Bank at http://www.pdb.org/ or other sources.<br>
-</ul>
-</p>
+</li></ul>
+
+
 <p>
 In this exercise, the coordinates for deca-alanine are given by the file <b>alanine_original.pdb</b> in PDB format.
 </p>
+
 <p>
 The file <b>deca-alanine.pgn</b> constructs an initial deca-alanine structure and contains the following statements: 
+</p>
 <pre>
 package require psfgen
 resetpsf
@@ -62,20 +108,28 @@ writepdb output/deca-alanine.pdb
 exit
 </pre>
 The above file can be executed with the either of the following commands:
+
 <pre>
-<b>psfgen alanine.pgn &#62; alanine.log</b>
+<b>psfgen alanine.pgn &gt; alanine.log</b>
 
              or
 
-<b>vmd -dispdev text -e alanine.pgn &#62; alanine.log</b>
+<b>vmd -dispdev text -e alanine.pgn &gt; alanine.log</b>
 </pre>
-where the <b>psfgen</b> program is part of both the <b>NAMD</b> and <b>vmd</b> distributions which can be invoked through the <b>module</b> command. 
-</p>
+where the 
+<b>psfgen</b> program is part of both the 
+<b>NAMD</b> and 
+<b>vmd</b> distributions which can be invoked through the 
+<b>module</b> command. 
+
+
 
 <h1>Minimization of Initial Structure</h1>
+
 <p>
 The psf and pdb files generated by the psfgen step can then be combined into a <b>NAMD</b> configuration file ( <b>alanine_min.conf</b>) which
 minimizes the isolated protein whose contents are shown below:
+</p>
 <pre>
 # namd configuration file to minimize deca-alanine protein chain
 
@@ -113,19 +167,26 @@ pairlistdist 13.5
 #Minimize for a number of steps
 minimize        100
 
-<b>namd2 deca-alanine-minimize.namd &#62; deca-alanine-minimize.log</b>
+<b>namd2 deca-alanine-minimize.namd &gt; deca-alanine-minimize.log</b>
 
 </pre>
-</p>
+
+
 
 <h1>Solvation, Neutralization, Adding Ions</h1>
 Next, the protein is solvated, and then ions are added to neutralize the system, to increase the ionic strength, or to do both.  
-The following is a <b>VMD</b> script file, <b>solvate_add_ions.tcl</b>, 
+The following is a 
+<b>VMD</b> script file, 
+<b>solvate_add_ions.tcl</b>, 
+
 <pre>
 <b>vmd -dispdev text -e solvate_add_ions.tcl</b>
 </pre>
-accomplishes these steps.  The contents of the <b>solvate_add_ions.tcl</b> script file are given below:
+accomplishes these steps.  The contents of the 
+<b>solvate_add_ions.tcl</b> script file are given below:
+
 <p>
+</p>
 <pre>
 # Load PSF and binary coordinate file
 mol new     output/deca-alanine.psf type psf
@@ -186,12 +247,15 @@ quit
 
 </pre>
 
-</p>
+
+
 
 <h1>Heating + Equilibration and Production</h1>
+
 <p>
 NAMD configuration scripts for heating + equilibration and production are similar, but there are several differences as well.  Below is shown only 
 the NAMD production script, <b>deca-alanine-solvated-ions-production.namd</b>:
+</p>
 <pre>
 ######################################################################
 # Production Dynamics of alanine in a Water Box                       #
@@ -280,31 +344,38 @@ run                    10000;  #run sets the number of timesteps over which
                                #to run MD equilibration or production
 </pre>
 To run this script, the following command is used:
+
 <pre>
-<b>namd2 +p24 deca-alanine-solvated-ions-production.namd &#62; deca-alanine-solvated-ions-production.log</b>
+<b>namd2 +p24 deca-alanine-solvated-ions-production.namd &gt; deca-alanine-solvated-ions-production.log</b>
 </pre>
-Notice, that the "<b>+p24</b>" option is added to the namd2 command for the production run, allowing execution
+Notice, that the "
+<b>+p24</b>" option is added to the namd2 command for the production run, allowing execution
 on one node with 24 SMP processors (cores).  Other numbers of cores can be used depending on the Linux node.
 Increasing the number of cores executing in parallel is very desirable for long executing production simulations.
 The result will be an increase in turn around time and a concomitant decrease in elapsed execution time.
-</p>
+
+
 
 <h1>Analysis</h1>
+
 <p>
 When one or more trajectory files are obtained from production runs, then it possible to perform trajectory analysis of the solvated protein system.
 One important property for analysis involves <b>RMSD</b>, which is the root mean square deviation between the coordinates from a Molecular Dynamics simulation and 
 the coordinates from an experimental protein structure.  
 </p>
+
 <p>
 The Root Mean Squared Difference (<b>RMSD</b>) is the difference between individual trajectory frames of coordinates with respect to the coordinates of a reference crystal structure of a protein
 or the first trajectory frame. The RMSD tells us something about the
-dissimilarity between the structures - 1 &#197; <b>RMSD</b> is barely visible to
-the eye, while an <b>RMSD</b> of 10 &#197; is leading to a significantly different structure.
+dissimilarity between the structures - 1 Å <b>RMSD</b> is barely visible to
+the eye, while an <b>RMSD</b> of 10 Å is leading to a significantly different structure.
 </p>
+
 
 <p>
 Thus, the behavior of the protein from an initial starting structure or crystal reference structure, can be calculated with the following tcl script (<b>rmsd.tcl</b>) :
 </p>
+
 
 <pre>
 
@@ -336,24 +407,38 @@ bigdcd_wait
 quit
 </pre>
 
+
 <p>
 The command:
+</p>
 <pre>
 <b>vmd -dispdev text -e rmsd.tcl</b>
 </pre>
 creates a file containing two columns of data, including the time versus RMSD value.  This can be used as one measure of whether or not the system has equilibrated, and a 
-graph of the <b>RMSD</b> of the protein versus time is shown below:
-</p>
+graph of the 
+<b>RMSD</b> of the protein versus time is shown below:
+
+
 
 <center>
 <img src="files/rmsd.png" name="RMSD of CA Atoms" width="690" height="533" alt="RMSD of CA Atoms">
 </center>
-</p>
+
+
 
 <p>
 Many other properties of the solvated protein system can be obtained by using the tcl scripts located in the exercise directory.
 </p>
+
 <!-- div id="LayerMail" style="position:absolute; left:251px; top:156px; width:26px; z-index:5" class="icondiv">
-<a href="feedback.htm"><img src="/home/rossiar/athletics/assets/mailv.gif" width="26" height="26" alt="Contact Us"></a></div -->
+<a aria-disabled="true" title="Archived file unavailable in this repository"><span class="archive-note missing-asset">Archived illustration unavailable: <code>mailv.gif</code>.</span></a></div -->
+
+    </article></section>
+  </main>
+  <section class="contact-section"><div class="container contact-inner">
+    <div><p class="section-kicker light">Contact</p><h2>Scientific discussion and collaboration</h2><p>Department of Chemistry · University of Connecticut</p></div>
+    <address><a href="mailto:angelo.rossi@uconn.edu">angelo.rossi@uconn.edu</a><a href="tel:+16469964145">646-996-4145</a></address>
+  </div></section>
+  <footer class="site-footer"><div class="container footer-inner"><p>© Angelo Raymond Rossi</p><p>Computational chemistry · Molecular dynamics · High-performance computing</p></div></footer>
 </body>
 </html>
